@@ -1,0 +1,8 @@
+MTV_MEDIA_PATH: "/media/charliepi/FOO/media"
+MTV_MUSIC_PATH: "/media/charliepi/FOO/media/music/"
+MTV_MUSIC_THUMBNAIL_PATH: "/media/charliepi/FOO/media/music_thumbnails"
+MTV_MUSIC_METADATA_PATH: "/media/charliepi/FOO/media/metadata_music"
+MTV_MOVIES_PATH: "/media/charliepi/FOO/media/movies"
+MTV_MOVIES_THUMBNAIL_PATH: "/media/charliepi/FOO/media/movies_thumbnails"
+MTV_MOVIES_METADATA_PATH: "/media/charliepi/FOO/media/metadata_movies"
+MTV_OFFSET: "25"
