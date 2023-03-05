@@ -43,7 +43,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /media/charliepi/FOO/media/
+      device: /home/pipi/Music/music/
       o: bind
 
   # mtvpicvol:
