@@ -15,12 +15,12 @@ services:
     environment:
       - MTV_MONGODB_ADDRESS=mongodb://db:27017/mtv
       - MTV_MEDIA_PATH=/root/fsData
-      - MTV_MUSIC_PATH=/root/fsData/music/music
-      - MTV_MUSIC_THUMBNAIL_PATH=/root/fsData/music/thumbnails
-      - MTV_MUSIC_METADATA_PATH=/root/fsData/music/metadata
-      - MTV_MOVIES_PATH=/root/fsData/movies/movies
-      - MTV_MOVIES_THUMBNAIL_PATH=/root/fsData/movies/thumbnails
-      - MTV_MOVIES_METADATA_PATH=/root/fsData/movies/metadata
+      - MTV_MUSIC_PATH=/root/fsData/music
+      - MTV_MUSIC_THUMBNAIL_PATH=/root/fsData/thumbnails
+      - MTV_MUSIC_METADATA_PATH=/root/fsData/metadata
+      - MTV_MOVIES_PATH=/root/fsDataMov/movies
+      - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
+      - MTV_MOVIES_METADATA_PATH=/root/fsDataMov/metadata
       - MTV_OFFSET=25
       - MTV_SERVER_PORT=8888
       - MTV_SERVER_ADDRESS=http://192.168.0.94
