@@ -26,7 +26,7 @@ fn main() {
 
     mtv_clean::clean_meta();
 
-    // mtv_process_music_images::process_music_images();
+    mtv_process_music_images::process_music_images();
 
     mtv_process_mp3s::process_mp3s();
 
