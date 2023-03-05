@@ -46,7 +46,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/Music/music/
+      device: /home/pipi/Music/
       o: bind
 
   # mtvpicvol:
