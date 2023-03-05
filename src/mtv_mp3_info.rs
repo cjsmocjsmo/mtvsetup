@@ -17,6 +17,9 @@ pub fn get_tag_info(x: &String) -> (String, String, String, String) {
 pub fn get_duration(x: &String) -> String {
     let path = Path::new(&x);
     let dur_sec = mp3_duration::from_path(&path).expect("this is duration exception");
+    if format!("{:?}", dur_sec) == "this is duration exception".to_string() {
+        println!("{}", x);
+    }
 
     // let dur_sec = mp3_duration::from_path(&path).unwrap();
     let dur_min = dur_sec.div_f32(60.0);
