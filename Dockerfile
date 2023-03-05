@@ -1,38 +1,40 @@
-FROM rust:buster AS builder
+# FROM rust:buster AS builder
 
-RUN mkdir /usr/src/mtvsetup
-RUN mkdir /usr/src/mtvsetup/src
-RUN mkdir /usr/src/mtvsetup/target
+# RUN mkdir /usr/src/mtvsetup
+# RUN mkdir /usr/src/mtvsetup/src
+# RUN mkdir /usr/src/mtvsetup/target
 
-WORKDIR /usr/src/mtvsetup
+# WORKDIR /usr/src/mtvsetup
 
-COPY Cargo.toml .
+# COPY Cargo.toml .
 
-COPY src/config.yaml ./src
-COPY src/main.rs ./src
-COPY src/mtv_clean.rs ./src
-COPY src/mtv_env_vars.rs ./src
-COPY src/mtv_image.rs ./src
-COPY src/mtv_misc.rs ./src
-COPY src/mtv_mp3_info.rs ./src
-COPY src/mtv_process_mp3s.rs ./src
-COPY src/mtv_process_music_images.rs ./src
-COPY src/mtv_split.rs ./src
-COPY src/mtv_walk_dirs.rs ./src
+# COPY src/config.yaml ./src
+# COPY src/main.rs ./src
+# COPY src/mtv_clean.rs ./src
+# COPY src/mtv_env_vars.rs ./src
+# COPY src/mtv_image.rs ./src
+# COPY src/mtv_misc.rs ./src
+# COPY src/mtv_mp3_info.rs ./src
+# COPY src/mtv_process_mp3s.rs ./src
+# COPY src/mtv_process_music_images.rs ./src
+# COPY src/mtv_split.rs ./src
+# COPY src/mtv_walk_dirs.rs ./src
 
-RUN cargo install --path .
+# RUN cargo install --path .
 
 FROM ubuntu:22.04
 
-RUN \
-  apt-get update && \
-  apt-get -y dist-upgrade && \
-  apt-get -y autoclean && \
-  apt-get -y autoremove
+# RUN \
+#   apt-get update && \
+#   apt-get -y dist-upgrade && \
+#   apt-get -y autoclean && \
+#   apt-get -y autoremove
+
+# COPY --from=builder /usr/src/mtvsetup/target/release/mtvsetup /usr/local/bin/mtvsetup
 
 WORKDIR /root/
 
-COPY --from=builder /usr/src/mtvsetup/target/release/mtvsetup /usr/local/bin/mtvsetup
+
 
 RUN \
   mkdir ./static && \
@@ -58,5 +60,5 @@ RUN \
 
 STOPSIGNAL SIGINT
 
-# CMD ["tail", "-f", "/dev/null"]
-CMD ["mtvsetup"]
+CMD ["tail", "-f", "/dev/null"]
+# CMD ["mtvsetup"]

@@ -26,6 +26,7 @@ pub fn walk_music_dir_mp3() -> Vec<String> {
 pub fn walk_music_dir_images() -> Vec<String> {
     let mut musicimagevec = Vec::new();
     let mtv_music_path = env::var("MTV_MUSIC_PATH").expect("$MTV_MUSIC_PATH is not set");
+    println!("this is mtv_music_path: {}", mtv_music_path);
     for e in WalkDir::new(mtv_music_path.clone())
         .into_iter()
         .filter_map(|e| e.ok())
