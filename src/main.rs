@@ -22,7 +22,7 @@ fn main() {
         println!("docker var is set so docker will set the env vars for us");
     };
 
-    mtv_env_vars::read_config();
+    // mtv_env_vars::read_config();
 
     mtv_clean::clean_meta();
 
