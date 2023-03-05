@@ -17,9 +17,11 @@ pub fn process_mp3s() {
         let music_artist_results = crate::mtv_split::music_split_artist(&base_dir);
         let music_album_results = crate::mtv_split::music_split_album(&base_dir);
         let duration_results = crate::mtv_mp3_info::get_duration(&mp3);
+
         let artc = crate::mtv_mp3_info::check_artist(&music_artist_results, &artist);
         let albc = crate::mtv_mp3_info::check_album(&music_album_results, &album);
         let sc = crate::mtv_mp3_info::check_song(&filename_results, &song);
+        
         let fullpath = &mp3.to_string();
         let extension = crate::mtv_split::split_ext(&mp3);
         let idx = index.to_string();
