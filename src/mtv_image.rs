@@ -4,16 +4,22 @@ use json::object;
 use std::env;
 
 pub fn get_image_dims(x: &String) -> (u32, u32) {
-    // let dims = image::image_dimensions(&x).expect("get image dims has failed");
+    let dims = image::image_dimensions(&x).expect("get image dims has failed");
 
-    let dims_result = image::image_dimensions(&x);
-    println!("{}", &x);
-    let dims = match dims_result {
-        Ok(dims) => dims,
-        Err(error) => panic!("problem opening file {:?}", error),
+    if format!("{:?}", dims) == "get image dims has failed".to_string() {
+        // WRITE CODE TO DELETE BAD MP3S AND COVERART
+        println!("{}", x);
+        let dims = (0, 0);
+        return dims;
+    } else {
+        let dims_result = image::image_dimensions(&x);
+        println!("{}", &x);
+        let dims = match dims_result {
+            Ok(dims) => dims,
+            Err(error) => panic!("problem opening file {:?}", error),
+        };
+        return dims;
     };
-
-    dims
 }
 
 pub fn normalize_music_image(dims: (u32, u32)) -> (u32, u32) {
@@ -105,6 +111,6 @@ pub fn write_image_json_to_file(
     let b = format!("Music_Image_Meta_{}.json", &imagecount);
     let outpath = a + &b;
 
-    println!("\n\n\n ifo {:#?}", ifo);
+    // println!("\n\n\n ifo {:#?}", ifo);
     std::fs::write(outpath, ifo).unwrap();
 }

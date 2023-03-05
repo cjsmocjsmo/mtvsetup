@@ -135,9 +135,9 @@ pub fn write_music_json_to_file(
 ) {
     let mut named_incorrectly_vec = vec![];
 
-    // println!("{}", artc);
-    // println!("{}", albc);
-    // println!("{}", sc);
+    println!("{}", artc);
+    println!("{}", albc);
+    println!("{}", sc);
 
     if artc == true && albc == true && sc == true {
         println!("\n they all match:\n {}", fullpath);
@@ -171,7 +171,7 @@ pub fn write_music_json_to_file(
         let outpath = a + &b;
         std::fs::write(outpath, mfo.clone()).unwrap();
 
-        println!("\n\n\n mp3info {}", mfo.clone());
+        // println!("\n\n\n mp3info {}", mfo.clone());
     } else {
         // println!("{:?}", mp3.clone());
         named_incorrectly_vec.push(fullpath.as_str());
