@@ -40,23 +40,26 @@ RUN \
   mkdir ./static && \
   mkdir ./fsData && \
   mkdir ./fsData/music && \
-  mkdir ./fsData/music/music && \
-  mkdir ./fsData/music/thumbnails && \
-  mkdir ./fsData/music/metadata && \
+  mkdir ./fsData/thumbnails && \
+  mkdir ./fsData/metadata
+
+RUN \
   chmod -R +rwx ./static && \
   chmod -R +rwx ./fsData && \
   chmod -R +rwx ./fsData/music && \
-  chmod -R +rwx ./fsData/music/music && \
-  chmod -R +rwx ./fsData/music/thumbnails && \
-  chmod -R +rwx ./fsData/music/metadata && \
+  chmod -R +rwx ./fsData/thumbnails && \
+  chmod -R +rwx ./fsData/metadata
+
+RUN \
   mkdir ./fsData/movies && \
   mkdir ./fsData/movies/movies && \
   mkdir ./fsData/movies/thumbnails && \
-  mkdir ./fsData/movies/metadata && \
+  mkdir ./fsData/movies/metadata
+
+RUN \
   chmod -R +rwx ./fsData/movies && \
-  chmod -R +rwx ./fsData/movies/movies && \
-  chmod -R +rwx ./fsData/movies/thumbnails && \
-  chmod -R +rwx ./fsData/movies/metadata
+  chmod -R +rwx ./fsData/thumbnails && \
+  chmod -R +rwx ./fsData/metadata
 
 STOPSIGNAL SIGINT
 
