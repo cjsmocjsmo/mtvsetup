@@ -25,11 +25,13 @@ COPY src/mtv_walk_dirs.rs ./src
 RUN cargo install --path .
 
 # FROM arm32v6/alpine:latest
-FROM alpine:latest
+# FROM alpine:latest
+FROM ubuntu:22.04
+
 # RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
-COPY --from=builder /usr/local/cargo/bin/mtvsetup /usr/local/bin/mtvsetup
+COPY --from=builder /usr/src/mtvsetup/target/release/mtvsetup /usr/local/bin/mtvsetup
 RUN \
   mkdir ./static && \
   chmod -R +rwx ./static && \
