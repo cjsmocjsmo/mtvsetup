@@ -1,10 +1,17 @@
-use image;
 use base64::{alphabet, engine, Engine as _};
+use image::{self, ImageError};
 use json::object;
 use std::env;
 
 pub fn get_image_dims(x: &String) -> (u32, u32) {
-    let dims = image::image_dimensions(&x).expect("get image dims has failed");
+    // let dims = image::image_dimensions(&x).expect("get image dims has failed");
+
+    let dims_result = image::image_dimensions(&x);
+    println!("{}", &x);
+    let dims = match dims_result {
+        Ok(dims) => dims,
+        Err(error) => panic!("problem opening file {:?}", error),
+    };
 
     dims
 }
