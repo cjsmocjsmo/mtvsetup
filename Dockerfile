@@ -58,4 +58,5 @@ RUN \
 
 STOPSIGNAL SIGINT
 
-CMD ["mtvsetup"]
+CMD ["tail", "-f", "/dev/null"]
+# CMD ["mtvsetup"]
