@@ -79,6 +79,8 @@ pub fn check_artist(x: &String, y: &String) -> bool {
     let f = split_sep1((&x).to_string());
     let t = split_sep2((&y).to_string());
     if f != t {
+        println!("should be artist 1: {:?}", f);
+        println!("should be artist 2: {:?}", t);
         return false;
     } else {
         return true;
