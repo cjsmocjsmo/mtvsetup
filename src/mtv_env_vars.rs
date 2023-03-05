@@ -67,6 +67,18 @@ pub fn read_config() {
         let offset2 = String::from("25");
         set_env_var(offset1, offset2).unwrap();
 
+        let p1 = String::from("MTV_SERVER_PORT");
+        let p2 = String::from("8888");
+        set_env_var(p1, p2).unwrap();
+
+        let addr1 = String::from("MTV_SERVER_ADDRESS");
+        let addr2 = String::from("http://192.168.0.94");
+        set_env_var(addr1, addr2).unwrap();
+
+        let dvar1 = String::from("MTV_DOCKER_VAR");
+        let dvar2 = String::from("NONE");
+        set_env_var(dvar1, dvar2).unwrap();
+
 
     }
 }

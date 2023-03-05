@@ -12,11 +12,11 @@ mod mtv_process_mp3s;
 
 fn main() {
     let dockervar = mtv_env_vars::get_docker_var();
-    if dockervar == "docker var not set".to_string() {
+    if dockervar != "DOCKER".to_string() {
         mtv_env_vars::read_config();
         println!(
-            "should be /media/charliepi/FOO/media :\n {}",
-            env::var("MTV_MEDIA_PATH").unwrap()
+            "this is MTV_DOCKER_VAR :\n {}",
+            env::var("MTV_DOCKER_VAR").unwrap()
         );
     } else {
         println!("docker var is set so docker will set the env vars for us");
