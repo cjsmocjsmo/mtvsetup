@@ -51,14 +51,15 @@ RUN \
   chmod -R +rwx ./fsData/metadata
 
 RUN \
-  mkdir ./fsData/movies && \
-  mkdir ./fsData/mov_thumbnails && \
-  mkdir ./fsData/mov_metadata
+  mkdir ./fsDataMov && \
+  mkdir ./fsDataMov/movies && \
+  mkdir ./fsDataMov/thumbnails && \
+  mkdir ./fsDataMov/metadata
 
 RUN \
-  chmod -R +rwx ./fsData/movies && \
-  chmod -R +rwx ./fsData/mov_thumbnails && \
-  chmod -R +rwx ./fsData/mov_metadata
+  chmod -R +rwx ./fsDataMov/movies && \
+  chmod -R +rwx ./fsDataMov/thumbnails && \
+  chmod -R +rwx ./fsDataMov/metadata
 
 STOPSIGNAL SIGINT
 
