@@ -22,7 +22,8 @@ COPY src/mtv_walk_dirs.rs ./src
 
 RUN cargo install --path .
 
-FROM ubuntu:22.04
+# FROM ubuntu:22.04
+FROM debian:buster
 
 RUN \
   apt-get update && \
@@ -33,8 +34,6 @@ RUN \
 COPY --from=builder /usr/src/mtvsetup/target/release/mtvsetup /usr/local/bin/mtvsetup
 
 WORKDIR /root/
-
-
 
 RUN \
   mkdir ./static && \
