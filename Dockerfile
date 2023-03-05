@@ -20,31 +20,42 @@ COPY src/mtv_process_music_images.rs ./src
 COPY src/mtv_split.rs ./src
 COPY src/mtv_walk_dirs.rs ./src
 
-
-
 RUN cargo install --path .
 
-# FROM arm32v6/alpine:latest
-# FROM alpine:latest
 FROM ubuntu:22.04
 
-# RUN apk --no-cache add ca-certificates
+RUN \
+  apt-get update && \
+  apt-get -y dist-upgrade && \
+  apt-get -y autoclean && \
+  apt-get -y autoremove
+
 WORKDIR /root/
 
 COPY --from=builder /usr/src/mtvsetup/target/release/mtvsetup /usr/local/bin/mtvsetup
+
 RUN \
   mkdir ./static && \
-  chmod -R +rwx ./static && \
   mkdir ./fsData && \
-  chmod -R +rwx ./fsData
-  # mkdir ./logs && \
-  # chmod -R +rwx ./logs && \
-  # echo "Creating log file" > ./logs/mtvSetup.log && \
-  # echo "Creating log file" > ./logs/mtvTV.log && \
-  # echo "Creating log file" > ./logs/mtvMOV.log && \
-  # chmod -R +rwx ./logs/mtvSetup.log && \
-  # chmod -R +rwx ./logs/mtvTV.log && \
-  # chmod -R +rwx ./logs/mtvMOV.log
+  mkdir ./fsData/music && \
+  mkdir ./fsData/music/music && \
+  mkdir ./fsData/music/thumbnails && \
+  mkdir ./fsData/music/metadata && \
+  chmod -R +rwx ./static && \
+  chmod -R +rwx ./fsData && \
+  chmod -R +rwx ./fsData/music && \
+  chmod -R +rwx ./fsData/music/music && \
+  chmod -R +rwx ./fsData/music/thumbnails && \
+  chmod -R +rwx ./fsData/music/metadata && \
+  mkdir ./fsData/movies && \
+  mkdir ./fsData/movies/movies && \
+  mkdir ./fsData/movies/thumbnails && \
+  mkdir ./fsData/movies/metadata && \
+  chmod -R +rwx ./fsData/movies && \
+  chmod -R +rwx ./fsData/movies/movies && \
+  chmod -R +rwx ./fsData/movies/thumbnails && \
+  chmod -R +rwx ./fsData/movies/metadata
 
 STOPSIGNAL SIGINT
+
 CMD ["mtvsetup"]
