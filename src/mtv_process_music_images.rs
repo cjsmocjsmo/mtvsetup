@@ -11,6 +11,7 @@ pub fn process_music_images() {
         let id = crate::mtv_misc::get_md5(&jpg);
 
         let dims = crate::mtv_image::get_image_dims(&jpg);
+        if dims != (0, 0) {
             let newdims = crate::mtv_image::normalize_music_image(dims);
             let width_r = newdims.0.to_string();
             let height_r = newdims.1.to_string();
@@ -41,7 +42,9 @@ pub fn process_music_images() {
                 fullpath.to_string(),
                 image_count.to_string(),
             );
-        
+        } else {
+            println!("{}", jpg);
+        };
         // put it in a db
     }
     println!("There are {} jpgs", image_count);

@@ -7,7 +7,6 @@ pub fn get_image_dims(x: &String) -> (u32, u32) {
     let dims = image::image_dimensions(&x).expect("get image dims has failed");
 
     if format!("{:?}", dims) == "get image dims has failed".to_string() {
-        // WRITE CODE TO DELETE BAD MP3S AND COVERART
         println!("{}", x);
         let dims = (0, 0);
         return dims;
