@@ -11,6 +11,7 @@ COPY Cargo.toml .
 COPY src/config.yaml ./src
 COPY src/main.rs ./src
 COPY src/mtv_clean.rs ./src
+COPY src/mtv_create_ids.rs ./src
 COPY src/mtv_env_vars.rs ./src
 COPY src/mtv_image.rs ./src
 COPY src/mtv_misc.rs ./src
