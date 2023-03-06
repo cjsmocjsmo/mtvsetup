@@ -79,8 +79,6 @@ pub fn check_artist(x: &String, y: &String) -> bool {
     let f = split_sep1((&x).to_string());
     let t = split_sep2((&y).to_string());
     if f != t {
-        println!("should be artist 1: {:?}", f);
-        println!("should be artist 2: {:?}", t);
         return false;
     } else {
         return true;
@@ -137,9 +135,9 @@ pub fn write_music_json_to_file(
 ) {
     let mut named_incorrectly_vec = vec![];
 
-    println!("{}", artc);
-    println!("{}", albc);
-    println!("{}", sc);
+    // println!("{}", artc);
+    // println!("{}", albc);
+    // println!("{}", sc);
 
     if artc == true && albc == true && sc == true {
         println!("\n they all match:\n {}", fullpath);

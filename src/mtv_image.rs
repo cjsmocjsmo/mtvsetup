@@ -1,5 +1,5 @@
 use base64::{alphabet, engine, Engine as _};
-use image::{self, ImageError};
+use image::{self};
 use json::object;
 use std::env;
 
