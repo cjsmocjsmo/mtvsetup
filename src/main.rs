@@ -1,14 +1,15 @@
 use std::env;
 
 mod mtv_clean;
+mod mtv_create_ids;
 mod mtv_env_vars;
 mod mtv_image;
 mod mtv_misc;
 mod mtv_mp3_info;
+mod mtv_process_mp3s;
 mod mtv_process_music_images;
 mod mtv_split;
 mod mtv_walk_dirs;
-mod mtv_process_mp3s;
 
 fn main() {
     let dockervar = mtv_env_vars::get_docker_var();
@@ -22,15 +23,16 @@ fn main() {
         println!("docker var is set so docker will set the env vars for us");
     };
 
-    // mtv_env_vars::read_config();
-
     mtv_clean::clean_meta();
 
     mtv_process_music_images::process_music_images();
 
     mtv_process_mp3s::process_mp3s();
 
+    mtv_create_ids::create_artist_id_list();
 
+    mtv_create_ids::create_album_id_list();
+    
     // let _movievec = mtv_walk_dirs::walk_movies_dir();
     // let _moviethumbvec = mtv_walk_dirs::walk_movies_thumb_dir();
 

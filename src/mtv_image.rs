@@ -12,7 +12,7 @@ pub fn get_image_dims(x: &String) -> (u32, u32) {
         return dims;
     } else {
         let dims_result = image::image_dimensions(&x);
-        println!("{}", &x);
+        // println!("{}", &x);
         let dims = match dims_result {
             Ok(dims) => dims,
             Err(error) => panic!("problem opening file {:?}", error),
