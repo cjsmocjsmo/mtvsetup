@@ -40,16 +40,26 @@ pub fn media_total_size(addr: String) -> String {
     size
 }
 
-pub fn gzip_json_files() -> Result<(), std::io::Error> {
+pub fn write_music_gzip_file() -> Result<(), std::io::Error> {
     let music_meta = env::var("MTV_MUSIC_METADATA_PATH").unwrap();
-    let movie_meta = env::var("MTV_MOVIES_METADATA_PATH").unwrap();
     let static_path = env::var("MTV_STATIC_PATH").unwrap();
-    let newpath = static_path + "/MTV_Backup.tar.gz";
+    let new_music_backup_path = static_path + "/MTV_Music_Backup.tar.gz";
     
-
-    let tar_gz = File::create(newpath)?;
+    let tar_gz = File::create(new_music_backup_path)?;
     let enc = GzEncoder::new(tar_gz, Compression::default());
     let mut tar = tar::Builder::new(enc);
-    tar.append_dir_all(music_meta, movie_meta)?;
+    tar.append_dir_all("Music_Backups/", music_meta)?;
+    Ok(())
+}
+
+pub fn write_movie_gzip_file() -> Result<(), std::io::Error> {
+    let movie_meta = env::var("MTV_MOVIES_METADATA_PATH").unwrap();
+    let static_path = env::var("MTV_STATIC_PATH").unwrap();
+    let new_moviec_backup_path = static_path + "/MTV_Movie_Backup.tar.gz";
+
+    let tar_gz = File::create(new_moviec_backup_path)?;
+    let enc = GzEncoder::new(tar_gz, Compression::default());
+    let mut tar = tar::Builder::new(enc);
+    tar.append_dir_all("Movie_Backups/", movie_meta)?;
     Ok(())
 }

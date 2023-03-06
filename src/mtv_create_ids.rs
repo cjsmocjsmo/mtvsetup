@@ -59,7 +59,6 @@ pub fn create_artist_id_list() {
 
         id_vec.push(entry);
     }
-    println!("{:?}", id_vec);
     let info = json::stringify(id_vec);
     let mtv_music_metadata_path =
         env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
@@ -67,8 +66,6 @@ pub fn create_artist_id_list() {
     let a = format!("{}/", mtv_music_metadata_path.as_str());
     let b = format!("Music_Artist_Ids.json");
     let outpath = a + &b;
-
-    println!("{}", outpath);
 
     std::fs::write(outpath, info).unwrap();
 }
@@ -105,7 +102,6 @@ fn pop_album(x: String) -> String {
     for ra in ra_split {
         new_alb_list.push(ra);
     }
-    println!("new album list : {:?}", new_alb_list);
     let albsplit = new_alb_list[0].split("_");
     let mut newalb = vec![];
     for alb in albsplit {
