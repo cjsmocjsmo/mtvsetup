@@ -10,7 +10,7 @@
 # MTV_SERVER_PORT: "8888"
 # MTV_SERVER_ADDRESS: "http://192.168.0.94"
 # MTV_DOCKER_VAR: "NONE"
-
+# MTV_STATIC_PATH: "/media/charliepi/FOO/media/static"
 
 # config for pipi
 # MTV_MONGODB_ADDRESS: "mongodb://db:27017/mtv"
@@ -27,3 +27,5 @@ MTV_OFFSET: "25"
 MTV_SERVER_PORT: "8888"
 MTV_SERVER_ADDRESS: "http://192.168.0.94"
 MTV_DOCKER_VAR: "NONE"
+
+MTV_STATIC_PATH: "/home/pipi/static"

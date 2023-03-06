@@ -79,6 +79,8 @@ pub fn read_config() {
         let dvar2 = String::from("NONE");
         set_env_var(dvar1, dvar2).unwrap();
 
-
+        let static1 = String::from("MTV_STATIC_PATH");
+        let static2 = d["MTV_STATIC_PATH"].as_str().unwrap().to_string();
+        set_env_var(static1, static2).unwrap();
     }
 }

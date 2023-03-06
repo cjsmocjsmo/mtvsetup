@@ -32,7 +32,9 @@ fn main() {
     mtv_create_ids::create_artist_id_list();
 
     mtv_create_ids::create_album_id_list();
-    
+
+    mtv_misc::gzip_json_files().unwrap();
+
     // let _movievec = mtv_walk_dirs::walk_movies_dir();
     // let _moviethumbvec = mtv_walk_dirs::walk_movies_thumb_dir();
 
