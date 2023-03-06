@@ -10,7 +10,7 @@ services:
       - 27017:27017
 
   mtv:
-    image: mtv:0.0.9
+    image: mtv:0.0.10
     build: .
     environment:
       - MTV_MONGODB_ADDRESS=mongodb://db:27017/mtv
