@@ -2,6 +2,7 @@ use id3::{Tag, TagLike};
 use json::object;
 use mp3_duration;
 use std::env;
+use std::fs;
 use std::path::Path;
 
 pub fn get_tag_info(x: &String) -> (String, String, String, String) {
@@ -173,12 +174,18 @@ pub fn write_music_json_to_file(
 
         // println!("\n\n\n mp3info {}", mfo.clone());
     } else {
-        // println!("{:?}", mp3.clone());
+        
         named_incorrectly_vec.push(fullpath.as_str());
+        println!("This is named incorrectly: \n {}", fullpath.as_str());
     }
 
-    for name in named_incorrectly_vec {
-        println!("nameed incorrectly with tags {}", name);
-    }
+    let mtv_music_metadata_path =
+        env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
+
+    let a = format!("{}/", mtv_music_metadata_path.as_str());
+    let b = format!("Named_Incorrectly.json");
+    let outpath = a + &b;
+    fs::write(outpath, named_incorrectly_vec.join("\n"))
+        .expect("Failed to write named incorrectly json file");
     println!("There are {} mp3s", &idx);
 }

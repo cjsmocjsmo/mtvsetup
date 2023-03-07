@@ -1,4 +1,5 @@
 use std::env;
+use std::time::{Instant};
 
 mod mtv_clean;
 mod mtv_create_ids;
@@ -12,6 +13,7 @@ mod mtv_split;
 mod mtv_walk_dirs;
 
 fn main() {
+    let start = Instant::now();
     let dockervar = mtv_env_vars::get_docker_var();
     if dockervar != "DOCKER".to_string() {
         mtv_env_vars::read_config();
@@ -49,25 +51,9 @@ fn main() {
         "Total size: {} .",
         mtv_misc::media_total_size(mtv_media_path)
     );
+    let duration = start.elapsed();
+
+    println!("MTV Setup time is: {:?}", duration);
 }
 
-// fn mtv_setup() -> String {
-//     let dockervar = mtvserver::get_docker_var();
-//     if dockervar == "docker var not set".to_string() {
-//         mtvserver::set_all_env_vars();
-//         println!(
-//             "should be /media/charliepi/FOO/media :\n {}",
-//             env::var("MTV_MEDIA_PATH").unwrap()
-//         );
-//     } else {
-//         println!("docker var is set so docker will set the env vars for us");
-//     };
 
-//     // mtvserver::clean_meta();
-
-//     process_music_images();
-
-//     process_mp3s();
-
-//     "Setup Complete".to_string()
-// }
