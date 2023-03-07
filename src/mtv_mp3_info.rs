@@ -22,7 +22,6 @@ pub fn get_duration(x: &String) -> String {
         println!("{}", x);
     }
 
-    // let dur_sec = mp3_duration::from_path(&path).unwrap();
     let dur_min = dur_sec.div_f32(60.0);
     let dur_str = format!("{:?}", dur_min);
     let mut durvec = vec![];

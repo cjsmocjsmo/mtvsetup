@@ -1,9 +1,12 @@
-// use crate::mtv_walk_dirs::*;
+use std::env;
+use std::fs;
 
 pub fn process_music_images() {
     let mp3_imagesvec = crate::mtv_walk_dirs::walk_music_dir_images();
 
     let mut image_count = 0;
+
+    let mut bad_image_vec = vec![];
 
     for jpg in mp3_imagesvec {
         image_count = image_count + 1;
@@ -43,9 +46,25 @@ pub fn process_music_images() {
                 image_count.to_string(),
             );
         } else {
-            println!("{}", jpg);
+            bad_image_vec.push(jpg.clone());
+
+            println!("{}", jpg.clone());
         };
         // put it in a db
     }
+
+    let bad_image_count = bad_image_vec.clone().len();
+
+    if bad_image_count != 0 {
+        let mtv_music_metadata_path =
+            env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
+
+        let a = format!("{}/", mtv_music_metadata_path.as_str());
+        let b = format!("Bad_Image.json");
+        let outpath = a + &b;
+        fs::write(outpath, bad_image_vec.join("\n"))
+            .expect("Failed to write named incorrectly json file");
+    }
+    println!("There are {} bad images", bad_image_count);
     println!("There are {} jpgs", image_count);
 }
