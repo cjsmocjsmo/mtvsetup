@@ -28,19 +28,19 @@ fn main() {
 
     mtv_clean::clean_meta();
 
-    // mtv_process_music_images::process_music_images();
+    mtv_process_music_images::process_music_images();
 
     let not_named_correctly = mtv_process_mp3s::process_mp3s();
 
     mtv_nnc_info::gather_media_info(not_named_correctly);
 
-    // mtv_create_ids::create_artist_id_list();
+    mtv_create_ids::create_artist_id_list();
 
-    // mtv_create_ids::create_album_id_list();
+    mtv_create_ids::create_album_id_list();
 
-    // mtv_misc::write_music_gzip_file().unwrap();
+    mtv_misc::write_music_gzip_file().unwrap();
 
-    // mtv_misc::write_movie_gzip_file().unwrap();
+    mtv_misc::write_movie_gzip_file().unwrap();
 
     // let _movievec = mtv_walk_dirs::walk_movies_dir();
     // let _moviethumbvec = mtv_walk_dirs::walk_movies_thumb_dir();
