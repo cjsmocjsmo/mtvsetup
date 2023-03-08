@@ -20,6 +20,7 @@ walkdir = "2.3.2"
 yaml-rust = "0.4.5"
 flate2 = "1.0.25"
 tar = "0.4.38"
+serde = "1.0.153"
 
 [dependencies.mongodb]
 version = "2.4.0"

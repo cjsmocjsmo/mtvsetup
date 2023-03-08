@@ -1,10 +1,30 @@
-pub fn process_mp3s() {
+use json::object;
+use json::JsonValue;
+use std::env;
+
+pub fn process_mp3s() -> Vec<JsonValue> {
     let mp3svec = crate::mtv_walk_dirs::walk_music_dir_mp3();
 
     let mut index = 0;
 
+    let mut page = 1;
+
+    let mut page_count = 0;
+
+    let ofs = env::var("MTV_OFFSET").unwrap();
+    let offset: u32 = ofs.trim().parse().expect("offset conversion failed");
+
+    let mut not_named_correctly = vec![];
+
     for mp3 in mp3svec {
         index = index + 1;
+        if page_count < offset {
+            page_count = page_count + 1;
+            page = page;
+        } else {
+            page_count = 1;
+            page = page + 1;
+        }
 
         let id = crate::mtv_misc::get_md5(&mp3);
         let voodoo: &String = &"None".to_string();
@@ -22,13 +42,13 @@ pub fn process_mp3s() {
         let artc = crate::mtv_mp3_info::check_artist(&music_artist_results, &artist);
         let albc = crate::mtv_mp3_info::check_album(&music_album_results, &album);
         let sc = crate::mtv_mp3_info::check_song(&filename_results, &song);
-        
+
         let fullpath = &mp3.to_string();
         let extension = crate::mtv_split::split_ext(&mp3);
         let idx = index.to_string();
         let fsize_results = crate::mtv_misc::get_file_size(&mp3).to_string();
 
-        crate::mtv_mp3_info::write_music_json_to_file(
+        let foo = crate::mtv_mp3_info::write_music_json_to_file(
             id,
             voodoo.to_string(),
             artist,
@@ -46,8 +66,35 @@ pub fn process_mp3s() {
             fullpath.to_string(),
             extension,
             idx,
+            page.to_string(),
             fsize_results,
-
         );
+
+        let zoo = object! { filename:"Success" };
+        if foo != zoo {
+            // println!("this is foo: {}", foo);
+            not_named_correctly.push(foo)
+        }
     }
+
+    let not_named_correctly_count = not_named_correctly.len();
+
+    let niv = json::stringify(not_named_correctly.clone());
+
+    let mtv_music_metadata_path =
+        env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
+
+    let a = format!("{}/", mtv_music_metadata_path.as_str());
+    let b = format!("Named_Incorrectly.json");
+    let outpath = a + &b;
+
+    std::fs::write(outpath, niv).unwrap();
+
+    println!(
+        "There are {} mp3s named incorrectly",
+        not_named_correctly_count
+    );
+    println!("There are {} mp3s", &index);
+
+    not_named_correctly
 }

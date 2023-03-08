@@ -4,21 +4,14 @@ use json::object;
 use std::env;
 
 pub fn get_image_dims(x: &String) -> (u32, u32) {
-    let dims = image::image_dimensions(&x).expect("get image dims has failed");
-
-    if format!("{:?}", dims) == "get image dims has failed".to_string() {
-        println!("{}", x);
-        let dims = (0, 0);
-        return dims;
-    } else {
-        let dims_result = image::image_dimensions(&x);
-        // println!("{}", &x);
-        let dims = match dims_result {
-            Ok(dims) => dims,
-            Err(error) => panic!("problem opening file {:?}", error),
-        };
-        return dims;
+    // let dims = image::image_dimensions(&x).expect("get image dims has failed");
+    let dims_rs = image::image_dimensions(&x);
+    let dims = match dims_rs {
+        Ok(d) => d,
+        Err(_) => (0, 0)
     };
+
+    dims
 }
 
 pub fn normalize_music_image(dims: (u32, u32)) -> (u32, u32) {

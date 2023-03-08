@@ -1,16 +1,16 @@
 # config for charliepi
-MTV_MEDIA_PATH: "/media/charliepi/FOO/media"
-MTV_MUSIC_PATH: "/media/charliepi/FOO/media/Music/"
-MTV_MUSIC_THUMBNAIL_PATH: "/media/charliepi/FOO/media/Thumbnails/music"
-MTV_MUSIC_METADATA_PATH: "/media/charliepi/FOO/media/Meta/music"
-MTV_MOVIES_PATH: "/media/charliepi/FOO/media/Movies"
-MTV_MOVIES_THUMBNAIL_PATH: "/media/charliepi/FOO/media/Thumbnails/movie"
-MTV_MOVIES_METADATA_PATH: "/media/charliepi/FOO/media/Meta/movie"
-MTV_OFFSET: "25"
-MTV_SERVER_PORT: "8888"
-MTV_SERVER_ADDRESS: "http://192.168.0.94"
-MTV_DOCKER_VAR: "NONE"
-MTV_STATIC_PATH: "/media/charliepi/FOO/media/static"
+# MTV_MEDIA_PATH: "/media/charliepi/FOO/media"
+# MTV_MUSIC_PATH: "/media/charliepi/FOO/media/Music/"
+# MTV_MUSIC_THUMBNAIL_PATH: "/media/charliepi/FOO/media/Thumbnails/music"
+# MTV_MUSIC_METADATA_PATH: "/media/charliepi/FOO/media/Meta/music"
+# MTV_MOVIES_PATH: "/media/charliepi/FOO/media/Movies"
+# MTV_MOVIES_THUMBNAIL_PATH: "/media/charliepi/FOO/media/Thumbnails/movie"
+# MTV_MOVIES_METADATA_PATH: "/media/charliepi/FOO/media/Meta/movie"
+# MTV_OFFSET: "25"
+# MTV_SERVER_PORT: "8888"
+# MTV_SERVER_ADDRESS: "http://192.168.0.94"
+# MTV_DOCKER_VAR: "NONE"
+# MTV_STATIC_PATH: "/media/charliepi/FOO/media/static"
 
 # config for pipi
 # MTV_MONGODB_ADDRESS: "mongodb://db:27017/mtv"
@@ -29,3 +29,21 @@ MTV_STATIC_PATH: "/media/charliepi/FOO/media/static"
 # MTV_DOCKER_VAR: "NONE"
 
 # MTV_STATIC_PATH: "/home/pipi/static"
+
+# config for teresa
+MTV_MONGODB_ADDRESS: "mongodb://db:27017/mtv"
+
+MTV_MEDIA_PATH: "/home/teresa/Music/"
+MTV_MUSIC_PATH: "/home/teresa/Music/music/"
+MTV_MUSIC_THUMBNAIL_PATH: "/home/teresa/Music/thumbnails"
+MTV_MUSIC_METADATA_PATH: "/home/teresa/Music/metadata"
+MTV_MOVIES_PATH: "/home/teresa/Video/"
+MTV_MOVIES_THUMBNAIL_PATH: "/home/teresa/Video/thumbnails"
+MTV_MOVIES_METADATA_PATH: "/home/teresa/Video/metadata"
+MTV_OFFSET: "25"
+
+MTV_SERVER_PORT: "8888"
+MTV_SERVER_ADDRESS: "http://192.168.0.94"
+MTV_DOCKER_VAR: "NONE"
+
+MTV_STATIC_PATH: "/home/teresa/static"

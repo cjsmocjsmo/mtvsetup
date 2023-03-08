@@ -2,7 +2,7 @@ use glob::glob;
 use std::env;
 use std::fs;
 
-fn clean_movie_meta_dir() {
+fn clean_movie_meta_dir() -> u32 {
     let movie_meta_dir_path = env::var("MTV_MOVIES_METADATA_PATH").unwrap();
     let glob_str = movie_meta_dir_path + "/*.json";
     let mut count = 0;
@@ -14,21 +14,28 @@ fn clean_movie_meta_dir() {
         fs::remove_file(rm_path).expect("File delete failed");
         println!("{} Files have been deleted successfully!", count);
     }
+
+    count
 }
 
-fn clean_music_meta_dir() {
+fn clean_music_meta_dir() -> u32{
     let music_meta_dir_path = env::var("MTV_MUSIC_METADATA_PATH").unwrap();
     let glob_str = music_meta_dir_path + "/*.json";
+    let mut count = 0;
     for e in glob(glob_str.as_str()).expect("Failed to read glob pattern") {
+        count = count + 1;
         let rm_path = e.unwrap();
 
-        println!("{:?}", rm_path);
+        // println!("{:?}", rm_path);
         fs::remove_file(rm_path).expect("File delete failed");
-        println!("File deleted successfully!");
+        // println!("File deleted successfully!");
     }
+    count
 }
 
 pub fn clean_meta() {
-    clean_movie_meta_dir();
-    clean_music_meta_dir();
+    let mov = clean_movie_meta_dir();
+    let mus = clean_music_meta_dir();
+    let tot = mov + mus;
+    println!("Clean has removed {} files.", tot);
 }

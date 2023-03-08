@@ -68,6 +68,7 @@ pub fn create_artist_id_list() {
     let outpath = a + &b;
 
     std::fs::write(outpath, info).unwrap();
+    println!("{}", "Artist Id List has been wirtten")
 }
 
 fn get_raw_album_dir_list(dlist: Vec<String>) -> Vec<String> {
@@ -130,8 +131,17 @@ pub fn create_album_id_list() {
 
         newalbvec.push(album_id_info);
     }
+    let info = json::stringify(newalbvec.clone());
+    let mtv_music_metadata_path =
+        env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
 
-    for alb in newalbvec {
-        println!("{}", alb);
-    }
+    let a = format!("{}/", mtv_music_metadata_path.as_str());
+    let b = format!("Music_Album_Ids.json");
+    let outpath = a + &b;
+
+    std::fs::write(outpath, info).unwrap();
+    // for alb in newalbvec {
+    //     println!("{}", alb);
+    // }
+    println!("{}", "Album Id List written")
 }

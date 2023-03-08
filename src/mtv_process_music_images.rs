@@ -24,7 +24,7 @@ pub fn process_music_images() {
             let extension = crate::mtv_split::split_ext(&jpg);
 
             let artist_results = crate::mtv_split::image_split_artist(&base_dir);
-            println!("this is artist: {}", artist_results);
+            // println!("this is artist: {}", artist_results);
             let album_results = crate::mtv_split::image_split_album(&base_dir);
 
             let fsize_results = crate::mtv_misc::get_file_size(&jpg).to_string();
@@ -48,7 +48,7 @@ pub fn process_music_images() {
         } else {
             bad_image_vec.push(jpg.clone());
 
-            println!("{}", jpg.clone());
+            println!("this is a bad image:\n\t {}", jpg.clone());
         };
         // put it in a db
     }
@@ -65,6 +65,6 @@ pub fn process_music_images() {
         fs::write(outpath, bad_image_vec.join("\n"))
             .expect("Failed to write named incorrectly json file");
     }
-    println!("There are {} bad images", bad_image_count);
-    println!("There are {} jpgs", image_count);
+    println!("\n\nThere are {} bad images", bad_image_count);
+    println!("There are {} images total. \n\n", image_count);
 }

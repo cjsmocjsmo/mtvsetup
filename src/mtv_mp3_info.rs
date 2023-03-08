@@ -1,9 +1,10 @@
 use id3::{Tag, TagLike};
-use json::object;
+use json::{object, JsonValue};
 use mp3_duration;
 use std::env;
-use std::fs;
 use std::path::Path;
+use std::time::Duration;
+
 
 pub fn get_tag_info(x: &String) -> (String, String, String, String) {
     let tag = Tag::read_from_path(x).unwrap();
@@ -15,34 +16,50 @@ pub fn get_tag_info(x: &String) -> (String, String, String, String) {
     (artist, album, song, genre)
 }
 
-pub fn get_duration(x: &String) -> String {
+fn mp3_duration_extract(x: String) -> Duration {
     let path = Path::new(&x);
-    let dur_sec = mp3_duration::from_path(&path).expect("this is duration exception");
-    if format!("{:?}", dur_sec) == "this is duration exception".to_string() {
-        println!("{}", x);
-    }
+    let dur_sec_res = mp3_duration::from_path(&path);
+    let dur_sec = match dur_sec_res {
+        Ok(d) => d,
+        Err(_) => Duration::new(0, 0),
+    };
 
-    let dur_min = dur_sec.div_f32(60.0);
-    let dur_str = format!("{:?}", dur_min);
-    let mut durvec = vec![];
-    for i in dur_str.chars() {
-        durvec.push(i);
-    }
+    dur_sec
+}
 
-    let mut newvec = vec![];
-    let mut count: i32 = 0;
-    for c in durvec {
-        count = count + 1;
-        if count < 5 {
-            newvec.push(c);
-        } else {
-            break;
-        };
-    }
+pub fn get_duration(x: &String) -> String {
+    let dur_sec = mp3_duration_extract(x.to_string());
+    // let path = Path::new(&x);
+    // let dur_sec = mp3_duration::from_path(&path).expect("this is duration exception");
+    // if format!("{:?}", dur_sec) == "this is duration exception".to_string() {
+    //     println!("{}", x);
+    // }
+    if dur_sec == Duration::new(0, 0) {
+        let dur_min = dur_sec.div_f32(60.0);
+        let dur_str = format!("{:?}", dur_min);
+        let mut durvec = vec![];
+        for i in dur_str.chars() {
+            durvec.push(i);
+        }
 
-    let duration: String = newvec.into_iter().collect();
+        let mut newvec = vec![];
+        let mut count: i32 = 0;
+        for c in durvec {
+            count = count + 1;
+            if count < 5 {
+                newvec.push(c);
+            } else {
+                break;
+            };
+        }
 
-    duration
+        let duration: String = newvec.into_iter().collect();
+        return duration;
+    } else {
+        let new_dur = Duration::new(0, 0);
+        let duration = format!("{:?}", new_dur);
+        return duration;
+    };
 }
 
 pub fn split_sep1(x: String) -> Vec<String> {
@@ -131,16 +148,11 @@ pub fn write_music_json_to_file(
     fullpath: String,
     extension: String,
     idx: String,
+    page: String,
     fsize_results: String,
-) {
-    let mut named_incorrectly_vec = vec![];
-
-    // println!("{}", artc);
-    // println!("{}", albc);
-    // println!("{}", sc);
+) -> JsonValue {
 
     if artc == true && albc == true && sc == true {
-        println!("\n they all match:\n {}", fullpath);
 
         let mp3_info = object! {
             mp3id: id,
@@ -155,6 +167,7 @@ pub fn write_music_json_to_file(
             tag_title: song,
             tag_genre: genre,
             idx: idx.clone(),
+            page: page,
             fsize: fsize_results,
             filename_artist: &*music_artist_results,
             filename_album: &*music_album_results,
@@ -171,20 +184,14 @@ pub fn write_music_json_to_file(
         let outpath = a + &b;
         std::fs::write(outpath, mfo.clone()).unwrap();
 
-        // println!("\n\n\n mp3info {}", mfo.clone());
+        return object! {filename: "Success".to_string() }
+
+       
     } else {
+        let foo = object! {filename: fullpath.to_string()};
         
-        named_incorrectly_vec.push(fullpath.as_str());
-        println!("This is named incorrectly: \n {}", fullpath.as_str());
+        return foo
     }
 
-    let mtv_music_metadata_path =
-        env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
-
-    let a = format!("{}/", mtv_music_metadata_path.as_str());
-    let b = format!("Named_Incorrectly.json");
-    let outpath = a + &b;
-    fs::write(outpath, named_incorrectly_vec.join("\n"))
-        .expect("Failed to write named incorrectly json file");
-    println!("There are {} mp3s", &idx);
+    
 }

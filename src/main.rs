@@ -1,5 +1,5 @@
 use std::env;
-use std::time::{Instant};
+use std::time::Instant;
 
 mod mtv_clean;
 mod mtv_create_ids;
@@ -7,6 +7,7 @@ mod mtv_env_vars;
 mod mtv_image;
 mod mtv_misc;
 mod mtv_mp3_info;
+mod mtv_nnc_info;
 mod mtv_process_mp3s;
 mod mtv_process_music_images;
 mod mtv_split;
@@ -18,7 +19,7 @@ fn main() {
     if dockervar != "DOCKER".to_string() {
         mtv_env_vars::read_config();
         println!(
-            "this is MTV_DOCKER_VAR :\n {}",
+            "this is MTV_DOCKER_VAR: {}",
             env::var("MTV_DOCKER_VAR").unwrap()
         );
     } else {
@@ -27,17 +28,19 @@ fn main() {
 
     mtv_clean::clean_meta();
 
-    mtv_process_music_images::process_music_images();
+    // mtv_process_music_images::process_music_images();
 
-    mtv_process_mp3s::process_mp3s();
+    let not_named_correctly = mtv_process_mp3s::process_mp3s();
 
-    mtv_create_ids::create_artist_id_list();
+    mtv_nnc_info::gather_media_info(not_named_correctly);
 
-    mtv_create_ids::create_album_id_list();
+    // mtv_create_ids::create_artist_id_list();
 
-    mtv_misc::write_music_gzip_file().unwrap();
+    // mtv_create_ids::create_album_id_list();
 
-    mtv_misc::write_movie_gzip_file().unwrap();
+    // mtv_misc::write_music_gzip_file().unwrap();
+
+    // mtv_misc::write_movie_gzip_file().unwrap();
 
     // let _movievec = mtv_walk_dirs::walk_movies_dir();
     // let _moviethumbvec = mtv_walk_dirs::walk_movies_thumb_dir();
@@ -55,5 +58,3 @@ fn main() {
 
     println!("MTV Setup time is: {:?}", duration);
 }
-
-
