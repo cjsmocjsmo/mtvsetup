@@ -27,7 +27,8 @@ pub fn walk_music_dir_mp3() -> Vec<String> {
             let fname = e.path().to_string_lossy().to_string();
 
             if fname.ends_with(".mp3") {
-                mp3vec.push(fname);
+                mp3vec.push(fname.clone());
+                println!("{}", fname)
             } else {
                 continue;
             }
