@@ -40,7 +40,7 @@ fn main() {
 
     mtv_misc::write_music_gzip_file().unwrap();
 
-    mtv_misc::write_movie_gzip_file().unwrap();
+    // mtv_misc::write_movie_gzip_file().unwrap();
 
     // let _movievec = mtv_walk_dirs::walk_movies_dir();
     // let _moviethumbvec = mtv_walk_dirs::walk_movies_thumb_dir();
