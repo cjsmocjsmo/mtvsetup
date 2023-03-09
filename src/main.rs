@@ -8,7 +8,7 @@ mod mtv_image;
 mod mtv_misc;
 mod mtv_mp3_info;
 mod mtv_nnc_info;
-mod mtv_process_mp3s;
+mod mtv_process_music;
 mod mtv_process_music_images;
 mod mtv_split;
 mod mtv_walk_dirs;
@@ -22,38 +22,36 @@ fn main() {
         println!("docker var is set so docker will set the env vars for us");
     };
 
-    println!("{}", "\nStarting Clean");
-    let tot = mtv_clean::clean_meta();
+    // println!("{}", "\nStarting Clean");
+    // let tot = mtv_clean::clean_meta();
 
-    println!("{}", "\nStarting Image Processing");
-    mtv_process_music_images::process_music_images();
+    // println!("{}", "\nStarting Image Processing");
+    // mtv_process_music_images::process_music_images();
 
-    println!("{}", "\nStarting Music Processing");
-    mtv_process_mp3s::process_mp3s();
+    // println!("{}", "\nStarting Music Processing");
+    // mtv_process_mp3s::process_mp3s();
 
-    // mtv_nnc_info::gather_media_info();
+    // println!("{}", "\nStarting Create Artist Id Started");
+    // mtv_create_ids::create_artist_id_list();
 
-    println!("{}", "\nStarting Create Artist Id Started");
-    mtv_create_ids::create_artist_id_list();
+    // println!("{}", "\nStarting Create Album Id Started");
+    // mtv_create_ids::create_album_id_list();
 
-    println!("{}", "\nStarting Create Album Id Started");
-    mtv_create_ids::create_album_id_list();
+    // println!("{}", "\nStarting Music Gzip");
+    // mtv_misc::write_music_gzip_file().unwrap();
 
-    println!("{}", "\nStarting Music Gzip");
-    mtv_misc::write_music_gzip_file().unwrap();
+    // println!("{}", "\nStarting Movie Gip");
+    // mtv_misc::write_movie_gzip_file().unwrap();
 
-    println!("{}", "\nStarting Movie Gip");
-    mtv_misc::write_movie_gzip_file().unwrap();
-
-    // let _movievec = mtv_walk_dirs::walk_movies_dir();
-    // let _moviethumbvec = mtv_walk_dirs::walk_movies_thumb_dir();
+    let movies_vec = mtv_walk_dirs::walk_movies_dir();
+    // let movie_posters_vec = mtv_walk_dirs::walk_posters2_dir();
 
     // let _music_metadata = mtv_walk_dirs::walk_metadata_music();
     // let _movies_metadata = mtv_walk_dirs::walk_metadata_movies();
 
     let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
 
-    println!("Clean has removed {} files.", tot);
+    // println!("Clean has removed {} files.", tot);
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
     println!(
