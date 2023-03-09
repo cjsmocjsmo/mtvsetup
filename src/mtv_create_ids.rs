@@ -68,7 +68,6 @@ pub fn create_artist_id_list() {
     let outpath = a + &b;
 
     std::fs::write(outpath, info).unwrap();
-    println!("{}", "Artist Id List has been wirtten")
 }
 
 fn get_raw_album_dir_list(dlist: Vec<String>) -> Vec<String> {
@@ -140,8 +139,4 @@ pub fn create_album_id_list() {
     let outpath = a + &b;
 
     std::fs::write(outpath, info).unwrap();
-    // for alb in newalbvec {
-    //     println!("{}", alb);
-    // }
-    println!("{}", "Album Id List written")
 }

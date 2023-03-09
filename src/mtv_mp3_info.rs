@@ -29,11 +29,7 @@ fn mp3_duration_extract(x: String) -> Duration {
 
 pub fn get_duration(x: &String) -> String {
     let dur_sec = mp3_duration_extract(x.to_string());
-    // let path = Path::new(&x);
-    // let dur_sec = mp3_duration::from_path(&path).expect("this is duration exception");
-    // if format!("{:?}", dur_sec) == "this is duration exception".to_string() {
-    //     println!("{}", x);
-    // }
+
     if dur_sec == Duration::new(0, 0) {
         let dur_min = dur_sec.div_f32(60.0);
         let dur_str = format!("{:?}", dur_min);
@@ -62,74 +58,6 @@ pub fn get_duration(x: &String) -> String {
     };
 }
 
-pub fn split_sep1(x: String) -> Vec<String> {
-    let xsplit = x.split("_");
-    let mut xvec = vec![];
-    for word in xsplit {
-        xvec.push(word.to_string());
-    }
-
-    xvec
-}
-
-pub fn split_sep2(x: String) -> Vec<String> {
-    let yslit = x.split(" ");
-    let mut yvec = vec![];
-    for word in yslit {
-        yvec.push(word.to_string());
-    }
-
-    yvec
-}
-
-pub fn split_sep3(x: String) -> Vec<String> {
-    let filesplit = x.split("_-_");
-    let mut fvec = vec![];
-    for file in filesplit {
-        fvec.push(file.to_string());
-    }
-
-    fvec
-}
-
-pub fn check_artist(x: &String, y: &String) -> bool {
-    let f = split_sep1((&x).to_string());
-    let t = split_sep2((&y).to_string());
-    if f != t {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-pub fn check_album(x: &String, y: &String) -> bool {
-    let f = split_sep1((&x).to_string());
-    let t = split_sep2((&y).to_string());
-    if f != t {
-        return false;
-    } else {
-        return true;
-    }
-}
-
-pub fn check_song(f: &String, s: &String) -> bool {
-    let mut xx = split_sep3((&f).to_string());
-    let count = xx.len() - 1;
-    xx.drain(0..count);
-    let yy = split_sep2((&s).to_string());
-    let mut pussy = false;
-    for x in xx {
-        let fuck = split_sep1(x.to_string());
-        if yy == fuck {
-            pussy = true;
-        } else {
-            pussy = false;
-        }
-    }
-
-    pussy
-}
-
 pub fn write_music_json_to_file(
     id: String,
     voodoo: String,
@@ -142,9 +70,6 @@ pub fn write_music_json_to_file(
     music_artist_results: String,
     music_album_results: String,
     duration_results: String,
-    artc: bool,
-    albc: bool,
-    sc: bool,
     fullpath: String,
     extension: String,
     idx: String,
@@ -152,7 +77,7 @@ pub fn write_music_json_to_file(
     fsize_results: String,
 ) -> JsonValue {
 
-    if artc == true && albc == true && sc == true {
+    // if artc == true && albc == true && sc == true {
 
         let mp3_info = object! {
             mp3id: id,
@@ -185,13 +110,4 @@ pub fn write_music_json_to_file(
         std::fs::write(outpath, mfo.clone()).unwrap();
 
         return object! {filename: "Success".to_string() }
-
-       
-    } else {
-        let foo = object! {filename: fullpath.to_string()};
-        
-        return foo
-    }
-
-    
 }

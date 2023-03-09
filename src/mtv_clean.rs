@@ -26,16 +26,15 @@ fn clean_music_meta_dir() -> u32{
         count = count + 1;
         let rm_path = e.unwrap();
 
-        // println!("{:?}", rm_path);
         fs::remove_file(rm_path).expect("File delete failed");
-        // println!("File deleted successfully!");
     }
     count
 }
 
-pub fn clean_meta() {
+pub fn clean_meta() -> u32{
     let mov = clean_movie_meta_dir();
     let mus = clean_music_meta_dir();
     let tot = mov + mus;
-    println!("Clean has removed {} files.", tot);
+
+    tot
 }

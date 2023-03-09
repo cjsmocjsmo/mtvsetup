@@ -24,7 +24,6 @@ pub fn process_music_images() {
             let extension = crate::mtv_split::split_ext(&jpg);
 
             let artist_results = crate::mtv_split::image_split_artist(&base_dir);
-            // println!("this is artist: {}", artist_results);
             let album_results = crate::mtv_split::image_split_album(&base_dir);
 
             let fsize_results = crate::mtv_misc::get_file_size(&jpg).to_string();

@@ -4,7 +4,6 @@ use json::object;
 use std::env;
 
 pub fn get_image_dims(x: &String) -> (u32, u32) {
-    // let dims = image::image_dimensions(&x).expect("get image dims has failed");
     let dims_rs = image::image_dimensions(&x);
     let dims = match dims_rs {
         Ok(d) => d,

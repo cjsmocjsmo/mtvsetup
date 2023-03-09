@@ -1,7 +1,6 @@
 use std::env;
 use std::fs::File;
 use std::io::prelude::*;
-// use yaml_rust::yaml;
 use yaml_rust::YamlLoader;
 
 pub fn get_docker_var() -> String {

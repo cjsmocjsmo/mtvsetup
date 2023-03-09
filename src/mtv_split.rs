@@ -118,7 +118,6 @@ pub fn split_filename(x: &String) -> String {
 
     let fname = finalvec.split(".");
     let mut svec = vec![];
-    // let mut foo = "";
     for f in fname {
         svec.push(f);
     }

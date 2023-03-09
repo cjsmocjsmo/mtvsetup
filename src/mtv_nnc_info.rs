@@ -1,19 +1,7 @@
-use json::{object, JsonValue};
 
-struct CompParts {
-    dir_artist: String,
-    dir_album: String,
-    file_artist: String,
-    file_album: String,
-    file_song: String,
-    tag_artist: String,
-    tag_album: String,
-    tag_song: String
-}
 
-fn get_dir_artist(j: JsonValue) -> String {
-    let mut jstr = j.to_string();
-    let mut boo = jstr.split("/");
+fn get_dir_artist2(x: String) -> String {
+    let boo = x.split("/");
     let mut newboovec = vec![];
     for b in boo {
         newboovec.push(b);
@@ -31,9 +19,9 @@ fn get_dir_artist(j: JsonValue) -> String {
     artist
 }
 
-fn get_dir_album(j: JsonValue) -> String {
-    let mut jstr = j.to_string();
-    let mut boo = jstr.split("/");
+pub fn get_dir_album2(x: String) -> String {
+    
+    let boo = x.split("/");
     let mut newboovec = vec![];
     for b in boo {
         newboovec.push(b);
@@ -50,83 +38,105 @@ fn get_dir_album(j: JsonValue) -> String {
     album
 }
 
-fn get_fn_artist(x: &String) -> (String, String, String) {
+fn get_fn_artist2(x: String) -> (String, String, String) {
     let art_split1 = x.split("_-_");
     let mut art_split1_vec = vec![];
     for art in art_split1 {
         art_split1_vec.push(art);
-    };
+    }
 
     let artist_res = art_split1_vec[1];
-    let album = art_split1_vec[2];
-    let song = art_split1_vec[3];
-
     let art = artist_res.split("_");
     let mut art_vec = vec![];
     for a in art {
         art_vec.push(a);
-    };
+    }
     let artist = art_vec.join(" ");
 
+    let album_res = art_split1_vec[2];
+    let alb = album_res.split("_");
+    let mut alb_vec = vec![];
+    for a in alb {
+        alb_vec.push(a);
+    }
+    let album = alb_vec.join(" ");
 
 
+    let song_res = art_split1_vec[3];
+    let son = song_res.split("_");
+    let mut son_vec = vec![];
+    for a in son {
+        son_vec.push(a);
+    }
+    let song_res2 = son_vec.join(" ");
+    let son_spt =  song_res2.split(".");
+    let mut new_song_vec = vec![];
+    for s in son_spt {
+        new_song_vec.push(s);
+    };
 
-
-    // let song = art_split1_vec.pop().unwrap();
-    // let albuma = art_split1_vec.pop().unwrap();
-    // let alb = albuma.split("_");
-    // let mut alb_vec = vec![];
-    // for a in alb {
-    //     alb_vec.push(a);
-    // };
-
-    // let album = alb_vec.join(" ");
-
-    // let artist = art_split1_vec.pop().unwrap();
+    let song = new_song_vec[0];
+    
 
     let meta = (artist.to_string(), album.to_string(), song.to_string());
 
     meta
-
-
-
-
 }
 
-pub fn gather_media_info(xx: Vec<JsonValue>) {
-    for x in xx {
-        let dir_album = get_dir_album(x.clone());
-        let dir_artist = get_dir_artist(x.clone());
+pub fn test_media_sameness(
+    fpath: String,
+    tag_artist: String, 
+    tag_album: String, 
+    tag_song: String
 
-        let foobar = &x["filename"].to_string();
+) -> bool {
+    let dir_album = get_dir_album2(fpath.clone());
+    let dir_artist = get_dir_artist2(fpath.clone());
+    let meta = get_fn_artist2(fpath.clone());
+    let file_artist = meta.0;
+    let file_album = meta.1;
+    let file_song = meta.2;
 
+    let mut result_vec = vec![];
 
-        let meta = get_fn_artist(foobar);
-        let file_artist = meta.0;
-        let file_album = meta.1;
-        let file_song = meta.2;
-        
-        
-        let tags = crate::mtv_mp3_info::get_tag_info(foobar);
-        let tag_artist = tags.0;
-        let tag_album = tags.1;
-        let tag_song = tags.2;
-
-        if dir_artist != file_artist || file_artist != tag_artist || dir_artist != tag_artist {
-            let zoo = format!("Artist Dont Match:\n\t dir: {}, file: {}, tag: {}", dir_artist, file_artist, tag_artist);
-            println!("{}", zoo);
-        } else {
-            let zoo = format!("ArtistMatch:\n\t dir: {}, file: {}, tag: {}", dir_artist, file_artist, tag_artist);
-            println!("{}", zoo);
-        }
-
-        if dir_album != file_album || file_album != tag_album || dir_album != tag_album {
-            let moo = format!("Albums Dont Match:\n\t dir: {}, file: {}, tag: {}", dir_album, file_album, tag_album);
-            println!("{}", moo);
-        }
-
-        
-        // println!("this is tag album {}", tags.1);
+    if dir_artist != file_artist || file_artist != tag_artist || dir_artist != tag_artist {
+        let zoo = format!(
+            "Artist Dont Match:\n\t dir: {}, file: {}, tag: {}",
+            dir_artist, file_artist, tag_artist
+        );
+        println!("{}", zoo);
+        result_vec.push(false);
+    } else {
+        result_vec.push(true);
     }
 
+    if dir_album != file_album || file_album != tag_album || dir_album != tag_album {
+        let moo = format!(
+            "Albums Dont Match:\n\t dir: {}, file: {}, tag: {}",
+            dir_album, file_album, tag_album
+        );
+        println!("{}", moo);
+        result_vec.push(false);
+    } else {
+        result_vec.push(true);
+    }
+
+    if file_song != tag_song {
+        let boo = format!(
+            "Songs Dont Match:\n\t file: {}, tag: {}",
+            file_song, tag_song
+        );
+        println!("{}", boo);
+        result_vec.push(false);
+    } else {
+        result_vec.push(true);
+    };
+
+    let mut result = true;
+    if result_vec.contains(&false) {
+        result = false;
+    };
+
+    result
+    
 }

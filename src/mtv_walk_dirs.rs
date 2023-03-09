@@ -1,20 +1,7 @@
 use std::env;
 use walkdir::WalkDir;
 
-// pub fn artist_id_walk() -> Vec<&'static Path> {
-//     let mut mp3vec = vec![];
-//     let mtv_music_path = env::var("MTV_MUSIC_PATH").expect("$MTV_MUSIC_PATH is not set");
-//     for e in WalkDir::new(mtv_music_path)
-//         .into_iter()
-//         .filter_map(|e| e.ok())
-//     {
-//         if e.metadata().unwrap().is_file() {
-//             let fname = e.clone().path();
-//             mp3vec.push(fname);
-//         };
-//     }
-//     mp3vec
-// }
+
 
 pub fn walk_music_dir_mp3() -> Vec<String> {
     let mut mp3vec = Vec::new();
@@ -28,7 +15,6 @@ pub fn walk_music_dir_mp3() -> Vec<String> {
 
             if fname.ends_with(".mp3") {
                 mp3vec.push(fname.clone());
-                println!("{}", fname)
             } else {
                 continue;
             }
@@ -41,7 +27,6 @@ pub fn walk_music_dir_mp3() -> Vec<String> {
 pub fn walk_music_dir_images() -> Vec<String> {
     let mut musicimagevec = Vec::new();
     let mtv_music_path = env::var("MTV_MUSIC_PATH").expect("$MTV_MUSIC_PATH is not set");
-    println!("this is mtv_music_path:\n\t {}", mtv_music_path);
     for e in WalkDir::new(mtv_music_path.clone())
         .into_iter()
         .filter_map(|e| e.ok())
