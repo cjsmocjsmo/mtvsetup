@@ -60,8 +60,10 @@ pub fn walk_movies_dir() -> Vec<String> {
     {
         if e.metadata().unwrap().is_file() {
             let fname = e.path().to_string_lossy().to_string();
-            println!("this is movie file:\n\t{}\n", fname.clone());
-            if fname.ends_with(".jpg") {
+            // println!("this is movie file:\n\t{}\n", fname.clone());
+            if fname.ends_with(".mp4") {
+                moviesvec.push(fname.clone());
+            } else if fname.ends_with(".mkv") {
                 moviesvec.push(fname.clone());
             } else {
                 continue;

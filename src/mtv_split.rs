@@ -1,5 +1,5 @@
-use std::path::Path;
 use std::env;
+use std::path::Path;
 
 pub fn split_ext(astring: &String) -> String {
     let path = Path::new(&astring);
@@ -126,4 +126,64 @@ pub fn split_filename(x: &String) -> String {
     let filename = svec.get(0).unwrap();
 
     filename.to_string()
+}
+
+pub fn split_movie_name(x: String) -> String {
+    let filesplit = x.split("/");
+
+    let mut filenamevec: Vec<String> = vec![];
+    for file in filesplit {
+        filenamevec.push(file.to_string());
+    }
+    let raw_fname = filenamevec.pop().unwrap();
+
+    let fsplit = raw_fname.split(" (");
+    let mut fsplit_vec = vec![];
+    for f in fsplit {
+        fsplit_vec.push(f);
+    }
+
+    // println!("this is movname {:?}", fsplit_vec[0]);
+
+    fsplit_vec[0].to_string()
+}
+
+pub fn split_movie_year(x: String) -> String {
+    let filesplit = x.split("/");
+
+    let mut filenamevec: Vec<String> = vec![];
+    for file in filesplit {
+        filenamevec.push(file.to_string());
+    }
+    let raw_fname = filenamevec.pop().unwrap();
+
+    let fsplit = raw_fname.split(" (");
+    let mut fsplit_vec = vec![];
+    for f in fsplit {
+        fsplit_vec.push(f);
+    }
+
+    // println!("this is fsplit_vec {}", fsplit_vec[1]);
+
+    let fsplit2 = fsplit_vec[1].split(")");
+    let mut fsplit_vec2 = vec![];
+    for f2 in fsplit2 {
+        fsplit_vec2.push(f2);
+    }
+
+    // println!("this is year {:?}", fsplit_vec2[0]);
+
+    fsplit_vec2[0].to_string()
+}
+
+pub fn split_poster_name(x: String) -> String{
+    let filesplit = x.split("/");
+
+    let mut filenamevec: Vec<String> = vec![];
+    for file in filesplit {
+        filenamevec.push(file.to_string());
+    }
+    let fname = filenamevec.pop().unwrap();
+
+    fname
 }

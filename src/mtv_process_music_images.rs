@@ -1,6 +1,22 @@
 use std::env;
 use std::fs;
 
+fn create_music_thumbnail(x: &String, art: String, alb: String) -> String{
+    let mtv_music_metadata_path =
+        env::var("MTV_MUSIC_THUMBNAIL_PATH").expect("$MTV_MUSIC_THUMBNAIL_PATH is not set");
+    let old_fname = crate::mtv_split::split_poster_name(x.clone());
+    let new_fname = "/".to_string() + art.as_str() + "_-_" + alb.as_str() + ".jpg";
+    let out_fname = mtv_music_metadata_path + "/" + &new_fname;
+
+    // println!("this is out_fname:\n\t{}", out_fname);
+
+    let img = image::open(x).expect("ooooh fuck it didnt open");
+    let thumbnail = img.resize(200, 200, image::imageops::FilterType::Lanczos3);
+    thumbnail.save(out_fname.clone()).expect("Saving image failed");
+
+    out_fname.to_string()
+}
+
 pub fn process_music_images() {
     let mp3_imagesvec = crate::mtv_walk_dirs::walk_music_dir_images();
 
@@ -28,7 +44,10 @@ pub fn process_music_images() {
 
             let fsize_results = crate::mtv_misc::get_file_size(&jpg).to_string();
             let fullpath = &jpg.to_string();
-            let b64image = crate::mtv_image::to_base64_str(&jpg, newdims.0, newdims.1);
+
+            let thumb_path = create_music_thumbnail(&jpg, artist_results.clone(), album_results.clone());
+
+            let b64image = crate::mtv_image::to_base64_str(&thumb_path);
 
             crate::mtv_image::write_image_json_to_file(
                 id,
@@ -43,6 +62,7 @@ pub fn process_music_images() {
                 b64image,
                 fullpath.to_string(),
                 image_count.to_string(),
+                thumb_path,
             );
         } else {
             bad_image_vec.push(jpg.clone());
@@ -59,7 +79,7 @@ pub fn process_music_images() {
             env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
 
         let a = format!("{}/", mtv_music_metadata_path.as_str());
-        let b = format!("Bad_Image.json");
+        let b = format!("Bad_Music_Images.json");
         let outpath = a + &b;
         fs::write(outpath, bad_image_vec.join("\n"))
             .expect("Failed to write named incorrectly json file");

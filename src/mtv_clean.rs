@@ -9,8 +9,6 @@ fn clean_movie_meta_dir() -> u32 {
     for e in glob(glob_str.as_str()).expect("Failed to read glob pattern") {
         let rm_path = e.unwrap();
         count = count + 1;
-
-        println!("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         fs::remove_file(rm_path).expect("File delete failed");
         println!("{} Files have been deleted successfully!", count);
     }
@@ -25,7 +23,6 @@ fn clean_music_meta_dir() -> u32{
     for e in glob(glob_str.as_str()).expect("Failed to read glob pattern") {
         count = count + 1;
         let rm_path = e.unwrap();
-
         fs::remove_file(rm_path).expect("File delete failed");
     }
     count

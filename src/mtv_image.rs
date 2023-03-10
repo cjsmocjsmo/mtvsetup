@@ -38,14 +38,14 @@ pub fn normalize_music_image(dims: (u32, u32)) -> (u32, u32) {
     resizetup
 }
 
-pub fn to_base64_str(x: &String, w: u32, h: u32) -> String {
+pub fn to_base64_str(x: &String) -> String {
     let img_result = image::open(&x);
     let img = match img_result {
         Ok(img) => img,
         Err(error) => panic!("problem opening file {:?}", error),
     };
-    let thumb = img.thumbnail(w, h);
-    let thumb_bytes = thumb.into_bytes();
+    // let thumb = img.thumbnail(w, h);
+    let thumb_bytes = img.into_bytes();
 
     let alphabet =
         alphabet::Alphabet::new("+/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
@@ -77,6 +77,7 @@ pub fn write_image_json_to_file(
     b64image: String,
     fullpath: String,
     imagecount: String,
+    thumbnail_path: String,
 ) {
     let imginfo = object! {
         imageid: id,
@@ -91,6 +92,7 @@ pub fn write_image_json_to_file(
         fsize: fsize_results,
         fullpath: fullpath,
         b64img: b64image,
+        thumbpath: thumbnail_path
     };
 
     let ifo = json::stringify(imginfo.dump());

@@ -8,6 +8,8 @@ mod mtv_image;
 mod mtv_misc;
 mod mtv_mp3_info;
 mod mtv_nnc_info;
+mod mtv_process_movie_images;
+mod mtv_process_movies;
 mod mtv_process_music;
 mod mtv_process_music_images;
 mod mtv_split;
@@ -22,14 +24,14 @@ fn main() {
         println!("docker var is set so docker will set the env vars for us");
     };
 
-    // println!("{}", "\nStarting Clean");
-    // let tot = mtv_clean::clean_meta();
+    println!("{}", "\nStarting Clean");
+    let tot = mtv_clean::clean_meta();
 
-    // println!("{}", "\nStarting Image Processing");
-    // mtv_process_music_images::process_music_images();
+    println!("{}", "\nStarting Image Processing");
+    mtv_process_music_images::process_music_images();
 
     // println!("{}", "\nStarting Music Processing");
-    // mtv_process_mp3s::process_mp3s();
+    // mtv_process_music::process_mp3s();
 
     // println!("{}", "\nStarting Create Artist Id Started");
     // mtv_create_ids::create_artist_id_list();
@@ -43,8 +45,15 @@ fn main() {
     // println!("{}", "\nStarting Movie Gip");
     // mtv_misc::write_movie_gzip_file().unwrap();
 
-    let movies_vec = mtv_walk_dirs::walk_movies_dir();
+    // let movies_vec = mtv_walk_dirs::walk_movies_dir();
+    // let processed_movies_count = mtv_process_movies::process_movies(movies_vec);
+
+        
+    
+
     // let movie_posters_vec = mtv_walk_dirs::walk_posters2_dir();
+    // let processed_posters = mtv_process_movie_images::process_movie_posters(movie_posters_vec);
+
 
     // let _music_metadata = mtv_walk_dirs::walk_metadata_music();
     // let _movies_metadata = mtv_walk_dirs::walk_metadata_movies();
@@ -54,6 +63,7 @@ fn main() {
     // println!("Clean has removed {} files.", tot);
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
+    // println!("Movies Processed: {}", processed_movies_count);
     println!(
         "Total size: {} .",
         mtv_misc::media_total_size(mtv_media_path)
