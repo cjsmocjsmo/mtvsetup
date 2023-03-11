@@ -13,20 +13,27 @@ services:
     image: mtv:0.0.1
     build: .
     environment:
+###### DO NOT CHANGE ANYTHNING IN THIS SECTION #################
       - MTV_MONGODB_ADDRESS=mongodb://db:27017/mtv
       - MTV_MEDIA_PATH=/root/fsData
       - MTV_MUSIC_PATH=/root/fsData/music
       - MTV_MUSIC_THUMBNAIL_PATH=/root/fsData/thumbnails
       - MTV_MUSIC_METADATA_PATH=/root/fsData/metadata
       - MTV_MOVIES_PATH=/root/fsDataMov/movies
-      - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
       - MTV_MOVIES_METADATA_PATH=/root/fsDataMov/metadata
-      - MTV_OFFSET=25
-      - MTV_SERVER_PORT=8888
-      - MTV_SERVER_ADDRESS=http://192.168.0.94
-      - MTV_DOCKER_VAR=DOCKER
+      - MTV_MOVIES_POSTERS_PATH=
+      - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
+      - MTV_TVSHOWS_PATH=./fsDataTVShows
+      - MTV_TVSHOWS_METADATA_PATH=./fsDataTVShows/tvshows
+      - MTV_TVSHOWS_POSTERS_PATH=./fsDataTVShows/thumbnails
+      - MTV_TVSHOWS_THUMBNAIL_PATH=./fsDataTVShows/metadata
       - MTV_STATIC_PATH=/root/static
-
+      - MTV_DOCKER_VAR=DOCKER
+###### MAKE CHANGES BELOW AS NEEDED ##########################
+      - MTV_SERVER_ADDRESS=http://192.168.0.94
+      - MTV_SERVER_PORT=8888
+      - MTV_OFFSET=25 # number of songs per page.
+      - MTV_GZIP_METADATA=
 
     networks:
       - mtv

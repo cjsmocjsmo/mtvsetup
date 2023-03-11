@@ -5,6 +5,7 @@ pub fn walk_music_dir_music() -> Vec<String> {
     let mut mp3vec = Vec::new();
     let mtv_music_path = env::var("MTV_MUSIC_PATH").expect("$MTV_MUSIC_PATH is not set");
     for e in WalkDir::new(mtv_music_path.clone())
+        .follow_links(true)
         .into_iter()
         .filter_map(|e| e.ok())
     {
@@ -26,6 +27,7 @@ pub fn walk_music_dir_images() -> Vec<String> {
     let mut musicimagevec = Vec::new();
     let mtv_music_path = env::var("MTV_MUSIC_PATH").expect("$MTV_MUSIC_PATH is not set");
     for e in WalkDir::new(mtv_music_path.clone())
+        .follow_links(true)
         .into_iter()
         .filter_map(|e| e.ok())
     {
@@ -55,6 +57,7 @@ pub fn walk_movies_dir() -> Vec<String> {
     let mut moviesvec = Vec::new();
     let mtv_movies_path = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
     for e in WalkDir::new(mtv_movies_path.clone())
+        .follow_links(true)
         .into_iter()
         .filter_map(|e| e.ok())
     {
@@ -79,6 +82,7 @@ pub fn walk_posters2_dir() -> Vec<String> {
     let mtv_movies_thumb_path =
         env::var("MTV_MOVIES_POSTERS_PATH").expect("$MTV_MOVIES_POSTERS_PATH is not set");
     for e in WalkDir::new(mtv_movies_thumb_path.clone())
+        .follow_links(true)
         .into_iter()
         .filter_map(|e| e.ok())
     {
@@ -105,9 +109,9 @@ pub fn walk_posters2_dir() -> Vec<String> {
 
 pub fn walk_tvshows_dir() -> Vec<String> {
     let mut tvshowsvec = Vec::new();
-    let mtv_tvshows_path =
-        env::var("MTV_TVSHOWS_PATH").expect("$MTV_TVSHOWS_PATH is not set");
+    let mtv_tvshows_path = env::var("MTV_TVSHOWS_PATH").expect("$MTV_TVSHOWS_PATH is not set");
     for e in WalkDir::new(mtv_tvshows_path.clone())
+        .follow_links(true)
         .into_iter()
         .filter_map(|e| e.ok())
     {

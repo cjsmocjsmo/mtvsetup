@@ -16,8 +16,12 @@ COPY src/mtv_env_vars.rs ./src
 COPY src/mtv_image.rs ./src
 COPY src/mtv_misc.rs ./src
 COPY src/mtv_mp3_info.rs ./src
-COPY src/mtv_process_mp3s.rs ./src
+COPY src/mtv_nnc_info.rs ./src
+COPY src/mtv_process_movies_images.rs ./src
+COPY src/mtv_process_movies.rs ./src
 COPY src/mtv_process_music_images.rs ./src
+COPY src/mtv_process_music.rs ./src
+COPY src/mtv_process_tvshows.rs ./src
 COPY src/mtv_split.rs ./src
 COPY src/mtv_walk_dirs.rs ./src
 
@@ -60,6 +64,20 @@ RUN \
   chmod -R +rwx ./fsDataMov/movies && \
   chmod -R +rwx ./fsDataMov/thumbnails && \
   chmod -R +rwx ./fsDataMov/metadata
+
+RUN \
+  mkdir ./fsDataTVShows && \
+  mkdir ./fsDataTVShows/tvshows && \
+  mkdir ./fsDataTVShows/thumbnails && \
+  mkdir ./fsDataTVShows/metadata
+
+RUN \
+  chmod -R +rwx ./fsDataTVShows && \
+  chmod -R +rwx ./fsDataTVShows/tvshows && \
+  chmod -R +rwx ./fsDataTVShows/thumbnails && \
+  chmod -R +rwx ./fsDataTVShows/metadata
+
+
 
 STOPSIGNAL SIGINT
 

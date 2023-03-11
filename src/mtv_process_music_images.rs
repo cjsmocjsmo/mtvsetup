@@ -17,7 +17,7 @@ fn create_music_thumbnail(x: &String, art: String, alb: String) -> String{
     out_fname.to_string()
 }
 
-pub fn process_music_images() {
+pub fn process_music_images() -> (String, String) {
     let mp3_imagesvec = crate::mtv_walk_dirs::walk_music_dir_images();
 
     let mut image_count = 0;
@@ -84,6 +84,6 @@ pub fn process_music_images() {
         fs::write(outpath, bad_image_vec.join("\n"))
             .expect("Failed to write named incorrectly json file");
     }
-    println!("\n\nThere are {} bad images", bad_image_count);
-    println!("There are {} images total. \n\n", image_count);
+
+    (image_count.to_string(), bad_image_count.to_string())
 }

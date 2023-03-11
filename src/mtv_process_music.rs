@@ -1,7 +1,7 @@
 use json::object;
 use std::env;
 
-pub fn process_mp3s() {
+pub fn process_mp3s() -> String {
     let mp3svec = crate::mtv_walk_dirs::walk_music_dir_music();
 
     let mut index = 0;
@@ -93,5 +93,7 @@ pub fn process_mp3s() {
         "There are {} music files named incorrectly",
         not_named_correctly_count
     );
-    println!("There are {} music files processed", &index);
+
+    index.to_string()
+    // println!("There are {} music files processed", &index);
 }

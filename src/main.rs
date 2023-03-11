@@ -29,10 +29,10 @@ fn main() {
     let tot = mtv_clean::clean_meta();
 
     println!("{}", "\nStarting Image Processing");
-    mtv_process_music_images::process_music_images();
+    let music_img_count = mtv_process_music_images::process_music_images();
 
     println!("{}", "\nStarting Music Processing");
-    mtv_process_music::process_mp3s();
+    let music_count = mtv_process_music::process_mp3s();
 
     println!("{}", "\nStarting Create Artist Id");
     mtv_create_ids::create_artist_id_list();
@@ -61,10 +61,16 @@ fn main() {
     let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
 
     println!("\nClean has removed {} files.", tot);
-    println!("Movies Processed: {}", processed_movies_count);
-    println!("There are {} bad movie posters", processed_movie_posters.0);
-    println!("There are {} movie posters", processed_movie_posters.1);
-
+    println!("Music Processed: {} files", music_count);
+    println!("Music Images Processed: {} files", music_img_count.0);
+    println!("Movies Processed: {} files", processed_movies_count);
+    println!("TVShows Processed: {} files", processed_tvshow_count);
+    println!(
+        "Music Posters Processed: {} files",
+        processed_movie_posters.1
+    );
+    println!("{} music images failed to open", music_img_count.1);
+    println!("{} movie posters failed to open", processed_movie_posters.0);
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
 
@@ -72,7 +78,6 @@ fn main() {
         "Total size: {} .",
         mtv_misc::media_total_size(mtv_media_path)
     );
-    let duration = start.elapsed();
 
-    println!("MTV Setup time is: {:?}", duration);
+    println!("MTV Setup time is: {:?}", start.elapsed());
 }

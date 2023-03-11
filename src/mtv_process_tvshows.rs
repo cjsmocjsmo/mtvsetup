@@ -49,11 +49,12 @@ fn get_tv_episode_season(x: &String) -> (String, String) {
 
 // }
 
-pub fn process_tvshows() {
+pub fn process_tvshows() -> String{
     let tvshows_vec = crate::mtv_walk_dirs::walk_tvshows_dir();
 
     let mut count = 0;
     for tv in tvshows_vec {
+        println!("{}", tv);
         count = count + 1;
         let file_size = crate::mtv_misc::get_file_size(&tv);
         let catagory = get_tv_catagory(&tv);
@@ -61,9 +62,12 @@ pub fn process_tvshows() {
         let season = es.0;
         let episode = es.1;
 
+        let fname = crate::mtv_split::split_filename(&tv.to_string());
+
         let tvshows_obj = object! {
             size: file_size,
             catagory: catagory,
+            name: fname,
             season: season,
             episode: episode,
             path: tv
@@ -80,4 +84,6 @@ pub fn process_tvshows() {
 
         std::fs::write(outpath, tvsows_info).unwrap();
     }
+
+    count.to_string()
 }
