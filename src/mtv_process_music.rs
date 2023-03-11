@@ -2,7 +2,7 @@ use json::object;
 use std::env;
 
 pub fn process_mp3s() {
-    let mp3svec = crate::mtv_walk_dirs::walk_music_dir_mp3();
+    let mp3svec = crate::mtv_walk_dirs::walk_music_dir_music();
 
     let mut index = 0;
 

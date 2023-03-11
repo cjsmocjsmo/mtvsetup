@@ -12,6 +12,7 @@ mod mtv_process_movie_images;
 mod mtv_process_movies;
 mod mtv_process_music;
 mod mtv_process_music_images;
+mod mtv_process_tvshows;
 mod mtv_split;
 mod mtv_walk_dirs;
 
@@ -30,40 +31,43 @@ fn main() {
     println!("{}", "\nStarting Image Processing");
     mtv_process_music_images::process_music_images();
 
-    // println!("{}", "\nStarting Music Processing");
-    // mtv_process_music::process_mp3s();
+    println!("{}", "\nStarting Music Processing");
+    mtv_process_music::process_mp3s();
 
-    // println!("{}", "\nStarting Create Artist Id Started");
-    // mtv_create_ids::create_artist_id_list();
+    println!("{}", "\nStarting Create Artist Id");
+    mtv_create_ids::create_artist_id_list();
 
-    // println!("{}", "\nStarting Create Album Id Started");
-    // mtv_create_ids::create_album_id_list();
+    println!("{}", "\nStarting Create Album Id");
+    mtv_create_ids::create_album_id_list();
 
-    // println!("{}", "\nStarting Music Gzip");
-    // mtv_misc::write_music_gzip_file().unwrap();
+    println!("{}", "\nStarting Movie processing");
+    let processed_movies_count = mtv_process_movies::process_movies();
 
-    // println!("{}", "\nStarting Movie Gip");
-    // mtv_misc::write_movie_gzip_file().unwrap();
+    println!("{}", "\nStarting Posters2 processing");
+    let processed_movie_posters = mtv_process_movie_images::process_movie_posters();
 
-    // let movies_vec = mtv_walk_dirs::walk_movies_dir();
-    // let processed_movies_count = mtv_process_movies::process_movies(movies_vec);
+    println!("{}", "\nStarting TVShows processing");
+    let processed_tvshow_count = mtv_process_tvshows::process_tvshows();
 
-        
-    
+    println!("{}", "\nStarting Music Gzip");
+    mtv_misc::write_music_gzip_file().unwrap();
 
-    // let movie_posters_vec = mtv_walk_dirs::walk_posters2_dir();
-    // let processed_posters = mtv_process_movie_images::process_movie_posters(movie_posters_vec);
+    println!("{}", "\nStarting Movie Gzip");
+    mtv_misc::write_movie_gzip_file().unwrap();
 
-
-    // let _music_metadata = mtv_walk_dirs::walk_metadata_music();
-    // let _movies_metadata = mtv_walk_dirs::walk_metadata_movies();
+    println!("{}", "\nStarting TVShows Gzip");
+    mtv_misc::write_tvshows_gzip_file().unwrap();
 
     let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
 
-    // println!("Clean has removed {} files.", tot);
+    println!("\nClean has removed {} files.", tot);
+    println!("Movies Processed: {}", processed_movies_count);
+    println!("There are {} bad movie posters", processed_movie_posters.0);
+    println!("There are {} movie posters", processed_movie_posters.1);
+
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
-    // println!("Movies Processed: {}", processed_movies_count);
+
     println!(
         "Total size: {} .",
         mtv_misc::media_total_size(mtv_media_path)

@@ -49,7 +49,7 @@ fn build_artist_id_info(path: String) -> JsonValue {
 }
 
 pub fn create_artist_id_list() {
-    let files = crate::mtv_walk_dirs::walk_music_dir_mp3();
+    let files = crate::mtv_walk_dirs::walk_music_dir_music();
     let mut raw_dirs = get_raw_artist_dir_list(files);
     raw_dirs.dedup();
 
@@ -113,7 +113,7 @@ fn pop_album(x: String) -> String {
 }
 
 pub fn create_album_id_list() {
-    let files = crate::mtv_walk_dirs::walk_music_dir_mp3();
+    let files = crate::mtv_walk_dirs::walk_music_dir_music();
     let mut rawdirs = get_raw_album_dir_list(files);
     rawdirs.dedup();
 

@@ -143,8 +143,6 @@ pub fn split_movie_name(x: String) -> String {
         fsplit_vec.push(f);
     }
 
-    // println!("this is movname {:?}", fsplit_vec[0]);
-
     fsplit_vec[0].to_string()
 }
 
@@ -163,15 +161,11 @@ pub fn split_movie_year(x: String) -> String {
         fsplit_vec.push(f);
     }
 
-    // println!("this is fsplit_vec {}", fsplit_vec[1]);
-
     let fsplit2 = fsplit_vec[1].split(")");
     let mut fsplit_vec2 = vec![];
     for f2 in fsplit2 {
         fsplit_vec2.push(f2);
     }
-
-    // println!("this is year {:?}", fsplit_vec2[0]);
 
     fsplit_vec2[0].to_string()
 }

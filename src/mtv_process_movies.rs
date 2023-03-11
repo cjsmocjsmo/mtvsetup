@@ -30,9 +30,10 @@ fn get_poster_addr(x: String) -> String {
     poster_addr
 }
 
-pub fn process_movies(xx: Vec<String>) -> u32 {
+pub fn process_movies() -> String {
+    let movies_vec = crate::mtv_walk_dirs::walk_movies_dir();
     let mut count = 0;
-    for x in xx {
+    for x in movies_vec {
         count = count + 1;
 
         let mov_name = crate::mtv_split::split_movie_name(x.clone());
@@ -40,14 +41,6 @@ pub fn process_movies(xx: Vec<String>) -> u32 {
         let mov_poster_addr = get_poster_addr(x.clone());
         let mov_size = crate::mtv_misc::get_file_size(&x);
         let mov_file_exists = Path::new(&mov_poster_addr).exists();
-
-        // println!("{}", "Movie Info");
-        // println!("\t{}", mov_name);
-        // println!("\t{}", mov_year);
-        // println!("\t{}", mov_poster_addr);
-        // println!("\t{}", mov_size);
-        // println!("\t{}", x);
-        // println!("\t{}", mov_file_exists);
 
         let mov_js_obj = object! {
             name: mov_name,
@@ -65,11 +58,11 @@ pub fn process_movies(xx: Vec<String>) -> u32 {
             env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
 
         let a = format!("{}/", mtv_movies_metadata_path.as_str());
-        let b = format!("Music_Image_Meta_{}.json", &count);
+        let b = format!("Movie_Meta_{}.json", &count);
         let outpath = a + &b;
 
         std::fs::write(outpath, json_info).unwrap();
     }
 
-    count
+    count.to_string()
 }

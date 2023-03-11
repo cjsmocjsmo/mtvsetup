@@ -1,7 +1,7 @@
 use std::env;
 use walkdir::WalkDir;
 
-pub fn walk_music_dir_mp3() -> Vec<String> {
+pub fn walk_music_dir_music() -> Vec<String> {
     let mut mp3vec = Vec::new();
     let mtv_music_path = env::var("MTV_MUSIC_PATH").expect("$MTV_MUSIC_PATH is not set");
     for e in WalkDir::new(mtv_music_path.clone())
@@ -103,76 +103,26 @@ pub fn walk_posters2_dir() -> Vec<String> {
     moviesthumbvec
 }
 
-// pub fn walk_movies_thumb_dir() -> Vec<String> {
-//     let mut moviesthumbvec = Vec::new();
-//     let mtv_movies_thumb_path =
-//         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
-//     for e in WalkDir::new(mtv_movies_thumb_path.clone())
-//         .into_iter()
-//         .filter_map(|e| e.ok())
-//     {
-//         if e.metadata().unwrap().is_file() {
-//             let fname = e.path().to_string_lossy().to_string();
+pub fn walk_tvshows_dir() -> Vec<String> {
+    let mut tvshowsvec = Vec::new();
+    let mtv_tvshows_path =
+        env::var("MTV_TVSHOWS_PATH").expect("$MTV_TVSHOWS_PATH is not set");
+    for e in WalkDir::new(mtv_tvshows_path.clone())
+        .into_iter()
+        .filter_map(|e| e.ok())
+    {
+        if e.metadata().unwrap().is_file() {
+            let fname = e.path().to_string_lossy().to_string();
 
-//             if fname.ends_with(".jpg") {
-//                 moviesthumbvec.push(fname);
-//             } else if fname.ends_with(".jpeg") {
-//                 moviesthumbvec.push(fname);
-//             } else if fname.ends_with(".png") {
-//                 moviesthumbvec.push(fname);
-//             } else if fname.ends_with(".webp") {
-//                 moviesthumbvec.push(fname);
-//             } else if fname.ends_with(".avif") {
-//                 moviesthumbvec.push(fname);
-//             } else {
-//                 continue;
-//             }
-//         }
-//     }
+            if fname.ends_with(".mp4") {
+                tvshowsvec.push(fname);
+            } else if fname.ends_with(".mkv") {
+                tvshowsvec.push(fname);
+            } else {
+                continue;
+            }
+        }
+    }
 
-//     moviesthumbvec
-// }
-
-// pub fn walk_metadata_music() -> Vec<String> {
-//     let mut metadatamusicvec = Vec::new();
-//     let mtv_metadata_music_path =
-//         env::var("MTV_MUSIC_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
-//     for e in WalkDir::new(mtv_metadata_music_path.clone())
-//         .into_iter()
-//         .filter_map(|e| e.ok())
-//     {
-//         if e.metadata().unwrap().is_file() {
-//             let fname = e.path().to_string_lossy().to_string();
-
-//             if fname.ends_with(".json") {
-//                 metadatamusicvec.push(fname);
-//             } else {
-//                 continue;
-//             }
-//         }
-//     }
-
-//     metadatamusicvec
-// }
-
-// pub fn walk_metadata_movies() -> Vec<String> {
-//     let mut metadatamoviesvec = Vec::new();
-//     let mtv_metadata_movies_path =
-//         env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MUSIC_METADATA_PATH is not set");
-//     for e in WalkDir::new(mtv_metadata_movies_path.clone())
-//         .into_iter()
-//         .filter_map(|e| e.ok())
-//     {
-//         if e.metadata().unwrap().is_file() {
-//             let fname = e.path().to_string_lossy().to_string();
-
-//             if fname.ends_with(".json") {
-//                 metadatamoviesvec.push(fname);
-//             } else {
-//                 continue;
-//             }
-//         }
-//     }
-
-//     metadatamoviesvec
-// }
+    tvshowsvec
+}

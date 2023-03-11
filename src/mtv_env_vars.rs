@@ -62,28 +62,47 @@ pub fn read_config() {
         let music13 = d["MTV_MOVIES_METADATA_PATH"].as_str().unwrap().to_string();
         set_env_var(music12, music13).unwrap();
 
-        let offset1 = String::from("MTV_OFFSET");
-        let offset2 = String::from("25");
-        set_env_var(offset1, offset2).unwrap();
+        let music14 = "MTV_TVSHOWS_PATH".to_string();
+        let music15 = d["MTV_TVSHOWS_PATH"].as_str().unwrap().to_string();
+        set_env_var(music14, music15).unwrap();
 
-        let p1 = String::from("MTV_SERVER_PORT");
-        let p2 = String::from("8888");
-        set_env_var(p1, p2).unwrap();
+        let music16 = "MTV_TVSHOWS_METADATA_PATH".to_string();
+        let music17 = d["MTV_TVSHOWS_METADATA_PATH"].as_str().unwrap().to_string();
+        set_env_var(music16, music17).unwrap();
 
-        let addr1 = String::from("MTV_SERVER_ADDRESS");
-        let addr2 = String::from("http://192.168.0.94");
-        set_env_var(addr1, addr2).unwrap();
+        let music18 = "MTV_TVSHOWS_POSTERS_PATH".to_string();
+        let music19 = d["MTV_TVSHOWS_POSTERS_PATH"].as_str().unwrap().to_string();
+        set_env_var(music18, music19).unwrap();
 
-        let dvar1 = String::from("MTV_DOCKER_VAR");
-        let dvar2 = String::from("NONE");
-        set_env_var(dvar1, dvar2).unwrap();
+        let music18 = "MTV_TVSHOWS_THUMBNAIL_PATH".to_string();
+        let music19 = d["MTV_TVSHOWS_THUMBNAIL_PATH"]
+            .as_str()
+            .unwrap()
+            .to_string();
+        set_env_var(music18, music19).unwrap();
+
+        let static1 = String::from("MTV_MOVIES_POSTERS_PATH");
+        let static2 = d["MTV_MOVIES_POSTERS_PATH"].as_str().unwrap().to_string();
+        set_env_var(static1, static2).unwrap();
 
         let static1 = String::from("MTV_STATIC_PATH");
         let static2 = d["MTV_STATIC_PATH"].as_str().unwrap().to_string();
         set_env_var(static1, static2).unwrap();
 
-        let static1 = String::from("MTV_MOVIES_POSTERS_PATH");
-        let static2 = d["MTV_MOVIES_POSTERS_PATH"].as_str().unwrap().to_string();
-        set_env_var(static1, static2).unwrap();
+        let addr1 = String::from("MTV_SERVER_ADDRESS");
+        let addr2 = String::from("http://192.168.0.94");
+        set_env_var(addr1, addr2).unwrap();
+
+        let p1 = String::from("MTV_SERVER_PORT");
+        let p2 = String::from("8888");
+        set_env_var(p1, p2).unwrap();
+
+        let dvar1 = String::from("MTV_DOCKER_VAR");
+        let dvar2 = String::from("NONE");
+        set_env_var(dvar1, dvar2).unwrap();
+
+        let offset1 = String::from("MTV_OFFSET");
+        let offset2 = String::from("25");
+        set_env_var(offset1, offset2).unwrap();
     }
 }

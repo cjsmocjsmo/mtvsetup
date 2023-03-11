@@ -1,25 +1,29 @@
 use image::{self};
+use json::object;
 use std::env;
 use std::fs;
 
-fn create_movie_thumbnail(x: String) {
-    let mtv_music_metadata_path =
+fn create_movie_thumbnail(x: String) -> String {
+    let mtv_movie_metadata_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
     let old_fname = crate::mtv_split::split_poster_name(x.clone());
-    let out_fname = mtv_music_metadata_path + "/" + &old_fname;
-
-    // println!("this is out_fname:\n\t{}", out_fname);
+    let out_fname = mtv_movie_metadata_path + "/" + &old_fname;
 
     let img = image::open(x).expect("ooooh fuck it didnt open");
     let thumbnail = img.resize(230, 345, image::imageops::FilterType::Lanczos3);
-    thumbnail.save(out_fname).expect("Saving image failed");
+    thumbnail
+        .save(out_fname.clone())
+        .expect("Saving image failed");
+
+    out_fname
 }
 
-pub fn process_movie_posters(xx: Vec<String>) {
+pub fn process_movie_posters() -> (String, String) {
+    let movie_posters_vec = crate::mtv_walk_dirs::walk_posters2_dir();
     let mut index = 0;
     let mut bad_image_vec = vec![];
 
-    for x in xx {
+    for x in movie_posters_vec {
         index = index + 1;
 
         let dims = crate::mtv_image::get_image_dims(&x);
@@ -27,12 +31,24 @@ pub fn process_movie_posters(xx: Vec<String>) {
             let img_path = &x;
             let img_size = crate::mtv_misc::get_file_size(&x);
             let name = crate::mtv_split::split_poster_name(x.clone());
-            // println!("\nthis is img_path:\n\t{}", img_path);
-            // println!("this is dims:\n\t{:?}", dims);
-            // println!("this is img_size:\n\t{}", img_size);
-            // println!("this is name:\n\t{}", name);
+            let thumb_path = create_movie_thumbnail(x.clone());
 
-            create_movie_thumbnail(x);
+            let mov_img_obj = object! {
+                path: img_path.to_string(),
+                size: img_size.to_string(),
+                name: name,
+                thumbpath: thumb_path,
+            };
+
+            let mov_img_info = json::stringify(mov_img_obj.dump());
+
+            let mtv_movie_metadata_path =
+                env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
+
+            let a = format!("{}/", mtv_movie_metadata_path.as_str());
+            let b = format!("Movie_Image_{}_Info.json", index.to_string());
+            let outpath = a + &b;
+            fs::write(outpath, mov_img_info).expect("Failed to write named incorrectly json file");
         } else {
             bad_image_vec.push(x.clone());
 
@@ -42,15 +58,15 @@ pub fn process_movie_posters(xx: Vec<String>) {
     let bad_image_count = bad_image_vec.clone().len();
 
     if bad_image_count != 0 {
-        let mtv_music_metadata_path =
+        let mtv_movie_metadata_path =
             env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
 
-        let a = format!("{}/", mtv_music_metadata_path.as_str());
+        let a = format!("{}/", mtv_movie_metadata_path.as_str());
         let b = format!("Bad_Movies_Images.json");
         let outpath = a + &b;
         fs::write(outpath, bad_image_vec.join("\n"))
             .expect("Failed to write named incorrectly json file");
     }
-    println!("\n\nThere are {} bad movies images", bad_image_count);
-    println!("There are {} movie images total. \n\n", index);
+
+    (bad_image_count.to_string(), index.to_string())
 }

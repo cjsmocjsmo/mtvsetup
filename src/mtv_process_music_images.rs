@@ -4,7 +4,7 @@ use std::fs;
 fn create_music_thumbnail(x: &String, art: String, alb: String) -> String{
     let mtv_music_metadata_path =
         env::var("MTV_MUSIC_THUMBNAIL_PATH").expect("$MTV_MUSIC_THUMBNAIL_PATH is not set");
-    let old_fname = crate::mtv_split::split_poster_name(x.clone());
+    // let old_fname = crate::mtv_split::split_poster_name(x.clone());
     let new_fname = "/".to_string() + art.as_str() + "_-_" + alb.as_str() + ".jpg";
     let out_fname = mtv_music_metadata_path + "/" + &new_fname;
 
