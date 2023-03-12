@@ -23,20 +23,20 @@ services:
 
       - MTV_MOVIES_PATH=/root/fsDataMov/movies
       - MTV_MOVIES_METADATA_PATH=/root/fsDataMov/metadata
-      - MTV_MOVIES_POSTERS_PATH=
+      - MTV_MOVIES_POSTERS_PATH=/root/fsDataMov/posters
       - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
 
-      - MTV_TVSHOWS_PATH=./fsDataTVShows
-      - MTV_TVSHOWS_METADATA_PATH=./fsDataTVShows/tvshows
-      - MTV_TVSHOWS_POSTERS_PATH=./fsDataTVShows/thumbnails
+      - MTV_TVSHOWS_PATH=./fsDataTVShows/tvshow
+      - MTV_TVSHOWS_METADATA_PATH=./fsDataTVShows/metadata
+      - MTV_TVSHOWS_POSTERS_PATH=./fsDataTVShows/posters
       - MTV_TVSHOWS_THUMBNAIL_PATH=./fsDataTVShows/metadata
+
       - MTV_STATIC_PATH=/root/static
       - MTV_DOCKER_VAR=DOCKER
 ###### MAKE CHANGES BELOW AS NEEDED ##########################
       - MTV_SERVER_ADDRESS=http://192.168.0.94
       - MTV_SERVER_PORT=8888
       - MTV_OFFSET=25 # number of songs per page.
-      - MTV_GZIP_METADATA=
 
     networks:
       - mtv

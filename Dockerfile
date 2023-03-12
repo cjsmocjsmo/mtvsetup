@@ -58,25 +58,30 @@ RUN \
   mkdir ./fsDataMov && \
   mkdir ./fsDataMov/movies && \
   mkdir ./fsDataMov/thumbnails && \
-  mkdir ./fsDataMov/metadata
+  mkdir ./fsDataMov/metadata && \
+  mkdir ./fsDataMov/posters
 
 RUN \
   chmod -R +rwx ./fsDataMov/movies && \
   chmod -R +rwx ./fsDataMov/thumbnails && \
-  chmod -R +rwx ./fsDataMov/metadata
+  chmod -R +rwx ./fsDataMov/metadata && \
+  chmod -R +rwx ./fsDataMov/posters
+
 
 RUN \
   mkdir ./fsDataTVShows && \
   mkdir ./fsDataTVShows/tvshows && \
   mkdir ./fsDataTVShows/thumbnails && \
-  mkdir ./fsDataTVShows/metadata
+  mkdir ./fsDataTVShows/metadata && \
+  mkdir ./fsDataTVShows/posters
+
 
 RUN \
   chmod -R +rwx ./fsDataTVShows && \
   chmod -R +rwx ./fsDataTVShows/tvshows && \
   chmod -R +rwx ./fsDataTVShows/thumbnails && \
-  chmod -R +rwx ./fsDataTVShows/metadata
-
+  chmod -R +rwx ./fsDataTVShows/metadata && \
+  chmod -R +rwx ./fsDataTVShows/posters
 
 
 STOPSIGNAL SIGINT
