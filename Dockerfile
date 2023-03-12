@@ -4,8 +4,6 @@ RUN mkdir /usr/src/mtvsetup
 RUN mkdir /usr/src/mtvsetup/src
 RUN mkdir /usr/src/mtvsetup/target
 
-COPY .env /root/
-
 WORKDIR /usr/src/mtvsetup
 
 COPY Cargo.toml .
