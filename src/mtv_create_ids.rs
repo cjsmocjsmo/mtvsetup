@@ -119,6 +119,7 @@ pub fn create_album_id_list() {
 
     let mut newalbvec = vec![];
     for d in rawdirs {
+        // let album = pop_album(d.clone());
         let album = pop_album(d.clone());
         let albpath = d.clone();
         let albumid = crate::mtv_misc::get_md5(&d);

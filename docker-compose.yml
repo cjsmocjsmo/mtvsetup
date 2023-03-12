@@ -10,7 +10,7 @@ services:
       - 27017:27017
 
   mtv:
-    image: mtv:0.0.2
+    image: mtv:0.0.3
     build: .
     environment:
 ###### DO NOT CHANGE ANYTHNING IN THIS SECTION #################
@@ -66,14 +66,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/Video/Movies
+      device: /home/pipi/Videos/Movies
       o: bind
 
   mtv_tv_vol:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/Video/TVShows
+      device: /home/pipi/Videos/TVShows
       o: bind
 
   mtv_static_vol:
