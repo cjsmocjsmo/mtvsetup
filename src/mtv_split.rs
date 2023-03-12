@@ -66,7 +66,6 @@ pub fn music_split_artist(x: &String) -> String {
     for f in filenamevec {
         fin.push(f);
     }
-    // println!("{:?}", fin);
     String::from(fin[2])
 }
 
