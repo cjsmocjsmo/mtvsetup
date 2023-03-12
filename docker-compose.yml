@@ -26,10 +26,10 @@ services:
       - MTV_MOVIES_POSTERS_PATH=/root/fsDataMov/posters
       - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
 
-      - MTV_TVSHOWS_PATH=./fsDataTVShows/tvshow
-      - MTV_TVSHOWS_METADATA_PATH=./fsDataTVShows/metadata
-      - MTV_TVSHOWS_POSTERS_PATH=./fsDataTVShows/posters
-      - MTV_TVSHOWS_THUMBNAIL_PATH=./fsDataTVShows/metadata
+      - MTV_TVSHOWS_PATH=/root/fsDataTVShows/tvshow
+      - MTV_TVSHOWS_METADATA_PATH=/root/fsDataTVShows/metadata
+      - MTV_TVSHOWS_POSTERS_PATH=/root/fsDataTVShows/posters
+      - MTV_TVSHOWS_THUMBNAIL_PATH=/root/fsDataTVShows/metadata
 
       - MTV_STATIC_PATH=/root/static
       - MTV_DOCKER_VAR=DOCKER
