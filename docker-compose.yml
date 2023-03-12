@@ -10,19 +10,22 @@ services:
       - 27017:27017
 
   mtv:
-    image: mtv:0.0.1
+    image: mtv:0.0.2
     build: .
     environment:
 ###### DO NOT CHANGE ANYTHNING IN THIS SECTION #################
       - MTV_MONGODB_ADDRESS=mongodb://db:27017/mtv
       - MTV_MEDIA_PATH=/root/fsData
+
       - MTV_MUSIC_PATH=/root/fsData/music
       - MTV_MUSIC_THUMBNAIL_PATH=/root/fsData/thumbnails
       - MTV_MUSIC_METADATA_PATH=/root/fsData/metadata
+
       - MTV_MOVIES_PATH=/root/fsDataMov/movies
       - MTV_MOVIES_METADATA_PATH=/root/fsDataMov/metadata
       - MTV_MOVIES_POSTERS_PATH=
       - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
+
       - MTV_TVSHOWS_PATH=./fsDataTVShows
       - MTV_TVSHOWS_METADATA_PATH=./fsDataTVShows/tvshows
       - MTV_TVSHOWS_POSTERS_PATH=./fsDataTVShows/thumbnails
@@ -40,8 +43,10 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - mtvvol:/root/fsData/
-      # - mtvpicvol:/root/static/
+      - mtv_music_vol:/root/fsData/
+      - mtv_movie_vol:/root/fsDataMov
+      - mtv_tv_vol:/root/fsDataTVShows
+      - mtv_static_vol:/root/static/
       # - mtvlogvol:/root/logs/
     depends_on:
       - db
@@ -50,25 +55,30 @@ networks:
   mtv:
 
 volumes:
-  mtvvol:
+  mtv_music_vol:
     driver: local
     driver_opts:
       type: none
       device: /home/pipi/Music/
       o: bind
 
-  # mtvpicvol:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/pi/Thumbnails
-  #     o: bind
+  mtv_mov_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pipi/Video/Movies
+      o: bind
 
-  # mtvlogvol:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     device: /home/pi/LOGFILES
-  #     o: bind
+  mtv_tv_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pipi/Video/TVShows
+      o: bind
 
-
+  mtv_static_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/pipi/static
+      o: bind
