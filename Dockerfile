@@ -17,7 +17,7 @@ COPY src/mtv_image.rs ./src
 COPY src/mtv_misc.rs ./src
 COPY src/mtv_mp3_info.rs ./src
 COPY src/mtv_nnc_info.rs ./src
-COPY src/mtv_process_movies_images.rs ./src
+COPY src/mtv_process_movie_images.rs ./src
 COPY src/mtv_process_movies.rs ./src
 COPY src/mtv_process_music_images.rs ./src
 COPY src/mtv_process_music.rs ./src
