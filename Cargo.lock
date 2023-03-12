@@ -415,16 +415,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "fast_image_resize"
-version = "2.6.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a203b03e3b112cbea2080fef65b7fdbce9aa77e6379d167ca028f6379c852ab3"
-dependencies = [
- "num-traits",
- "thiserror",
-]
-
-[[package]]
 name = "filesize"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -974,7 +964,6 @@ version = "0.1.0"
 dependencies = [
  "base64 0.21.0",
  "byte-unit",
- "fast_image_resize",
  "filesize",
  "flate2",
  "glob",

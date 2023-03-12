@@ -64,6 +64,7 @@ pub fn process_music_images() -> (String, String) {
                 image_count.to_string(),
                 thumb_path,
             );
+            
         } else {
             bad_image_vec.push(jpg.clone());
 

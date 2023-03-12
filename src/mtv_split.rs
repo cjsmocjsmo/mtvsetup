@@ -52,7 +52,7 @@ pub fn image_split_artist(x: &String) -> String {
         fin.push(f);
     }
 
-    String::from(fin[1])
+    String::from(fin[2])
 }
 
 pub fn music_split_artist(x: &String) -> String {
@@ -66,7 +66,7 @@ pub fn music_split_artist(x: &String) -> String {
     for f in filenamevec {
         fin.push(f);
     }
-    println!("{:?}", fin);
+    // println!("{:?}", fin);
     String::from(fin[2])
 }
 
