@@ -74,7 +74,7 @@ pub fn write_image_json_to_file(
     artist_results: String,
     album_results: String,
     fsize_results: String,
-    b64image: String,
+    // b64image: String,
     fullpath: String,
     imagecount: String,
     thumbnail_path: String,
@@ -91,7 +91,7 @@ pub fn write_image_json_to_file(
         idx: &*imagecount,
         fsize: fsize_results,
         fullpath: fullpath,
-        b64img: b64image,
+        // b64img: b64image,
         thumbpath: thumbnail_path
     };
 
