@@ -44,7 +44,7 @@ services:
       - 8888:8888
     volumes:
       - mtv_music_vol:/root/fsData/
-      - mtv_movie_vol:/root/fsDataMov
+      - mtv_mov_vol:/root/fsDataMov
       - mtv_tv_vol:/root/fsDataTVShows
       - mtv_static_vol:/root/static/
       # - mtvlogvol:/root/logs/
