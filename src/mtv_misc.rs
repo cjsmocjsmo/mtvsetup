@@ -42,7 +42,7 @@ pub fn media_total_size(addr: String) -> String {
 }
 
 pub fn write_music_gzip_file() -> Result<(), std::io::Error> {
-    let music_meta = env::var("MTV_MUSIC_METADATA_PATH").unwrap();
+    let music_meta = env::var("MTV_MEDIA_PATH").unwrap();
     let static_path = env::var("MTV_STATIC_PATH").unwrap();
     let new_music_backup_path = music_meta.clone() + "/MTV_Music_Meta_Backup.tar.gz";
 
@@ -56,7 +56,7 @@ pub fn write_music_gzip_file() -> Result<(), std::io::Error> {
 }
 
 pub fn write_movie_gzip_file() -> Result<(), std::io::Error> {
-    let movie_meta = env::var("MTV_MOVIES_METADATA_PATH").unwrap();
+    let movie_meta = env::var("MTV_MEDIA_PATH").unwrap();
     let static_path = env::var("MTV_STATIC_PATH").unwrap();
     let new_movie_backup_path = movie_meta.clone() + "/MTV_Movie_Meta_Backup.tar.gz";
 
@@ -70,7 +70,7 @@ pub fn write_movie_gzip_file() -> Result<(), std::io::Error> {
 }
 
 pub fn write_tvshows_gzip_file() -> Result<(), std::io::Error> {
-    let tvshows_meta = env::var("MTV_TVSHOWS_METADATA_PATH").unwrap();
+    let tvshows_meta = env::var("MTV_MEDIA_PATH").unwrap();
     let static_path = env::var("MTV_STATIC_PATH").unwrap();
     let new_tvshow_backup_path = tvshows_meta.clone() + "/MTV_TVShows_Meta_Backup.tar.gz";
 
@@ -78,7 +78,7 @@ pub fn write_tvshows_gzip_file() -> Result<(), std::io::Error> {
     let enc = GzEncoder::new(tar_gz, Compression::default());
     let mut tar = tar::Builder::new(enc);
     tar.append_dir_all("TVShows_Backups/", tvshows_meta.clone())?;
-    let static_backup_path = static_path + "/MTV_Movie_Meta_Backup.tar.gz";
+    let static_backup_path = static_path + "/MTV_TVShows_Meta_Backup.tar.gz";
     fs::copy(new_tvshow_backup_path.clone(), static_backup_path).expect("Oooooh fuck failed to copy tvshows tar gz");
     Ok(())
 }

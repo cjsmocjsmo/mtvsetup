@@ -16,6 +16,7 @@ mod mtv_process_tvshows;
 mod mtv_split;
 mod mtv_walk_dirs;
 
+
 fn main() {
     let start = Instant::now();
     let dockervar = mtv_env_vars::get_docker_var();
@@ -51,10 +52,10 @@ fn main() {
 
     println!("{}", "\nStarting Music Gzip");
     mtv_misc::write_music_gzip_file().unwrap();
-
+    
     println!("{}", "\nStarting Movie Gzip");
     mtv_misc::write_movie_gzip_file().unwrap();
-
+    
     println!("{}", "\nStarting TVShows Gzip");
     mtv_misc::write_tvshows_gzip_file().unwrap();
 
