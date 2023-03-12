@@ -47,7 +47,7 @@ pub fn process_music_images() -> (String, String) {
 
             let thumb_path = create_music_thumbnail(&jpg, artist_results.clone(), album_results.clone());
 
-            let b64image = crate::mtv_image::to_base64_str(&thumb_path);
+            // let b64image = crate::mtv_image::to_base64_str(&thumb_path);
 
             crate::mtv_image::write_image_json_to_file(
                 id,
@@ -59,7 +59,7 @@ pub fn process_music_images() -> (String, String) {
                 artist_results,
                 album_results,
                 fsize_results,
-                b64image,
+                // b64image,
                 fullpath.to_string(),
                 image_count.to_string(),
                 thumb_path,
