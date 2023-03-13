@@ -86,14 +86,15 @@ pub fn copy_gzip_files() -> u32 {
     let mut count = 0;
     for e in glob(glob_str.as_str()).expect("Failed to read glob pattern") {
         
-        
+        let boo = e.unwrap().clone();
+        let fname = boo.file_name().unwrap().to_str().unwrap();
+        let new_path = static_path.clone() + "/" + fname;
         
         
         
         count = count + 1;
-        let in_path = e.unwrap();
         
-        fs::copy(in_path, static_path.clone()).expect("File copy has failed");
+        fs::copy(boo, new_path).expect("File copy has failed");
     }
     count
 }
