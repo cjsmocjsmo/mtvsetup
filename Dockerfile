@@ -43,7 +43,7 @@ WORKDIR /root/
 RUN \
   mkdir ./static && \
   mkdir ./fsData && \
-  mkdir ./gzip . && \
+  mkdir ./gzip && \
   mkdir ./fsData/music && \
   mkdir ./fsData/thumbnails && \
   mkdir ./fsData/metadata
