@@ -104,5 +104,10 @@ pub fn read_config() {
         let offset1 = String::from("MTV_OFFSET");
         let offset2 = String::from("25");
         set_env_var(offset1, offset2).unwrap();
+
+        
+        let gzip1 = String::from("MTV_GZIP_PATH");
+        let gzip2 = d["MTV_GZIP_PATH"].as_str().unwrap().to_string();
+        set_env_var(gzip1, gzip2).unwrap();
     }
 }

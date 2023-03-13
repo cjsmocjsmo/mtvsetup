@@ -1,4 +1,4 @@
-use base64::{alphabet, engine, Engine as _};
+// use base64::{alphabet, engine, Engine as _};
 use image::{self};
 use json::object;
 use std::env;
@@ -38,31 +38,31 @@ pub fn normalize_music_image(dims: (u32, u32)) -> (u32, u32) {
     resizetup
 }
 
-pub fn to_base64_str(x: &String) -> String {
-    let img_result = image::open(&x);
-    let img = match img_result {
-        Ok(img) => img,
-        Err(error) => panic!("problem opening file {:?}", error),
-    };
-    // let thumb = img.thumbnail(w, h);
-    let thumb_bytes = img.into_bytes();
+// pub fn to_base64_str(x: &String) -> String {
+//     let img_result = image::open(&x);
+//     let img = match img_result {
+//         Ok(img) => img,
+//         Err(error) => panic!("problem opening file {:?}", error),
+//     };
+//     // let thumb = img.thumbnail(w, h);
+//     let thumb_bytes = img.into_bytes();
 
-    let alphabet =
-        alphabet::Alphabet::new("+/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
-            .unwrap();
+//     let alphabet =
+//         alphabet::Alphabet::new("+/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
+//             .unwrap();
 
-    // a very weird config that encodes with padding but requires no padding when decoding...?
-    let crazy_config = engine::GeneralPurposeConfig::new()
-        .with_decode_allow_trailing_bits(true)
-        .with_encode_padding(true)
-        .with_decode_padding_mode(engine::DecodePaddingMode::RequireNone);
+//     // a very weird config that encodes with padding but requires no padding when decoding...?
+//     let crazy_config = engine::GeneralPurposeConfig::new()
+//         .with_decode_allow_trailing_bits(true)
+//         .with_encode_padding(true)
+//         .with_decode_padding_mode(engine::DecodePaddingMode::RequireNone);
 
-    let crazy_engine = engine::GeneralPurpose::new(&alphabet, crazy_config);
+//     let crazy_engine = engine::GeneralPurpose::new(&alphabet, crazy_config);
 
-    let encoded = crazy_engine.encode(thumb_bytes);
+//     let encoded = crazy_engine.encode(thumb_bytes);
 
-    encoded
-}
+//     encoded
+// }
 
 pub fn write_image_json_to_file(
     id: String,

@@ -43,6 +43,7 @@ WORKDIR /root/
 RUN \
   mkdir ./static && \
   mkdir ./fsData && \
+  mkdir ./gzip . && \
   mkdir ./fsData/music && \
   mkdir ./fsData/thumbnails && \
   mkdir ./fsData/metadata
@@ -50,6 +51,7 @@ RUN \
 RUN \
   chmod -R +rwx ./static && \
   chmod -R +rwx ./fsData && \
+  chmod -R +rwx ./gzip && \
   chmod -R +rwx ./fsData/music && \
   chmod -R +rwx ./fsData/thumbnails && \
   chmod -R +rwx ./fsData/metadata

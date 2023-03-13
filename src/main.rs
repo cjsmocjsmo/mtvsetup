@@ -59,6 +59,9 @@ fn main() {
     println!("{}", "\nStarting TVShows Gzip");
     mtv_misc::write_tvshows_gzip_file().unwrap();
 
+    println!("{}", "\nStarting Copy gzip files to https static folder");
+    let copied_count = mtv_misc::copy_gzip_files();
+
     let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
 
     println!("\nClean has removed {} files.", tot);
@@ -74,6 +77,8 @@ fn main() {
     println!("{} movie posters failed to open", processed_movie_posters.0);
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
+    println!("{} files copied to static", copied_count);
+
 
     println!(
         "Total size: {} .",

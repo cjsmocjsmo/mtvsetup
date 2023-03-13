@@ -76,7 +76,6 @@ pub fn write_music_json_to_file(
     page: String,
     fsize_results: String,
 ) -> JsonValue {
-    println!("{}", music_artist_results);
 
     // if artc == true && albc == true && sc == true {
 

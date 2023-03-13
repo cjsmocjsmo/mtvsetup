@@ -10,7 +10,7 @@ services:
       - 27017:27017
 
   mtv:
-    image: mtv:0.0.9
+    image: mtv:0.0.10
     build: .
     environment:
 ###### DO NOT CHANGE ANYTHNING IN THIS SECTION #################
@@ -31,6 +31,7 @@ services:
       - MTV_TVSHOWS_POSTERS_PATH=/root/fsDataTVShows/posters
       - MTV_TVSHOWS_THUMBNAIL_PATH=/root/fsDataTVShows/metadata
 
+      - MTV_GZIP_PATH=/root/gzip
       - MTV_STATIC_PATH=/root/static
       - MTV_DOCKER_VAR=DOCKER
 ###### MAKE CHANGES BELOW AS NEEDED ##########################
