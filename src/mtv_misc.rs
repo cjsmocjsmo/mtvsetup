@@ -2,13 +2,13 @@ use byte_unit::Byte;
 use filesize::PathExt;
 use flate2::write::GzEncoder;
 use flate2::Compression;
+use glob::glob;
 use md5::{Digest, Md5};
 use std::env;
+use std::fs;
 use std::fs::File;
 use std::path::Path;
 use walkdir::WalkDir;
-use std::fs;
-use glob::glob;
 
 pub fn get_md5(astring: &String) -> String {
     let mut hasher2 = Md5::new();
@@ -43,7 +43,6 @@ pub fn media_total_size(addr: String) -> String {
 }
 
 pub fn write_music_gzip_file() -> Result<(), std::io::Error> {
-    
     let music_meta = env::var("MTV_MUSIC_METADATA_PATH").unwrap();
     let static_path = env::var("MTV_GZIP_PATH").unwrap();
     let new_music_backup_path = static_path.clone() + "/MTV_Music_Meta_Backup.tar.gz";
@@ -85,15 +84,10 @@ pub fn copy_gzip_files() -> u32 {
     let glob_str = gzip_path + "/*.tar.gz";
     let mut count = 0;
     for e in glob(glob_str.as_str()).expect("Failed to read glob pattern") {
-        
+        count = count + 1;
         let boo = e.unwrap().clone();
         let fname = boo.file_name().unwrap().to_str().unwrap();
         let new_path = static_path.clone() + "/" + fname;
-        
-        
-        
-        count = count + 1;
-        
         fs::copy(boo, new_path).expect("File copy has failed");
     }
     count
