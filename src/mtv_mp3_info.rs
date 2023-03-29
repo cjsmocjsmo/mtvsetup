@@ -6,14 +6,13 @@ use std::path::Path;
 use std::time::Duration;
 
 
-pub fn get_tag_info(x: &String) -> (String, String, String, String) {
+pub fn get_tag_info(x: &String) -> (String, String, String) {
     let tag = Tag::read_from_path(x).unwrap();
     let artist = tag.artist().unwrap().to_string();
     let album = tag.album().unwrap().to_string();
     let song = tag.title().unwrap().to_string();
-    let genre = tag.genre().unwrap().to_string();
 
-    (artist, album, song, genre)
+    (artist, album, song)
 }
 
 fn mp3_duration_extract(x: String) -> Duration {
@@ -64,7 +63,6 @@ pub fn write_music_json_to_file(
     artist: String,
     album: String,
     song: String,
-    genre: String,
     base_dir: String,
     filename_results: String,
     music_artist_results: String,
@@ -90,7 +88,6 @@ pub fn write_music_json_to_file(
             tag_artist: artist,
             tag_album: album,
             tag_title: song,
-            tag_genre: genre,
             idx: idx.clone(),
             page: page,
             fsize: fsize_results,

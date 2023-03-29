@@ -29,7 +29,6 @@ pub fn process_mp3s() -> String {
         let artist = tags.0;
         let album = tags.1;
         let song = tags.2;
-        let genre = tags.3;
 
         let test_results = crate::mtv_nnc_info::test_media_sameness(
             mp3.clone(),
@@ -57,7 +56,6 @@ pub fn process_mp3s() -> String {
                 artist,
                 album,
                 song,
-                genre,
                 base_dir,
                 filename_results,
                 music_artist_results,
