@@ -67,17 +67,17 @@ fn main() {
     println!("\nClean has removed {} files.", tot);
     println!("Music Processed: {} files", music_count);
     println!("Music Images Processed: {} files", music_img_count.0);
-    println!("Movies Processed: {} files", processed_movies_count);
-    println!("TVShows Processed: {} files", processed_tvshow_count);
-    println!(
-        "Music Posters Processed: {} files",
-        processed_movie_posters.1
-    );
+    // println!("Movies Processed: {} files", processed_movies_count);
+    // println!("TVShows Processed: {} files", processed_tvshow_count);
+    // println!(
+    //     "Music Posters Processed: {} files",
+    //     processed_movie_posters.1
+    // );
     println!("{} music images failed to open", music_img_count.1);
-    println!("{} movie posters failed to open", processed_movie_posters.0);
+    // println!("{} movie posters failed to open", processed_movie_posters.0);
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
-    println!("{} files copied to static", copied_count);
+    // println!("{} files copied to static", copied_count);
 
 
     println!(
