@@ -41,43 +41,43 @@ fn main() {
     println!("{}", "\nStarting Create Album Id");
     mtv_create_ids::create_album_id_list();
 
-    // println!("{}", "\nStarting Movie processing");
-    // let processed_movies_count = mtv_process_movies::process_movies();
+    println!("{}", "\nStarting Movie processing");
+    let processed_movies_count = mtv_process_movies::process_movies();
 
-    // println!("{}", "\nStarting Posters2 processing");
-    // let processed_movie_posters = mtv_process_movie_images::process_movie_posters();
+    println!("{}", "\nStarting Posters2 processing");
+    let processed_movie_posters = mtv_process_movie_images::process_movie_posters();
 
-    // println!("{}", "\nStarting TVShows processing");
-    // let processed_tvshow_count = mtv_process_tvshows::process_tvshows();
+    println!("{}", "\nStarting TVShows processing");
+    let processed_tvshow_count = mtv_process_tvshows::process_tvshows();
 
-    // println!("{}", "\nStarting Music Gzip");
-    // mtv_misc::write_music_gzip_file().unwrap();
+    println!("{}", "\nStarting Music Gzip");
+    mtv_misc::write_music_gzip_file().unwrap();
     
-    // println!("{}", "\nStarting Movie Gzip");
-    // mtv_misc::write_movie_gzip_file().unwrap();
+    println!("{}", "\nStarting Movie Gzip");
+    mtv_misc::write_movie_gzip_file().unwrap();
     
-    // println!("{}", "\nStarting TVShows Gzip");
-    // mtv_misc::write_tvshows_gzip_file().unwrap();
+    println!("{}", "\nStarting TVShows Gzip");
+    mtv_misc::write_tvshows_gzip_file().unwrap();
 
-    // println!("{}", "\nStarting Copy gzip files to https static folder");
-    // let copied_count = mtv_misc::copy_gzip_files();
+    println!("{}", "\nStarting Copy gzip files to https static folder");
+    let copied_count = mtv_misc::copy_gzip_files();
 
     let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
 
     println!("\nClean has removed {} files.", tot);
     println!("Music Processed: {} files", music_count);
     println!("Music Images Processed: {} files", music_img_count.0);
-    // println!("Movies Processed: {} files", processed_movies_count);
-    // println!("TVShows Processed: {} files", processed_tvshow_count);
-    // println!(
-    //     "Music Posters Processed: {} files",
-    //     processed_movie_posters.1
-    // );
+    println!("Movies Processed: {} files", processed_movies_count);
+    println!("TVShows Processed: {} files", processed_tvshow_count);
+    println!(
+        "Music Posters Processed: {} files",
+        processed_movie_posters.1
+    );
     println!("{} music images failed to open", music_img_count.1);
-    // println!("{} movie posters failed to open", processed_movie_posters.0);
+    println!("{} movie posters failed to open", processed_movie_posters.0);
     println!("{}", "Artist Id List has been wirtten");
     println!("{}", "Album Id List has been wirtten");
-    // println!("{} files copied to static", copied_count);
+    println!("{} files copied to static", copied_count);
 
 
     println!(

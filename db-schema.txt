@@ -1,0 +1,127 @@
+ampnadoDB
+    |
+    main
+    |   |
+    |   ---
+    |       id
+    |       Filename 
+    |       Extension 
+    |       Size 
+    |       DirPath 
+    |       SongId
+    |       Artist
+    |       Album
+    |       Song 
+    |       Track 
+    |       PicId 
+    |       ArtistId
+    |       AlbumId 
+    |       HttpMusicPath 
+    |
+    playlists 
+    |   |
+    |   ---
+    |       id
+    |       playlistname 
+    |       playlistid
+    |       songs[{
+    |               Filename
+    |               Extension 
+    |               Size
+    |               DirPath
+    |               SongId
+    |               Artist 
+    |               Album 
+    |               Song 
+    |               Track 
+    |               PicId 
+    |               ArtistId 
+    |               AlbumId 
+    |               HttpMusicPath 
+    |               
+    |           }]
+    randthumb
+    |   |
+    |   ---
+    |       id 
+    |       chunck [pic_id]
+    |       chunkid
+    |       displayed
+    |
+    user_creds
+        |
+        ---
+            id
+            username 
+            password 
+            user_id
+            
+
+    
+
+
+ampviewsDB
+    |
+    albalpha (collection)
+    |   |
+    |   ---
+    |       id 
+    |       albalpha [1,2,3,4]
+    |
+    artalpha (collection)
+    |   |
+    |   ---
+    |       id 
+    |       artalpha [1,2,3,4]
+    |
+    songalpha (collection)
+    |   |
+    |   ---
+    |       id 
+    |       songalpha [1,2,3,4]
+    |
+    artistView (collection)
+    |   |
+    |   ---
+    |       id 
+    |       Artist 
+    |       ArtistId 
+    |       Albums [[album_title, album_id], [album_title, album_id]]
+    |       Page 
+    |
+    albumView (collection)
+    |   |
+    |   ---
+    |       id 
+    |       Artist 
+    |       Album 
+    |       ArtistId 
+    |       AlbumId 
+    |       AlbumArtHttpPath 
+    |       NumSongs 
+    |       Songs [song_title, song_id]
+    |       Page 
+    |
+    songView (collection)
+        |
+        ---
+            id 
+            Page 
+            Song 
+            SongId 
+            Artist 
+
+
+picdb
+    |
+    pics (collection)
+        |
+        ---
+            id 
+            PicId
+            DirPath
+            NewPicPath
+            AlbumArtHttpPath
+            PicPath 
+            ext 
+            AlbumArtSize
