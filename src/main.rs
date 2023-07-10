@@ -23,11 +23,11 @@ mod mtv_tables;
 fn main() {
     let start = Instant::now();
 
-    let _tables = mtv_tables::create_tables();
+    // let _tables = mtv_tables::create_tables();
 
     // let mut usbpaths = Vec::new();
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
-    println!("{}", "\nStarting Movie processing");
+    println!("{}", usb1);
     let _processed_movies_count = mtv_process_movies::process_movies(usb1);
     
 
