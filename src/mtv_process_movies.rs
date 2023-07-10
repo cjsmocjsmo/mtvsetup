@@ -41,7 +41,7 @@ pub fn process_movies(x: String, count: u32) -> String {
     let mojo = crate::mtv_types::Movie {
         name: mov_name,
         year: mov_year,
-        poster_addr: mov_poster_addr,
+        posteraddr: mov_poster_addr,
         size: mov_size.to_string(),
         exists: mov_file_exists.to_string(),
         path: x,
@@ -52,8 +52,8 @@ pub fn process_movies(x: String, count: u32) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
-        "INSERT INTO movies (name, year, poster_addr, size, exists, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        (&mojo.name, &mojo.year, &mojo.poster_addr, &mojo.size, &mojo.exists, &mojo.path, &mojo.idx, &mojo.movid),
+        "INSERT INTO movies (name, year, posteraddr, size, exists, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+        (&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.exists, &mojo.path, &mojo.idx, &mojo.movid),
         
         
     )

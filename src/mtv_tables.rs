@@ -10,7 +10,7 @@ pub fn create_tables() -> Result<()> {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             year TEXT NOT NULL,
-            poster_addr TEXT NOT NULL,
+            posteraddr TEXT NOT NULL,
             size TEXT NOT NULL,
             exists BOOL NOT NULL,
             path TEXT NOT NULL,
