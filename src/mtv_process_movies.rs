@@ -35,7 +35,7 @@ pub fn process_movies(x: String, count: u32) -> String {
     let mov_year = crate::mtv_split::split_movie_year(x.clone());
     let mov_poster_addr = get_poster_addr(x.clone());
     let mov_size = crate::mtv_misc::get_file_size(&x);
-    let mov_file_exists = Path::new(&mov_poster_addr).exists();
+    // let mov_file_exists = Path::new(&mov_poster_addr).exists();
     let mov_id = crate::mtv_misc::create_md5(&x);
     
     let mojo = crate::mtv_types::Movie {
@@ -44,7 +44,7 @@ pub fn process_movies(x: String, count: u32) -> String {
         year: mov_year,
         posteraddr: mov_poster_addr,
         size: mov_size.to_string(),
-        exists: mov_file_exists.to_string(),
+        // exists: mov_file_exists.to_string(),
         path: x,
         idx: count.to_string(),
         movid: mov_id,
@@ -53,8 +53,8 @@ pub fn process_movies(x: String, count: u32) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
-        "INSERT INTO movies (name, year, posteraddr, size, exists, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.exists, &mojo.path, &mojo.idx, &mojo.movid],
+        "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid],
         
         
     )

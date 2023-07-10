@@ -7,12 +7,12 @@ pub fn create_tables() -> Result<()> {
     
     conn.execute(
         "CREATE TABLE IF NOT EXISTS movies (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
             year TEXT NOT NULL,
             posteraddr TEXT NOT NULL,
             size TEXT NOT NULL,
-            exists TEXT NOT NULL,
+            // exists TEXT NOT NULL,
             path TEXT NOT NULL,
             idx TEXT NOT NULL,
             movid TEXT NOT NULL UNIQUE

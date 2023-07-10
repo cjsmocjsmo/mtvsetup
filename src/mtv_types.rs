@@ -5,7 +5,7 @@ pub struct Movie {
     pub year: String,
     pub posteraddr: String,
     pub size: String,
-    pub exists: String,
+    // pub exists: String,
     pub path: String,
     pub idx: String,
     pub movid: String,
