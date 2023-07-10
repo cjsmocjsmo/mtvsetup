@@ -1,5 +1,6 @@
 use std::env;
 use std::time::Instant;
+use dotenv::dotenv;
 
 // mod mtv_clean;
 mod mtv_create_ids;
@@ -22,8 +23,9 @@ mod mtv_tables;
 
 fn main() {
     let start = Instant::now();
+    dotenv().ok();
 
-    // let _tables = mtv_tables::create_tables();
+    let _tables = mtv_tables::create_tables();
 
     // let mut usbpaths = Vec::new();
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
