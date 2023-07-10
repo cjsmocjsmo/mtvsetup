@@ -8,3 +8,5 @@ rm -rf /home/pi/mtvsetup/mtv.db;
 touch /home/pi/mtvsetup/mtv.db;
 
 git pull;
+
+cargo run --release --bin mtvsetup -- clean;
