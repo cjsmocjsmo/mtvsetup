@@ -67,7 +67,7 @@ pub fn process_tvshows(tv: String, count: u32) -> String {
         idx: count.to_string(),
     };
 
-    // println!("{:#?}", tvshow);
+    println!("{:#?}", tvshow);
 
     // let tvshows_obj = object! {
     //     size: file_size,
