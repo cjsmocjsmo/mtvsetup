@@ -103,31 +103,31 @@
 //     String::from(album)
 // }
 
-// pub fn split_filename(x: &String) -> String {
-//     let filesplit = x.split("/");
-//     let mut filenamevec = vec![];
-//     for file in filesplit {
-//         filenamevec.push(file);
-//     }
+pub fn split_filename(x: &String) -> String {
+    let filesplit = x.split("/");
+    let mut filenamevec = vec![];
+    for file in filesplit {
+        filenamevec.push(file);
+    }
 
-//     let count = &filenamevec.len() - 1;
-//     filenamevec.drain(0..count);
-//     let mut finalvec = "";
-//     for f in filenamevec {
-//         finalvec = f;
-//     }
+    let count = &filenamevec.len() - 1;
+    filenamevec.drain(0..count);
+    let mut finalvec = "";
+    for f in filenamevec {
+        finalvec = f;
+    }
 
-//     let fname = finalvec.split(".");
-//     let mut svec = vec![];
-//     for f in fname {
-//         svec.push(f);
-//     }
-//     svec.pop();
+    let fname = finalvec.split(".");
+    let mut svec = vec![];
+    for f in fname {
+        svec.push(f);
+    }
+    svec.pop();
 
-//     let filename = svec.get(0).unwrap();
+    let filename = svec.get(0).unwrap();
 
-//     filename.to_string()
-// }
+    filename.to_string()
+}
 
 pub fn split_movie_name(x: String) -> String {
     let filesplit = x.split("/");

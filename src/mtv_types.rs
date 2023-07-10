@@ -9,3 +9,22 @@ pub struct Movie {
     pub index: String,
     pub movid: String,
 }
+// let tvshows_obj = object! {
+    //     size: file_size,
+    //     catagory: catagory,
+    //     name: fname,
+    //     season: season,
+    //     episode: episode,
+    //     path: tv
+    // };
+#[derive(Debug)]
+pub struct TVShow {
+    pub size: String,
+    pub catagory: String,
+    pub name: String,
+    pub season: String,
+    pub episode: String,
+    pub path: String,
+    pub idx: String,
+
+}

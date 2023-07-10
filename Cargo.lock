@@ -461,7 +461,6 @@ dependencies = [
  "byte-unit",
  "dotenv",
  "filesize",
- "flate2",
  "glob",
  "image",
  "json",

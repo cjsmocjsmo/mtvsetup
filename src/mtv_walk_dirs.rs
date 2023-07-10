@@ -93,7 +93,7 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
             }
         }
     }
-    let media_vec = vec![moviesvec, moviesthumbvec, tvshowsvec];
+    let media_vec = vec![moviesvec, tvshowsvec, moviesthumbvec];
 
     media_vec
 }
