@@ -1,5 +1,5 @@
-use json::object;
-use std::env;
+// use json::object;
+// use std::env;
 use std::path::Path;
 
 fn get_poster_addr(x: String) -> String {
@@ -30,10 +30,12 @@ fn get_poster_addr(x: String) -> String {
     poster_addr
 }
 
-pub fn process_movies() -> String {
-    let movies_vec = crate::mtv_walk_dirs::walk_movies_dir();
+pub fn process_movies(usb1: String) -> String {
+    let movies_vec = crate::mtv_walk_dirs::walk_movies_dir(usb1);
+    let moviez = movies_vec[0].clone();
+
     let mut count = 0;
-    for x in movies_vec {
+    for x in moviez {
         count = count + 1;
 
         let mov_name = crate::mtv_split::split_movie_name(x.clone());
@@ -41,28 +43,43 @@ pub fn process_movies() -> String {
         let mov_poster_addr = get_poster_addr(x.clone());
         let mov_size = crate::mtv_misc::get_file_size(&x);
         let mov_file_exists = Path::new(&mov_poster_addr).exists();
+        let mov_id = crate::mtv_misc::create_md5(&x);
 
-        let mov_js_obj = object! {
+        let mojo = crate::mtv_types::Movie {
             name: mov_name,
             year: mov_year,
             poster_addr: mov_poster_addr,
-            size: mov_size,
+            size: mov_size.to_string(),
             exists: mov_file_exists,
             path: x,
-            index: count.to_string()
+            index: count.to_string(),
+            movid: mov_id,
         };
 
-        let json_info = json::stringify(mov_js_obj.dump());
+        println!("{:?}", mojo);
 
-        let mtv_movies_metadata_path =
-            env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
+    //     let mov_js_obj = object! {
+    //         name: mov_name,
+    //         year: mov_year,
+    //         poster_addr: mov_poster_addr,
+    //         size: mov_size,
+    //         exists: mov_file_exists,
+    //         path: x,
+    //         index: count.to_string(),
+    //         movid: mov_id
+    //     };
 
-        let a = format!("{}/", mtv_movies_metadata_path.as_str());
-        let b = format!("Movie_Meta_{}.json", &count);
-        let outpath = a + &b;
+    //     let json_info = json::stringify(mov_js_obj.dump());
 
-        std::fs::write(outpath, json_info).unwrap();
+    //     let mtv_movies_metadata_path =
+    //         env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
+
+    //     let a = format!("{}/", mtv_movies_metadata_path.as_str());
+    //     let b = format!("Movie_Meta_{}.json", &count);
+    //     let outpath = a + &b;
+
+    //     std::fs::write(outpath, json_info).unwrap();
     }
 
-    count.to_string()
+    "fuck".to_string()
 }
