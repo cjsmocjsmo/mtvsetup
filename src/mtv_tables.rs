@@ -2,7 +2,7 @@ use rusqlite::{Connection, Result};
 use std::env;
 
 pub fn create_tables() -> Result<()> {
-    let db_path = env::var("MTV_DB").expect("MTV_DB_PATH not set");
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path)?;
 
     
