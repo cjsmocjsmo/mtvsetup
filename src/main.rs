@@ -16,10 +16,14 @@ mod mtv_process_tvshows;
 mod mtv_split;
 mod mtv_walk_dirs;
 mod mtv_types;
+mod mtv_tables;
+
 
 
 fn main() {
     let start = Instant::now();
+
+    let _tables = mtv_tables::create_tables();
 
     // let mut usbpaths = Vec::new();
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
