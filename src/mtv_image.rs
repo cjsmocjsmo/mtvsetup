@@ -1,17 +1,17 @@
 // use base64::{alphabet, engine, Engine as _};
-// use image::{self};
+use image::{self};
 // use json::object;
 // use std::env;
 
-// pub fn get_image_dims(x: &String) -> (u32, u32) {
-//     let dims_rs = image::image_dimensions(&x);
-//     let dims = match dims_rs {
-//         Ok(d) => d,
-//         Err(_) => (0, 0)
-//     };
+pub fn get_image_dims(x: &String) -> (u32, u32) {
+    let dims_rs = image::image_dimensions(&x);
+    let dims = match dims_rs {
+        Ok(d) => d,
+        Err(_) => (0, 0)
+    };
 
-//     dims
-// }
+    dims
+}
 
 // pub fn normalize_music_image(dims: (u32, u32)) -> (u32, u32) {
 //     let largest: u32;

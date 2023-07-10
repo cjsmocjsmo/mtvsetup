@@ -171,14 +171,14 @@ pub fn split_movie_year(x: String) -> String {
     fsplit_vec2[0].to_string()
 }
 
-// pub fn split_poster_name(x: String) -> String{
-//     let filesplit = x.split("/");
+pub fn split_poster_name(x: String) -> String{
+    let filesplit = x.split("/");
 
-//     let mut filenamevec: Vec<String> = vec![];
-//     for file in filesplit {
-//         filenamevec.push(file.to_string());
-//     }
-//     let fname = filenamevec.pop().unwrap();
+    let mut filenamevec: Vec<String> = vec![];
+    for file in filesplit {
+        filenamevec.push(file.to_string());
+    }
+    let fname = filenamevec.pop().unwrap();
 
-//     fname
-// }
+    fname
+}

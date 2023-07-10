@@ -4,15 +4,10 @@ use std::time::Instant;
 
 // mod mtv_clean;
 mod mtv_create_ids;
-mod mtv_env_vars;
 mod mtv_image;
 mod mtv_misc;
-// mod mtv_mp3_info;
-// mod mtv_nnc_info;
 mod mtv_process_movie_images;
 mod mtv_process_movies;
-// mod mtv_process_music;
-// mod mtv_process_music_images;
 mod mtv_process_tvshows;
 mod mtv_split;
 mod mtv_tables;
@@ -28,6 +23,7 @@ fn main() {
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
     println!("{}", usb1.clone());
     let usb1_movies_vec_vec = crate::mtv_walk_dirs::walk_movies_dir(usb1.clone());
+
     let usb1_moviez = usb1_movies_vec_vec[0].clone();
     if usb1_moviez.clone().len() > 0 {
         let mut count = 0;
@@ -37,6 +33,7 @@ fn main() {
             println!("{}", mov.clone());
         }
     }
+
     let usb1_tvshowz = usb1_movies_vec_vec[1].clone();
     if usb1_tvshowz.clone().len() > 0 {
         let mut count = 0;
@@ -47,9 +44,15 @@ fn main() {
         }
     }
 
-
-
-
+    let usb1_thumbnailz = usb1_movies_vec_vec[1].clone();
+    if usb1_thumbnailz.clone().len() > 0 {
+        let mut count = 0;
+        for thumb in usb1_thumbnailz {
+            count = count + 1;
+            let _process_movie_posters = mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
+            println!("{}", thumb.clone());
+        }
+    }
 
     // let processed_tvshows = mtv_process_tvshows::process_tvshows();
 
