@@ -1,5 +1,6 @@
 #[derive(Debug)]
 pub struct Movie {
+    pub id: u32,
     pub name: String,
     pub year: String,
     pub posteraddr: String,

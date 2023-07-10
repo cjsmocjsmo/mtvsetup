@@ -39,6 +39,7 @@ pub fn process_movies(x: String, count: u32) -> String {
     let mov_id = crate::mtv_misc::create_md5(&x);
     
     let mojo = crate::mtv_types::Movie {
+        id: count,
         name: mov_name,
         year: mov_year,
         posteraddr: mov_poster_addr,
