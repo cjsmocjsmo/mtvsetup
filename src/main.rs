@@ -84,7 +84,7 @@ fn main() {
     // println!("{}", "\nStarting Copy gzip files to https static folder");
     // let copied_count = mtv_misc::copy_gzip_files();
 
-    let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
+    // let mtv_media_path = env::var("MTV_MEDIA_PATH").expect("$MTV_MEDIA_PATH is not set");
 
     // println!("\nClean has removed {} files.", tot);
     // println!("Music Processed: {} files", music_count);
@@ -102,10 +102,10 @@ fn main() {
     // println!("{} files copied to static", copied_count);
 
 
-    println!(
-        "Total size: {} .",
-        mtv_misc::media_total_size(mtv_media_path)
-    );
+    // println!(
+    //     "Total size: {} .",
+    //     mtv_misc::media_total_size(mtv_media_path)
+    // );
 
     println!("MTV Setup time is: {:?}", start.elapsed());
 }
