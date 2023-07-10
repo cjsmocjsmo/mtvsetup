@@ -56,7 +56,7 @@ pub fn process_movies(usb1: String) -> String {
             movid: mov_id,
         };
 
-        println!("{:?}", mojo);
+        println!("{:#?}", mojo);
 
     //     let mov_js_obj = object! {
     //         name: mov_name,
