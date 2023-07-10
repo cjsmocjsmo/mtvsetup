@@ -21,7 +21,7 @@ fn main() {
     let _tables = mtv_tables::create_tables();
 
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
-    println!("{}", usb1.clone());
+    // println!("{}", usb1.clone());
     let usb1_movies_vec_vec = crate::mtv_walk_dirs::walk_movies_dir(usb1.clone());
 
     let usb1_moviez = usb1_movies_vec_vec[0].clone();
@@ -30,7 +30,7 @@ fn main() {
         for mov in usb1_moviez {
             count = count + 1;
             let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-            println!("{}", mov.clone());
+            // println!("{}", mov.clone());
         }
     }
 
@@ -40,7 +40,7 @@ fn main() {
         for tv in usb1_tvshowz {
             count = count + 1;
             let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
-            println!("{}", tv.clone());
+            // println!("{}", tv.clone());
         }
     }
 
