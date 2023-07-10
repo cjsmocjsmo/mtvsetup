@@ -12,7 +12,7 @@ pub fn create_tables() -> Result<()> {
             year TEXT NOT NULL,
             posteraddr TEXT NOT NULL,
             size TEXT NOT NULL,
-            exists BOOL NOT NULL,
+            exists TEXT NOT NULL,
             path TEXT NOT NULL,
             index TEXT NOT NULL,
             movid TEXT NOT NULL UNIQUE
