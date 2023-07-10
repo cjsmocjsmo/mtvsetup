@@ -32,6 +32,7 @@ pub fn process_movie_posters(x: String, count: u32) -> String {
         let img_id = create_md5(&x);
 
         let movimg = MovieImage {
+            id: count,
             imgid: img_id,
             path: x.clone(),
             imgpath: img_path.to_string(),

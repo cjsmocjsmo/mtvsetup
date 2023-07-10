@@ -5,7 +5,6 @@ pub struct Movie {
     pub year: String,
     pub posteraddr: String,
     pub size: String,
-    // pub exists: String,
     pub path: String,
     pub idx: String,
     pub movid: String,
@@ -13,6 +12,7 @@ pub struct Movie {
 
 #[derive(Debug)]
 pub struct TVShow {
+    pub id: u32,
     pub tvid: String,
     pub size: String,
     pub catagory: String,
@@ -26,6 +26,7 @@ pub struct TVShow {
 
 #[derive(Debug)]
 pub struct MovieImage {
+    pub id: u32,
     pub imgid: String,
     pub path: String,
     pub imgpath: String,

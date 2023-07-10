@@ -59,6 +59,7 @@ pub fn process_tvshows(tv: String, count: u32) -> String {
     let fname = crate::mtv_split::split_filename(&tv.to_string());
 
     let tvshow = mtv_types::TVShow {
+        id: count,
         tvid: crate::mtv_misc::create_md5(&tv),
         size: filesize.to_string(),
         catagory: catagory,
@@ -73,7 +74,7 @@ pub fn process_tvshows(tv: String, count: u32) -> String {
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
         "INSERT INTO tvshows (tvid, size, catagory, name, season, episode, path, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        (&tvshow.tvid, &tvshow.size, &tvshow.catagory, &tvshow.name, &tvshow.season, &tvshow.episode, &tvshow.path, &tvshow.idx),
+        &[&tvshow.tvid, &tvshow.size, &tvshow.catagory, &tvshow.name, &tvshow.season, &tvshow.episode, &tvshow.path, &tvshow.idx],
         
     )
     .expect("Unable to insert new tvshow info");

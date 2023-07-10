@@ -1,5 +1,5 @@
 use std::env;
-use std::path::Path;
+// use std::path::Path;
 use rusqlite::Connection;
 
 fn get_poster_addr(x: String) -> String {
@@ -44,12 +44,10 @@ pub fn process_movies(x: String, count: u32) -> String {
         year: mov_year,
         posteraddr: mov_poster_addr,
         size: mov_size.to_string(),
-        // exists: mov_file_exists.to_string(),
         path: x,
         idx: count.to_string(),
         movid: mov_id,
     };
-    println!("{:#?}", mojo);
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
