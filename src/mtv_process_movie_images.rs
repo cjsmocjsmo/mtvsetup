@@ -9,7 +9,7 @@ fn create_movie_thumbnail(x: String) -> String {
     let mtv_movie_metadata_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
     let old_fname = crate::mtv_split::split_poster_name(x.clone());
-    let out_fname = mtv_movie_metadata_path + "/" + &old_fname;
+    let out_fname = mtv_movie_metadata_path + &old_fname;
     println!("out_fname: {}", out_fname);
 
     let img = image::open(x).expect("ooooh fuck it didnt open");
