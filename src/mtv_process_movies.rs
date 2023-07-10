@@ -53,7 +53,7 @@ pub fn process_movies(x: String, count: u32) -> String {
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
         "INSERT INTO movies (name, year, posteraddr, size, exists, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        (&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.exists, &mojo.path, &mojo.idx, &mojo.movid),
+        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.exists, &mojo.path, &mojo.idx, &mojo.movid],
         
         
     )
