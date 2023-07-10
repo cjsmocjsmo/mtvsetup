@@ -54,7 +54,7 @@ pub fn process_movies(x: String, count: u32) -> String {
             movid: mov_id,
         };
 
-        println!("{:#?}", mojo);
+        // println!("{:#?}", mojo);
 
     
 

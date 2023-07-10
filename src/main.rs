@@ -50,7 +50,7 @@ fn main() {
         for thumb in usb1_thumbnailz {
             count = count + 1;
             let _process_movie_posters = mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-            println!("{}", thumb.clone());
+            // println!("{}", thumb.clone());
         }
     }
 
