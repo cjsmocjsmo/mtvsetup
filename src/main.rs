@@ -44,13 +44,13 @@ fn main() {
         }
     }
 
-    let usb1_thumbnailz = usb1_movies_vec_vec[1].clone();
+    let usb1_thumbnailz = usb1_movies_vec_vec[2].clone();
     if usb1_thumbnailz.clone().len() > 0 {
         let mut count = 0;
         for thumb in usb1_thumbnailz {
             count = count + 1;
             let _process_movie_posters = mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-            // println!("{}", thumb.clone());
+            println!("thumb count: {}", thumb.clone());
         }
     }
 
