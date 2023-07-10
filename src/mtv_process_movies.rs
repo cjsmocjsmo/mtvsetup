@@ -37,7 +37,7 @@ pub fn process_movies(x: String, count: u32) -> String {
     let mov_size = crate::mtv_misc::get_file_size(&x);
     let mov_file_exists = Path::new(&mov_poster_addr).exists();
     let mov_id = crate::mtv_misc::create_md5(&x);
-
+    
     let mojo = crate::mtv_types::Movie {
         name: mov_name,
         year: mov_year,

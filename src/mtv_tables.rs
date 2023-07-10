@@ -4,7 +4,7 @@ use std::env;
 pub fn create_tables() -> Result<()> {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path)?;
-
+    
     conn.execute(
         "CREATE TABLE IF NOT EXISTS movies (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +14,7 @@ pub fn create_tables() -> Result<()> {
             size TEXT NOT NULL,
             exists TEXT NOT NULL,
             path TEXT NOT NULL,
-            index TEXT NOT NULL,
+            idx TEXT NOT NULL,
             movid TEXT NOT NULL UNIQUE
          )",
         (),
