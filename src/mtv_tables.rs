@@ -7,7 +7,7 @@ pub fn create_tables() -> Result<()> {
 
     conn.execute(
         "CREATE TABLE IF NOT EXISTS movies (
-            id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             year TEXT NOT NULL,
             poster_addr TEXT NOT NULL,
@@ -21,7 +21,7 @@ pub fn create_tables() -> Result<()> {
     )?;
     conn.execute(
         "CREATE TABLE IF NOT EXISTS tvshows (
-            id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             tvid TEXT NOT NULL UNIQUE,
             size TEXT NOT NULL,
             catagory TEXT NOT NULL,
@@ -35,7 +35,7 @@ pub fn create_tables() -> Result<()> {
     )?;
     conn.execute(
         "CREATE TABLE IF NOT EXISTS admin (
-            id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             imgid TEXT NOT NULL UNIQUE,
             path TEXT NOT NULL,
             imgpath TEXT NOT NULL,
