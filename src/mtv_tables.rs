@@ -5,7 +5,6 @@ pub fn create_tables() -> Result<()> {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path)?;
 
-    
     conn.execute(
         "CREATE TABLE IF NOT EXISTS movies (
             id INTEGER PRIMARY KEY,
@@ -21,27 +20,29 @@ pub fn create_tables() -> Result<()> {
         (),
     )?;
     conn.execute(
-        "CREATE TABLE IF NOT EXISTS reviews (
-             id INTEGER PRIMARY KEY,
-             acctid TEXT NOT NULL,
-             revid TEXT NOT NULL UNIQUE,
-             name TEXT NOT NULL,
-             email TEXT NOT NULL,
-             stars TEXT NOT NULL,
-             review TEXT NOT NULL,
-             reject TEXT NOT NULL,
-             accept TEXT NOT NULL,
-             jailed TEXT NOT NULL
+        "CREATE TABLE IF NOT EXISTS tvshows (
+            id INTEGER PRIMARY KEY,
+            tvid TEXT NOT NULL UNIQUE,
+            size TEXT NOT NULL,
+            catagory TEXT NOT NULL,
+            name TEXT NOT NULL,
+            season TEXT NOT NULL,
+            episode TEXT NOT NULL,
+            path TEXT NOT NULL,
+            idx TEXT NOT NULL
          )",
         (),
     )?;
     conn.execute(
         "CREATE TABLE IF NOT EXISTS admin (
-             id INTEGER PRIMARY KEY,
-             name TEXT NOT NULL UNIQUE,
-             password TEXT NOT NULL UNIQUE,
-             email TEXT NOT NULL UNIQUE,
-             token TEXT NOT NULL UNIQUE
+            id INTEGER PRIMARY KEY,
+            imgid TEXT NOT NULL UNIQUE,
+            path TEXT NOT NULL,
+            imgpath TEXT NOT NULL,
+            size TEXT NOT NULL,
+            name TEXT NOT NULL,
+            thumbpath TEXT NOT NULL,
+            idx INTEGER NOT NULL
          )",
         (),
     )?;

@@ -1,6 +1,7 @@
 // use json::object;
-// use std::env;
+use std::env;
 use crate::mtv_types;
+use rusqlite::Connection;
 
 fn get_tv_catagory(x: &String) -> String {
     let name = crate::mtv_split::split_movie_name(x.clone());
@@ -58,6 +59,7 @@ pub fn process_tvshows(tv: String, count: u32) -> String {
     let fname = crate::mtv_split::split_filename(&tv.to_string());
 
     let tvshow = mtv_types::TVShow {
+        tvid: crate::mtv_misc::create_md5(&tv),
         size: filesize.to_string(),
         catagory: catagory,
         name: fname,
@@ -66,8 +68,15 @@ pub fn process_tvshows(tv: String, count: u32) -> String {
         path: tv,
         idx: count.to_string(),
     };
-
     println!("{:#?}", tvshow);
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path).expect("unable to open db file");
+    conn.execute(
+        "INSERT INTO tvshows (tvid, size, catagory, name, season, episode, path, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+        (&tvshow.tvid, &tvshow.size, &tvshow.catagory, &tvshow.name, &tvshow.season, &tvshow.episode, &tvshow.path, &tvshow.idx),
+        
+    )
+    .expect("Unable to insert new tvshow info");
 
     // let tvshows_obj = object! {
     //     size: file_size,

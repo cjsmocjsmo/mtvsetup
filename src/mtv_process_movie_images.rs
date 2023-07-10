@@ -3,7 +3,7 @@ use image::{self};
 use std::env;
 // use std::fs;
 
-use crate::mtv_types::MovieImage;
+use crate::{mtv_types::MovieImage, mtv_misc::create_md5};
 
 fn create_movie_thumbnail(x: String) -> String {
     let mtv_movie_metadata_path =
@@ -29,8 +29,10 @@ pub fn process_movie_posters(x: String, count: u32) -> String {
         let img_size = crate::mtv_misc::get_file_size(&x);
         let name = crate::mtv_split::split_poster_name(x.clone());
         let thumb_path = create_movie_thumbnail(x.clone());
+        let img_id = create_md5(&x);
 
         let movimg = MovieImage {
+            imgid: img_id,
             path: x.clone(),
             imgpath: img_path.to_string(),
             size: img_size.to_string(),

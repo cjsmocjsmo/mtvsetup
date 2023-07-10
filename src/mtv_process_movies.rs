@@ -1,6 +1,6 @@
-// use json::object;
-// use std::env;
+use std::env;
 use std::path::Path;
+use rusqlite::Connection;
 
 fn get_poster_addr(x: String) -> String {
     let no_ext_name_res = x.split(".");
@@ -31,32 +31,33 @@ fn get_poster_addr(x: String) -> String {
 }
 
 pub fn process_movies(x: String, count: u32) -> String {
-    // let movies_vec = crate::mtv_walk_dirs::walk_movies_dir(usb1);
-    // let moviez = movies_vec[0].clone();
+    let mov_name = crate::mtv_split::split_movie_name(x.clone());
+    let mov_year = crate::mtv_split::split_movie_year(x.clone());
+    let mov_poster_addr = get_poster_addr(x.clone());
+    let mov_size = crate::mtv_misc::get_file_size(&x);
+    let mov_file_exists = Path::new(&mov_poster_addr).exists();
+    let mov_id = crate::mtv_misc::create_md5(&x);
 
-    
-
-        let mov_name = crate::mtv_split::split_movie_name(x.clone());
-        let mov_year = crate::mtv_split::split_movie_year(x.clone());
-        let mov_poster_addr = get_poster_addr(x.clone());
-        let mov_size = crate::mtv_misc::get_file_size(&x);
-        let mov_file_exists = Path::new(&mov_poster_addr).exists();
-        let mov_id = crate::mtv_misc::create_md5(&x);
-
-        let mojo = crate::mtv_types::Movie {
-            name: mov_name,
-            year: mov_year,
-            poster_addr: mov_poster_addr,
-            size: mov_size.to_string(),
-            exists: mov_file_exists,
-            path: x,
-            index: count.to_string(),
-            movid: mov_id,
-        };
-
-        // println!("{:#?}", mojo);
-
-    
+    let mojo = crate::mtv_types::Movie {
+        name: mov_name,
+        year: mov_year,
+        poster_addr: mov_poster_addr,
+        size: mov_size.to_string(),
+        exists: mov_file_exists,
+        path: x,
+        idx: count.to_string(),
+        movid: mov_id,
+    };
+    println!("{:#?}", mojo);
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path).expect("unable to open db file");
+    conn.execute(
+        "INSERT INTO tvshows (name, year, poster_addr, size, exists, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+        (&mojo.name, &mojo.year, &mojo.poster_addr, &mojo.size, &mojo.exists, &mojo.path, &mojo.idx, &mojo.movid),
+        
+        
+    )
+    .expect("Unable to insert new tvshow info");
 
     "fuck".to_string()
 }

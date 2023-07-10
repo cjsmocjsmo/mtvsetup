@@ -6,19 +6,13 @@ pub struct Movie {
     pub size: String,
     pub exists: bool,
     pub path: String,
-    pub index: String,
+    pub idx: String,
     pub movid: String,
 }
-// let tvshows_obj = object! {
-    //     size: file_size,
-    //     catagory: catagory,
-    //     name: fname,
-    //     season: season,
-    //     episode: episode,
-    //     path: tv
-    // };
+
 #[derive(Debug)]
 pub struct TVShow {
+    pub tvid: String,
     pub size: String,
     pub catagory: String,
     pub name: String,
@@ -31,6 +25,7 @@ pub struct TVShow {
 
 #[derive(Debug)]
 pub struct MovieImage {
+    pub imgid: String,
     pub path: String,
     pub imgpath: String,
     pub size: String,
