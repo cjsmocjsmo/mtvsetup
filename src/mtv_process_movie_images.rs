@@ -1,7 +1,7 @@
 use image::{self};
-use json::object;
+// use json::object;
 use std::env;
-use std::fs;
+// use std::fs;
 
 use crate::mtv_types::MovieImage;
 
@@ -20,8 +20,8 @@ fn create_movie_thumbnail(x: String) -> String {
     out_fname
 }
 
-pub fn process_movie_posters(x: String, count: u32) -> (String, String) {
-    let mut bad_image_vec = vec![];
+pub fn process_movie_posters(x: String, count: u32) -> String {
+    // let mut bad_image_vec = vec![];
 
     let dims = crate::mtv_image::get_image_dims(&x);
     if dims != (0, 0) {
@@ -31,13 +31,15 @@ pub fn process_movie_posters(x: String, count: u32) -> (String, String) {
         let thumb_path = create_movie_thumbnail(x.clone());
 
         let movimg = MovieImage {
-            path: &x,
-            size: img_size,
+            path: x.clone(),
+            imgpath: img_path.to_string(),
+            size: img_size.to_string(),
             name: name,
-            thumbpath: thumb_path
+            thumbpath: thumb_path,
+            idx: count
         };
 
-        println!("{}", movimg)
+        println!("{:#?}", movimg);
 
         // let mov_img_obj = object! {
         //     path: img_path.to_string(),
@@ -75,8 +77,7 @@ pub fn process_movie_posters(x: String, count: u32) -> (String, String) {
     // }
 
     // (bad_image_count.to_string(), count.to_string())
-    (movimg.path.to_string(), movimg.thumbpath.to_string())
-    } else {
-        ("".to_string(), "".to_string())
+    
     }
+    "ruck".to_string()
 }

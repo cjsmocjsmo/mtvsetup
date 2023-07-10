@@ -29,17 +29,12 @@ pub struct TVShow {
 
 }
 
-// let mov_img_obj = object! {
-//     path: img_path.to_string(),
-//     size: img_size.to_string(),
-//     name: name,
-//     thumbpath: thumb_path,
-// };
-
 #[derive(Debug)]
 pub struct MovieImage {
     pub path: String,
+    pub imgpath: String,
     pub size: String,
     pub name: String,
     pub thumbpath: String,
+    pub idx: u32,
 }
