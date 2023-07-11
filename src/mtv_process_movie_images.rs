@@ -1,9 +1,8 @@
 use image::{self};
-// use json::object;
+use rusqlite::Connection;
 use std::env;
-// use std::fs;
 
-use crate::{mtv_types::MovieImage, mtv_misc::create_md5};
+use crate::{mtv_misc::create_md5, mtv_types::MovieImage};
 
 fn create_movie_thumbnail(x: String) -> String {
     let mtv_movie_metadata_path =
@@ -42,7 +41,7 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
             size: img_size.to_string(),
             name: name,
             thumbpath: thumb_path,
-            idx: count
+            idx: count,
         };
 
         println!("{:#?}", movimg);
@@ -51,7 +50,7 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
         let conn = Connection::open(db_path).expect("unable to open db file");
         conn.execute(
             "INSERT INTO tvshows (imgid, path, imgpath, size, name, thumbpath, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-            &[&movimg.imgid, &movimg.path, &movimg.imgpath, &movimg.size, &movimg.name, &movimg.thumbpath, &movimg.idx],
+            &[&movimg.imgid, &movimg.path, &movimg.imgpath, &movimg.size, &movimg.name, &movimg.thumbpath, &movimg.idx.to_string()],
         )
         .expect("Unable to insert new tvshow info");
 
@@ -74,25 +73,24 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
     } else {
         bad_image_vec.push(x.clone());
 
-    //     println!("this is a bad image:\n\t {}", x.clone());
-    // }
+        //     println!("this is a bad image:\n\t {}", x.clone());
+        // }
 
-    // let bad_image_count = bad_image_vec.clone().len();
+        // let bad_image_count = bad_image_vec.clone().len();
 
-    // if bad_image_count != 0 {
-    //     let mtv_movie_metadata_path =
-    //         env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
+        // if bad_image_count != 0 {
+        //     let mtv_movie_metadata_path =
+        //         env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
 
-    //     let a = format!("{}/", mtv_movie_metadata_path.as_str());
-    //     let b = format!("Bad_Movies_Images.json");
-    //     let outpath = a + &b;
-    //     fs::write(outpath, bad_image_vec.join("\n"))
-    //         .expect("Failed to write named incorrectly json file");
-    // }
+        //     let a = format!("{}/", mtv_movie_metadata_path.as_str());
+        //     let b = format!("Bad_Movies_Images.json");
+        //     let outpath = a + &b;
+        //     fs::write(outpath, bad_image_vec.join("\n"))
+        //         .expect("Failed to write named incorrectly json file");
+        // }
 
-    // (bad_image_count.to_string(), count.to_string())
-    
+        // (bad_image_count.to_string(), count.to_string())
     }
-    
+
     bad_image_vec
 }
