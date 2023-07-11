@@ -31,13 +31,13 @@ fn get_poster_addr(x: String) -> String {
 }
 
 pub fn process_movies(x: String, count: u32) {
-    let mov_name = crate::mtv_split::split_movie_name(x.clone());
-    let mov_year = crate::mtv_split::split_movie_year(x.clone());
+    let mov_name = crate::setup::mtv_split::split_movie_name(x.clone());
+    let mov_year = crate::setup::mtv_split::split_movie_year(x.clone());
     let mov_poster_addr = get_poster_addr(x.clone());
-    let mov_size = crate::mtv_misc::get_file_size(&x);
-    let mov_id = crate::mtv_misc::create_md5(&x);
+    let mov_size = crate::setup::mtv_misc::get_file_size(&x);
+    let mov_id = crate::setup::mtv_misc::create_md5(&x);
     
-    let mojo = crate::mtv_types::Movie {
+    let mojo = crate::setup::mtv_types::Movie {
         id: count,
         name: mov_name,
         year: mov_year,

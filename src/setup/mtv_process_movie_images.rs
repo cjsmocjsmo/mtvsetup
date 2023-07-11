@@ -2,12 +2,12 @@ use image::{self};
 use rusqlite::Connection;
 use std::env;
 
-use crate::{mtv_misc::create_md5, mtv_types::MovieImage};
+use crate::setup::{mtv_misc::create_md5, mtv_types::MovieImage};
 
 fn create_movie_thumbnail(x: String) -> String {
     let mtv_movie_metadata_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
-    let old_fname = crate::mtv_split::split_poster_name(x.clone());
+    let old_fname = crate::setup::mtv_split::split_poster_name(x.clone());
     let out_fname = mtv_movie_metadata_path + &old_fname;
     println!("x: {}", x);
     println!("old_fname{}", old_fname);
@@ -25,11 +25,11 @@ fn create_movie_thumbnail(x: String) -> String {
 pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
     let mut bad_image_vec = vec![];
 
-    let dims = crate::mtv_image::get_image_dims(&x);
+    let dims = crate::setup::mtv_image::get_image_dims(&x);
     if dims != (0, 0) {
         let img_path = &x;
-        let img_size = crate::mtv_misc::get_file_size(&x);
-        let name = crate::mtv_split::split_poster_name(x.clone());
+        let img_size = crate::setup::mtv_misc::get_file_size(&x);
+        let name = crate::setup::mtv_split::split_poster_name(x.clone());
         let thumb_path = create_movie_thumbnail(x.clone());
         let img_id = create_md5(&x);
 

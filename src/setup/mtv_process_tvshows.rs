@@ -1,10 +1,10 @@
 // use json::object;
 use std::env;
-use crate::mtv_types;
+use crate::setup::mtv_types;
 use rusqlite::Connection;
 
 fn get_tv_catagory(x: &String) -> String {
-    let name = crate::mtv_split::split_movie_name(x.clone());
+    let name = crate::setup::mtv_split::split_movie_name(x.clone());
     let n_split = name.split(" ");
     let mut n_split_vec = vec![];
 
@@ -28,7 +28,7 @@ fn get_tv_catagory(x: &String) -> String {
 }
 
 fn get_tv_episode_season(x: &String) -> (String, String) {
-    let name = crate::mtv_split::split_movie_name(x.clone());
+    let name = crate::setup::mtv_split::split_movie_name(x.clone());
     let n_split = name.split(" ");
     let mut n_split_vec = vec![];
 
@@ -54,13 +54,13 @@ pub fn process_tvshows(tv: String, count: u32) {
     let es = get_tv_episode_season(&tv);
     let season = es.0;
     let episode = es.1;
-    let filesize = crate::mtv_misc::get_file_size(&tv);
+    let filesize = crate::setup::mtv_misc::get_file_size(&tv);
 
-    let fname = crate::mtv_split::split_filename(&tv.to_string());
+    let fname = crate::setup::mtv_split::split_filename(&tv.to_string());
 
     let tvshow = mtv_types::TVShow {
         id: count,
-        tvid: crate::mtv_misc::create_md5(&tv),
+        tvid: crate::setup::mtv_misc::create_md5(&tv),
         size: filesize.to_string(),
         catagory: catagory,
         name: fname,
