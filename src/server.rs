@@ -22,7 +22,6 @@ pub async fn action() -> impl Responder {
         .prepare("SELECT * FROM movies WHERE catagory = ?1")
         .unwrap();
     let mut rows = stmt.query(&[&action]).expect("Unable to query db");
-    // let mut exists = false;
     let mut result = Vec::new();
     while let Some(row) = rows.next().expect("Unable to get next row") {
         let movie = crate::setup::mtv_types::Movie {
@@ -70,14 +69,13 @@ pub async fn drama() -> impl Responder {
 
 #[get("/documentary")]
 pub async fn documentary() -> impl Responder {
-    let documentary = String::from("documentary");
+    let documentary = String::from("Documentary");
     let db_path = env::var("MTV_DB_PATH").expect("ATS_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     let mut stmt = conn
         .prepare("SELECT * FROM movies WHERE catagory = ?1")
         .unwrap();
     let mut rows = stmt.query(&[&documentary]).expect("Unable to query db");
-    // let mut exists = false;
     let mut result = Vec::new();
     while let Some(row) = rows.next().expect("Unable to get next row") {
         let movie = crate::setup::mtv_types::Movie {
