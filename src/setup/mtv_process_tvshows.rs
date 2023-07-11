@@ -1,4 +1,3 @@
-// use json::object;
 use std::env;
 use crate::setup::mtv_types;
 use rusqlite::Connection;
@@ -46,8 +45,6 @@ fn get_tv_episode_season(x: &String) -> (String, String) {
 
     results
 }
-
-
 
 pub fn process_tvshows(tv: String, count: u32) {
     let catagory = get_tv_catagory(&tv);

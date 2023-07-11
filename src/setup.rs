@@ -2,7 +2,7 @@ use std::env;
 use std::time::Instant;
 
 // mod mtv_clean;
-mod mtv_create_ids;
+// mod mtv_create_ids;
 mod mtv_image;
 mod mtv_misc;
 mod mtv_process_movie_images;
@@ -19,36 +19,39 @@ pub fn setup() -> bool {
     let _tables = mtv_tables::create_tables();
 
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
-    // println!("{}", usb1.clone());
-    let usb1_movies_vec_vec = crate::setup::mtv_walk_dirs::walk_movies_dir(usb1.clone());
 
-    let usb1_moviez = usb1_movies_vec_vec[0].clone();
-    if usb1_moviez.clone().len() > 0 {
-        let mut count = 0;
-        for mov in usb1_moviez {
-            count = count + 1;
-            let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-            // println!("{}", mov.clone());
+    if usb1 != "None" {
+        let usb1_movies_vec_vec = mtv_walk_dirs::walk_movies_dir(usb1.clone());
+
+        let usb1_moviez = usb1_movies_vec_vec[0].clone();
+        if usb1_moviez.clone().len() > 0 {
+            let mut count = 0;
+            for mov in usb1_moviez {
+                count = count + 1;
+                let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
+                // println!("{}", mov.clone());
+            }
         }
-    }
 
-    let usb1_tvshowz = usb1_movies_vec_vec[1].clone();
-    if usb1_tvshowz.clone().len() > 0 {
-        let mut count = 0;
-        for tv in usb1_tvshowz {
-            count = count + 1;
-            let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
-            // println!("{}", tv.clone());
+        let usb1_tvshowz = usb1_movies_vec_vec[1].clone();
+        if usb1_tvshowz.clone().len() > 0 {
+            let mut count = 0;
+            for tv in usb1_tvshowz {
+                count = count + 1;
+                let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
+                // println!("{}", tv.clone());
+            }
         }
-    }
 
-    let usb1_thumbnailz = usb1_movies_vec_vec[2].clone();
-    if usb1_thumbnailz.clone().len() > 0 {
-        let mut count = 0;
-        for thumb in usb1_thumbnailz {
-            count = count + 1;
-            let _process_movie_posters = mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-            println!("thumb count: {}", count.clone());
+        let usb1_thumbnailz = usb1_movies_vec_vec[2].clone();
+        if usb1_thumbnailz.clone().len() > 0 {
+            let mut count = 0;
+            for thumb in usb1_thumbnailz {
+                count = count + 1;
+                let _process_movie_posters =
+                    mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
+                println!("thumb count: {}", count.clone());
+            }
         }
     }
 

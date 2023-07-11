@@ -54,22 +54,7 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
         )
         .expect("Unable to insert new tvshow info");
 
-        // let mov_img_obj = object! {
-        //     path: img_path.to_string(),
-        //     size: img_size.to_string(),
-        //     name: name,
-        //     thumbpath: thumb_path,
-        // };
-
-        // let mov_img_info = json::stringify(mov_img_obj.dump());
-
-        // let mtv_movie_metadata_path =
-        //     env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
-
-        // let a = format!("{}/", mtv_movie_metadata_path.as_str());
-        // let b = format!("Movie_Image_{}_Info.json", count.to_string());
-        // let outpath = a + &b;
-        // fs::write(outpath, mov_img_info).expect("Failed to write named incorrectly json file");
+        
     } else {
         bad_image_vec.push(x.clone());
 

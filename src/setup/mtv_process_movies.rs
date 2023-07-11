@@ -1,5 +1,4 @@
 use std::env;
-// use std::path::Path;
 use rusqlite::Connection;
 
 fn get_poster_addr(x: String) -> String {
