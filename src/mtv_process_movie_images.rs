@@ -49,7 +49,7 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
         let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
         let conn = Connection::open(db_path).expect("unable to open db file");
         conn.execute(
-            "INSERT INTO tvshows (imgid, path, imgpath, size, name, thumbpath, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            "INSERT INTO images (imgid, path, imgpath, size, name, thumbpath, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
             &[&movimg.imgid, &movimg.path, &movimg.imgpath, &movimg.size, &movimg.name, &movimg.thumbpath, &movimg.idx.to_string()],
         )
         .expect("Unable to insert new tvshow info");

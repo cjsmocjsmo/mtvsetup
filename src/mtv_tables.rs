@@ -33,7 +33,7 @@ pub fn create_tables() -> Result<()> {
         (),
     )?;
     conn.execute(
-        "CREATE TABLE IF NOT EXISTS admin (
+        "CREATE TABLE IF NOT EXISTS images (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             imgid TEXT NOT NULL UNIQUE,
             path TEXT NOT NULL,
