@@ -10,7 +10,7 @@ mod mtv_process_movies;
 mod mtv_process_tvshows;
 mod mtv_split;
 mod mtv_tables;
-mod mtv_types;
+pub mod mtv_types;
 mod mtv_walk_dirs;
 
 pub fn setup() -> bool {

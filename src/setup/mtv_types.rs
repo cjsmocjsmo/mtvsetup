@@ -8,6 +8,7 @@ pub struct Movie {
     pub path: String,
     pub idx: String,
     pub movid: String,
+    pub catagory: String,
 }
 
 #[derive(Debug)]

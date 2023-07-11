@@ -35,6 +35,7 @@ pub fn process_movies(x: String, count: u32) {
     let mov_poster_addr = get_poster_addr(x.clone());
     let mov_size = crate::setup::mtv_misc::get_file_size(&x);
     let mov_id = crate::setup::mtv_misc::create_md5(&x);
+    let cat = parse_catagory(x.clone());
     
     let mojo = crate::setup::mtv_types::Movie {
         id: count,
@@ -42,17 +43,82 @@ pub fn process_movies(x: String, count: u32) {
         year: mov_year,
         posteraddr: mov_poster_addr,
         size: mov_size.to_string(),
-        path: x,
+        path: x.clone(),
         idx: count.to_string(),
         movid: mov_id,
+        catagory: cat,
     };
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
-        "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid],
+        "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid, catagory) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid, &mojo.catagory],
     )
     .expect("Unable to insert new tvshow info");
 }
 
-
+fn parse_catagory(x: String) -> String {
+    if x.contains("Action") {
+        return "Action".to_string();
+    } else if x.contains("Arnold") {
+        return "Arnold".to_string();
+    } else if x.contains("Bruce Willis") {
+        return "BruceWillis".to_string();
+    } else if x.contains("Cartoons") {
+        return "Cartoons".to_string();
+    } else if x.contains("Comedy") {
+        return "Comedy".to_string();
+    } else if x.contains("Drama") {
+        return "Drama".to_string();
+    } else if x.contains("Documentary") {
+        return "Documentary".to_string();
+    } else if x.contains("Fantasy") {
+        return "Fantasy".to_string();
+    } else if x.contains("Godzilla") {
+        return "Godzilla".to_string();
+    } else if x.contains("HarryPotter") {
+        return "HarryPotter".to_string();
+    } else if x.contains("IndianaJones") {
+        return "IndianaJones".to_string();
+    } else if x.contains("JamesBond") {
+        return "JamesBond".to_string();
+    } else if x.contains("JohnWayne") {
+        return "JohnWayne".to_string();
+    } else if x.contains("JohnWick") {
+        return "JohnWick".to_string();
+    } else if x.contains("JurassicPard") {
+        return "JurassicPard".to_string();
+    } else if x.contains("KingsMen") {
+        return "KingsMen".to_string();
+    } else if x.contains("MenInBlack") {
+        return "MenInBlack".to_string();
+    } else if x.contains("Misc") {
+        return "Misc".to_string();
+    } else if x.contains("NicolasCage") {
+        return "NicolasCage".to_string();
+    } else if x.contains("Pirates") {
+        return "Pirates".to_string();
+    } else if x.contains("Riddick") {
+        return "Riddick".to_string();
+    } else if x.contains("StarWars") {
+        return "StarWars".to_string();
+    } else if x.contains("StarTrek") {
+        return "StarTrek".to_string();
+    } else if x.contains("SuperHeroes") {
+        return "SuperHeroes".to_string();
+    } else if x.contains("SciFi") {
+        return "SciFi".to_string();
+    } else if x.contains("TomCruize") {
+        return "TomCruize".to_string();
+    } else if x.contains("Transformers") {
+        return "Transformers".to_string();
+    } else if x.contains("Tremors") {
+        return "Tremors".to_string();
+    } else if x.contains("TheRock") {
+        return "TheRock".to_string();
+    } else if x.contains("XMen") {
+        return "XMen".to_string();
+    } else {
+        return "Unknown".to_string();
+    };
+}
