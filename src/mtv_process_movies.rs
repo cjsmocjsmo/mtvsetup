@@ -30,12 +30,11 @@ fn get_poster_addr(x: String) -> String {
     poster_addr
 }
 
-pub fn process_movies(x: String, count: u32) -> String {
+pub fn process_movies(x: String, count: u32) {
     let mov_name = crate::mtv_split::split_movie_name(x.clone());
     let mov_year = crate::mtv_split::split_movie_year(x.clone());
     let mov_poster_addr = get_poster_addr(x.clone());
     let mov_size = crate::mtv_misc::get_file_size(&x);
-    // let mov_file_exists = Path::new(&mov_poster_addr).exists();
     let mov_id = crate::mtv_misc::create_md5(&x);
     
     let mojo = crate::mtv_types::Movie {
@@ -53,12 +52,8 @@ pub fn process_movies(x: String, count: u32) -> String {
     conn.execute(
         "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
         &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid],
-        
-        
     )
     .expect("Unable to insert new tvshow info");
-
-    "fuck".to_string()
 }
 
 

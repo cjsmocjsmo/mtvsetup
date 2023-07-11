@@ -23,8 +23,8 @@ fn create_movie_thumbnail(x: String) -> String {
     out_fname
 }
 
-pub fn process_movie_posters(x: String, count: u32) -> String {
-    // let mut bad_image_vec = vec![];
+pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
+    let mut bad_image_vec = vec![];
 
     let dims = crate::mtv_image::get_image_dims(&x);
     if dims != (0, 0) {
@@ -47,6 +47,14 @@ pub fn process_movie_posters(x: String, count: u32) -> String {
 
         println!("{:#?}", movimg);
 
+        let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+        let conn = Connection::open(db_path).expect("unable to open db file");
+        conn.execute(
+            "INSERT INTO tvshows (imgid, path, imgpath, size, name, thumbpath, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            &[&movimg.imgid, &movimg.path, &movimg.imgpath, &movimg.size, &movimg.name, &movimg.thumbpath, &movimg.idx],
+        )
+        .expect("Unable to insert new tvshow info");
+
         // let mov_img_obj = object! {
         //     path: img_path.to_string(),
         //     size: img_size.to_string(),
@@ -63,8 +71,8 @@ pub fn process_movie_posters(x: String, count: u32) -> String {
         // let b = format!("Movie_Image_{}_Info.json", count.to_string());
         // let outpath = a + &b;
         // fs::write(outpath, mov_img_info).expect("Failed to write named incorrectly json file");
-    // } else {
-    //     bad_image_vec.push(x.clone());
+    } else {
+        bad_image_vec.push(x.clone());
 
     //     println!("this is a bad image:\n\t {}", x.clone());
     // }
@@ -85,5 +93,6 @@ pub fn process_movie_posters(x: String, count: u32) -> String {
     // (bad_image_count.to_string(), count.to_string())
     
     }
-    "ruck".to_string()
+    
+    bad_image_vec
 }

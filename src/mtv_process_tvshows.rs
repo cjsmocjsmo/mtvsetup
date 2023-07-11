@@ -49,7 +49,7 @@ fn get_tv_episode_season(x: &String) -> (String, String) {
 
 
 
-pub fn process_tvshows(tv: String, count: u32) -> String {
+pub fn process_tvshows(tv: String, count: u32) {
     let catagory = get_tv_catagory(&tv);
     let es = get_tv_episode_season(&tv);
     let season = es.0;
@@ -79,25 +79,5 @@ pub fn process_tvshows(tv: String, count: u32) -> String {
     )
     .expect("Unable to insert new tvshow info");
 
-    // let tvshows_obj = object! {
-    //     size: file_size,
-    //     catagory: catagory,
-    //     name: fname,
-    //     season: season,
-    //     episode: episode,
-    //     path: tv
-    // };
-
-    // let tvsows_info = json::stringify(tvshows_obj.dump());
-
-    // let mtv_tvshows_metadata_path =
-    //     env::var("MTV_TVSHOWS_METADATA_PATH").expect("$MTV_TVSHOWS_METADATA_PATH is not set");
-
-    // let a = format!("{}/", mtv_tvshows_metadata_path.as_str());
-    // let b = format!("TVShows_{}_Meta.json", count.to_string());
-    // let outpath = a + &b;
-
-    // std::fs::write(outpath, tvsows_info).unwrap();
-
-    "fuck".to_string()
+    
 }
