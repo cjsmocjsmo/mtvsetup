@@ -1,4 +1,6 @@
-#[derive(Debug)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Movie {
     pub id: u32,
     pub name: String,
@@ -10,8 +12,7 @@ pub struct Movie {
     pub movid: String,
     pub catagory: String,
 }
-
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct TVShow {
     pub id: u32,
     pub tvid: String,
@@ -25,7 +26,7 @@ pub struct TVShow {
 
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MovieImage {
     pub id: u32,
     pub imgid: String,

@@ -1,8 +1,10 @@
 use image::{self};
 use rusqlite::Connection;
 use std::env;
+// use serde::{Deserialize, Serialize};
 
-use crate::setup::{mtv_misc::create_md5, mtv_types::MovieImage};
+use crate::setup::mtv_misc::create_md5;
+use crate::setup::mtv_types::MovieImage;
 
 fn create_movie_thumbnail(x: String) -> String {
     let mtv_movie_metadata_path =

@@ -1,7 +1,8 @@
 // use actix_web::{get, post, web, HttpResponse, Responder};
 use actix_web::{get, HttpResponse, Responder};
-// use rusqlite::Connection;
-// use std::env;
+// use serde::{Deserialize, Serialize};
+use rusqlite::Connection;
+use std::env;
 
 // use crate::setup::mtv_types::MovieImage;
 // use crate::setup::mtv_types::Movie;
@@ -14,7 +15,32 @@ pub async fn hello() -> impl Responder {
 
 #[get("/action")]
 pub async fn action() -> impl Responder {
-    HttpResponse::Ok().body("action")
+    let action = String::from("action");
+    let db_path = env::var("MTV_DB_PATH").expect("ATS_DB_PATH not set");
+    let conn = Connection::open(db_path).expect("unable to open db file");
+    let mut stmt = conn
+        .prepare("SELECT * FROM movies WHERE catagory = ?1")
+        .unwrap();
+    let mut rows = stmt.query(&[&action]).expect("Unable to query db");
+    // let mut exists = false;
+    let mut result = Vec::new();
+    while let Some(row) = rows.next().expect("Unable to get next row") {
+        let movie = crate::setup::mtv_types::Movie {
+            id: row.get(0).expect("Unable to get id"),
+            name: row.get(1).expect("Unable to get name"),
+            year: row.get(2).expect("Unable to get year"),
+            posteraddr: row.get(3).expect("Unable to get posteraddr"),
+            size: row.get(4).expect("Unable to get size"),
+            path: row.get(5).expect("Unable to get path"),
+            idx: row.get(6).expect("Unable to get idx"),
+            movid: row.get(7).expect("Unable to get movid"),
+            catagory: row.get(8).expect("Unable to get catagory"),
+        };
+        result.push(movie);
+    }
+    let result = serde_json::to_string(&result).unwrap();
+    HttpResponse::Ok().json(result)
+   
 }
 
 #[get("/arnold")]
