@@ -70,7 +70,31 @@ pub async fn drama() -> impl Responder {
 
 #[get("/documentary")]
 pub async fn documentary() -> impl Responder {
-    HttpResponse::Ok().body("documentary")
+    let documentary = String::from("documentary");
+    let db_path = env::var("MTV_DB_PATH").expect("ATS_DB_PATH not set");
+    let conn = Connection::open(db_path).expect("unable to open db file");
+    let mut stmt = conn
+        .prepare("SELECT * FROM movies WHERE catagory = ?1")
+        .unwrap();
+    let mut rows = stmt.query(&[&documentary]).expect("Unable to query db");
+    // let mut exists = false;
+    let mut result = Vec::new();
+    while let Some(row) = rows.next().expect("Unable to get next row") {
+        let movie = crate::setup::mtv_types::Movie {
+            id: row.get(0).expect("Unable to get id"),
+            name: row.get(1).expect("Unable to get name"),
+            year: row.get(2).expect("Unable to get year"),
+            posteraddr: row.get(3).expect("Unable to get posteraddr"),
+            size: row.get(4).expect("Unable to get size"),
+            path: row.get(5).expect("Unable to get path"),
+            idx: row.get(6).expect("Unable to get idx"),
+            movid: row.get(7).expect("Unable to get movid"),
+            catagory: row.get(8).expect("Unable to get catagory"),
+        };
+        result.push(movie);
+    }
+    let result = serde_json::to_string(&result).unwrap();
+    HttpResponse::Ok().json(result)
 }
 
 #[get("/fantasy")] 
