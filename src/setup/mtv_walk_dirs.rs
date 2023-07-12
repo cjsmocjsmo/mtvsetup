@@ -2,7 +2,7 @@ use walkdir::WalkDir;
 
 pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
     let mut moviesvec = Vec::new();
-    let mut moviesthumbvec = Vec::new();
+    let mut mov_tv_thumb_vec = Vec::new();
     let mut tvshowsvec = Vec::new();
     for e in WalkDir::new(mtv_movies_path.clone())
         .follow_links(true)
@@ -16,16 +16,20 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
                     moviesvec.push(fname.clone());
                 } else if fname.ends_with(".mkv") {
                     moviesvec.push(fname.clone());
-                } else if fname.ends_with(".jpg") {
-                    moviesthumbvec.push(fname);
+                } else {
+                    continue;
+                }
+            } else if fname.contains("MovPosters") {
+                if fname.ends_with(".jpg") {
+                    mov_tv_thumb_vec.push(fname);
                 } else if fname.ends_with(".jpeg") {
-                    moviesthumbvec.push(fname);
+                    mov_tv_thumb_vec.push(fname);
                 } else if fname.ends_with(".png") {
-                    moviesthumbvec.push(fname);
+                    mov_tv_thumb_vec.push(fname);
                 } else if fname.ends_with(".webp") {
-                    moviesthumbvec.push(fname);
+                    mov_tv_thumb_vec.push(fname);
                 } else if fname.ends_with(".avif") {
-                    moviesthumbvec.push(fname);
+                    mov_tv_thumb_vec.push(fname);
                 } else {
                     continue;
                 }
@@ -45,14 +49,14 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
             }
         }
     }
-    let media_vec = vec![moviesvec, tvshowsvec, moviesthumbvec];
+    let media_vec = vec![moviesvec, tvshowsvec, mov_tv_thumb_vec];
 
     media_vec
 }
 
 // pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
 //     let mut moviesvec = Vec::new();
-//     let mut moviesthumbvec = Vec::new();
+//     let mut mov_tv_thumb_vec = Vec::new();
 //     let mut tvshowsvec = Vec::new();
 //     for e in WalkDir::new(mtv_movies_path.clone())
 //         .follow_links(true)
@@ -75,22 +79,22 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
 //                         moviesvec.push(fname.clone());
 //                     }
 //                 } else if fname.ends_with(".jpg") {
-//                     moviesthumbvec.push(fname);
+//                     mov_tv_thumb_vec.push(fname);
 //                 } else if fname.ends_with(".jpeg") {
-//                     moviesthumbvec.push(fname);
+//                     mov_tv_thumb_vec.push(fname);
 //                 } else if fname.ends_with(".png") {
-//                     moviesthumbvec.push(fname);
+//                     mov_tv_thumb_vec.push(fname);
 //                 } else if fname.ends_with(".webp") {
-//                     moviesthumbvec.push(fname);
+//                     mov_tv_thumb_vec.push(fname);
 //                 } else if fname.ends_with(".avif") {
-//                     moviesthumbvec.push(fname);
+//                     mov_tv_thumb_vec.push(fname);
 //                 } else {
 //                     continue;
 //                 }
 //             }
 //         }
 //     }
-//     let media_vec = vec![moviesvec, tvshowsvec, moviesthumbvec];
+//     let media_vec = vec![moviesvec, tvshowsvec, mov_tv_thumb_vec];
 
 //     media_vec
 // }
