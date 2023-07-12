@@ -41,6 +41,8 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
                 } else {
                     continue;
                 }
+            } else if fname.contains("Music") {
+                continue;
             } else {
                 println!(
                     "fname does not contain Movies or TVShows: \n\t{}",
