@@ -193,10 +193,12 @@ pub async fn foundation(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().json(result)
 }
 
-#[get("/scifi/alienworlds/{season}")]
+#[get("/alienworlds/{season}")]
 pub async fn alienworlds(path: web::Path<String>) -> impl Responder {
     let catagory = String::from("alienworlds");
     let season = path.into_inner();
+    println!("catagory: {}", catagory);
+    println!("season: {}", season);
     let result = get_shows(catagory, season).await.unwrap();
     HttpResponse::Ok().json(result)
 }
