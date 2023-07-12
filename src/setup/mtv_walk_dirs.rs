@@ -45,7 +45,7 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
                 continue;
             } else {
                 println!(
-                    "fname does not contain Movies or TVShows: \n\t{}",
+                    "fname does not contain Movies, TVShows or Music: \n\t{}",
                     fname.clone()
                 )
             }
