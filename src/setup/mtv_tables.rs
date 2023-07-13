@@ -15,7 +15,8 @@ pub fn create_tables() -> Result<()> {
             path TEXT NOT NULL,
             idx TEXT NOT NULL,
             movid TEXT NOT NULL UNIQUE,
-            catagory TEXT NOT NULL
+            catagory TEXT NOT NULL, 
+            httpthumbpath TEXT NOT NULL
          )",
         (),
     )?;

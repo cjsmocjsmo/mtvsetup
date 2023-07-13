@@ -28,6 +28,7 @@ async fn get_shows(searcht: String) -> String {
             idx: row.get(6).expect("Unable to get idx"),
             movid: row.get(7).expect("Unable to get movid"),
             catagory: row.get(8).expect("Unable to get catagory"),
+            httpthumbpath: row.get(9).expect("Unable to get httpthumbpath"),
         };
         result.push(movie);
     }

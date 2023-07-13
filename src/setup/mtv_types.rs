@@ -11,6 +11,7 @@ pub struct Movie {
     pub idx: String,
     pub movid: String,
     pub catagory: String,
+    pub httpthumbpath: String,
 }
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TVShow {

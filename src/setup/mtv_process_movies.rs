@@ -29,6 +29,14 @@ fn get_poster_addr(x: String) -> String {
     poster_addr
 }
 
+fn get_http_thumb_path(mname: String) -> String {
+    let http = env::var("MTV_SERVER_ADDR").expect("MTV_SERVER_ADDR not set");
+    let port = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
+    let result = http + ":" + &port + "/" + &mname;
+
+    result
+}
+
 pub fn process_movies(x: String, count: u32) {
     let mov_name = crate::setup::mtv_split::split_movie_name(x.clone());
     let mov_year = crate::setup::mtv_split::split_movie_year(x.clone());
@@ -36,6 +44,7 @@ pub fn process_movies(x: String, count: u32) {
     let mov_size = crate::setup::mtv_misc::get_file_size(&x);
     let mov_id = crate::setup::mtv_misc::create_md5(&x);
     let cat = parse_catagory(x.clone());
+    let http_thumb_path = get_http_thumb_path(mov_name.clone());
     
     let mojo = crate::setup::mtv_types::Movie {
         id: count,
@@ -47,12 +56,13 @@ pub fn process_movies(x: String, count: u32) {
         idx: count.to_string(),
         movid: mov_id,
         catagory: cat,
+        httpthumbpath: http_thumb_path,
     };
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
-        "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid, catagory) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid, &mojo.catagory],
+        "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+        &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid, &mojo.catagory, &mojo.httpthumbpath],
     )
     .expect("Unable to insert new tvshow info");
 }
