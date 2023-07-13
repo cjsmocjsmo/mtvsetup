@@ -42,7 +42,8 @@ pub fn create_tables() -> Result<()> {
             size TEXT NOT NULL,
             name TEXT NOT NULL,
             thumbpath TEXT NOT NULL,
-            idx INTEGER NOT NULL
+            idx INTEGER NOT NULL,
+            httpthumbpath TEXT NOT NULL
          )",
         (),
     )?;

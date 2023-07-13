@@ -36,4 +36,5 @@ pub struct MovieImage {
     pub name: String,
     pub thumbpath: String,
     pub idx: u32,
+    pub httpthumbpath: String,
 }
