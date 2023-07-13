@@ -7,10 +7,14 @@ use crate::setup::mtv_misc::create_md5;
 use crate::setup::mtv_types::MovieImage;
 
 fn create_movie_thumbnail(x: String) -> String {
-    let mtv_movie_metadata_path =
-        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
+    // let mtv_movies_thumbnail_path =
+    //     env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
+    let server_addr = env::var("MTV_SERVER_ADDR").expect("$MTV_SERVER_ADDR is not set");
+    let server_port = env::var("MTV_SERVER_PORT").expect("$MTV_SERVER_PORT is not set");
+
     let old_fname = crate::setup::mtv_split::split_poster_name(x.clone());
-    let out_fname = mtv_movie_metadata_path + &old_fname;
+    // let out_fname = mtv_movies_thumbnail_path + &old_fname;
+    let out_fname = server_addr + &server_port + &old_fname;
     println!("x: {}", x);
     println!("old_fname{}", old_fname);
     println!("out_fname: {}", out_fname);
@@ -55,8 +59,6 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
             &[&movimg.imgid, &movimg.path, &movimg.imgpath, &movimg.size, &movimg.name, &movimg.thumbpath, &movimg.idx.to_string()],
         )
         .expect("Unable to insert new tvshow info");
-
-        
     } else {
         bad_image_vec.push(x.clone());
 
@@ -66,10 +68,10 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
         // let bad_image_count = bad_image_vec.clone().len();
 
         // if bad_image_count != 0 {
-        //     let mtv_movie_metadata_path =
+        //     let mtv_movies_thumbnail_path =
         //         env::var("MTV_MOVIES_METADATA_PATH").expect("$MTV_MOVIES_METADATA_PATH is not set");
 
-        //     let a = format!("{}/", mtv_movie_metadata_path.as_str());
+        //     let a = format!("{}/", mtv_movies_thumbnail_path.as_str());
         //     let b = format!("Bad_Movies_Images.json");
         //     let outpath = a + &b;
         //     fs::write(outpath, bad_image_vec.join("\n"))
