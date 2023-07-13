@@ -23,7 +23,6 @@ fn get_poster_addr(x: String) -> String {
     for p in p2_split {
         p2_split_vec.push(p);
     }
-
     let poster_addr = p1.to_string() + &"Posters2/".to_string() + p2_split_vec[2];
 
     poster_addr
@@ -32,7 +31,7 @@ fn get_poster_addr(x: String) -> String {
 fn get_http_thumb_path(mname: String) -> String {
     let http = env::var("MTV_SERVER_ADDR").expect("MTV_SERVER_ADDR not set");
     let port = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
-    let result = http + ":" + &port + "/" + &mname;
+    let result = http + ":" + &port + "/thumbnails/" + &mname + ".jpg";
 
     result
 }
