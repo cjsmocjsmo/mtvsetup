@@ -14,7 +14,7 @@ fn create_movie_thumbnail(x: String) -> String {
 
     let old_fname = crate::setup::mtv_split::split_poster_name(x.clone());
     // let out_fname = mtv_movies_thumbnail_path + &old_fname;
-    let out_fname = server_addr + &server_port + &old_fname;
+    let out_fname = server_addr + ":" + &server_port + "/" + &old_fname;
     println!("x: {}", x);
     println!("old_fname{}", old_fname);
     println!("out_fname: {}", out_fname);
