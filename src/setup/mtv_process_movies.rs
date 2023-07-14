@@ -97,8 +97,8 @@ fn parse_catagory(x: String) -> String {
         return "JohnWick".to_string();
     } else if x.contains("JurassicPard") {
         return "JurassicPard".to_string();
-    } else if x.contains("KingsMen") {
-        return "KingsMen".to_string();
+    } else if x.contains("KingsMan") {
+        return "KingsMan".to_string();
     } else if x.contains("MenInBlack") {
         return "MenInBlack".to_string();
     } else if x.contains("Misc") {

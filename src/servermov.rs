@@ -142,9 +142,9 @@ pub async fn jurassicpark() -> impl Responder {
     HttpResponse::Ok().json(result)
 }
 
-#[get("/kingsmen")]
+#[get("/kingsman")]
 pub async fn kingsmen() -> impl Responder {
-    let searcht = String::from("KingsMen");
+    let searcht = String::from("KingsMan");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().json(result)
 }
