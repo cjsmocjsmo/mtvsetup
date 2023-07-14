@@ -28,10 +28,10 @@ fn get_poster_addr(x: String) -> String {
     poster_addr
 }
 
-fn get_http_thumb_path(mname: String) -> String {
+fn get_http_thumb_path(mname: String, year: String) -> String {
     let http = env::var("MTV_SERVER_ADDR").expect("MTV_SERVER_ADDR not set");
     let port = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
-    let result = http + ":" + &port + "/thumbnails/" + &mname + ".jpg";
+    let result = http + ":" + &port + "/thumbnails/" + &mname + "(" + &year + ")" + ".jpg";
 
     result
 }
@@ -43,7 +43,7 @@ pub fn process_movies(x: String, count: u32) {
     let mov_size = crate::setup::mtv_misc::get_file_size(&x);
     let mov_id = crate::setup::mtv_misc::create_md5(&x);
     let cat = parse_catagory(x.clone());
-    let http_thumb_path = get_http_thumb_path(mov_name.clone());
+    let http_thumb_path = get_http_thumb_path(mov_name.clone(), mov_year.clone());
     
     let mojo = crate::setup::mtv_types::Movie {
         id: count,

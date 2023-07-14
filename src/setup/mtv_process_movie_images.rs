@@ -11,7 +11,7 @@ fn create_movie_thumbnail(x: String) -> (String, String) {
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
     let server_addr = env::var("MTV_SERVER_ADDR").expect("$MTV_SERVER_ADDR is not set");
     let server_port = env::var("MTV_SERVER_PORT").expect("$MTV_SERVER_PORT is not set");
-
+    // let year = crate::setup::mtv_splitsplit_movie_year(x.clone());
     let old_fname = crate::setup::mtv_split::split_poster_name(x.clone());
     // let out_fname = mtv_movies_thumbnail_path + &old_fname;
     let out_fname = mtv_movies_thumbnail_path + &old_fname;
