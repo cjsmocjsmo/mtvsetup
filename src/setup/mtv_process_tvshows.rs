@@ -36,7 +36,11 @@ fn get_season(astring: String) -> String {
         Regex::new(r"\b[Ss]\d{2}\b")
             .unwrap().find_iter(&astring)
             .map(|x| x.as_str()).collect();
-    let season = my_captures[0].to_string();
+    let mut season = String::from("None");
+    if my_captures.len() > 0 {
+        season = my_captures[0].to_string();
+        
+    }
 
     season
 }
@@ -46,7 +50,10 @@ fn get_episode(astring: String) -> String {
         Regex::new(r"\b[Ee]\d{2}\b")
             .unwrap().find_iter(&astring)
             .map(|x| x.as_str()).collect();
-    let episode = my_captures[0].to_string();
+    let mut episode = String::from("None");    
+    if my_captures.len() > 0 {
+        episode = my_captures[0].to_string();
+    } 
 
     episode
 }
@@ -57,7 +64,7 @@ fn get_tv_episode_season(x: &String) -> (String, String) {
     println!("this is epi: {}", epi);
     let sea = get_season(x.clone());
     println!("this is sea: {}", sea);
-    
+
     let name = crate::setup::mtv_split::split_movie_name(x.clone());
     let n_split = name.split(" ");
     let mut n_split_vec = vec![];
