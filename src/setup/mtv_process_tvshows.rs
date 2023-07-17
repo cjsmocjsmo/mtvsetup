@@ -33,7 +33,7 @@ fn get_tv_catagory(x: &String) -> String {
 
 fn get_season(astring: String) -> String { 
     let my_captures: Vec<&str> = 
-        Regex::new(r"/S\d{2}/g")
+        Regex::new(r"S\d{2}")
             .unwrap().find_iter(&astring)
             .map(|x| x.as_str()).collect();
     let mut season = String::from("None");
@@ -47,7 +47,7 @@ fn get_season(astring: String) -> String {
 
 fn get_episode(astring: String) -> String { 
     let my_captures: Vec<&str> = 
-        Regex::new(r"/E\d{2}/g")
+        Regex::new(r"E\d{2}")
             .unwrap().find_iter(&astring)
             .map(|x| x.as_str()).collect();
     let mut episode = String::from("None");    
