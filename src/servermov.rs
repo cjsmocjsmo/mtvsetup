@@ -51,6 +51,13 @@ pub async fn arnold() -> impl Responder {
     HttpResponse::Ok().json(result)
 }
 
+#[get("/brucelee")]
+pub async fn brucelee() -> impl Responder {
+    let searcht = String::from("BruceLee");
+    let result = get_shows(searcht).await;
+    HttpResponse::Ok().json(result)
+}
+
 #[get("/brucewillis")]
 pub async fn brucewillis() -> impl Responder {
     let searcht = String::from("BruceWillis");
@@ -61,6 +68,13 @@ pub async fn brucewillis() -> impl Responder {
 #[get("/cartoons")]
 pub async fn cartoons() -> impl Responder {
     let searcht = String::from("Cartoons");
+    let result = get_shows(searcht).await;
+    HttpResponse::Ok().json(result)
+}
+
+#[get("/chucknorris")]
+pub async fn chucknorris() -> impl Responder {
+    let searcht = String::from("ChuckNorris");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().json(result)
 }
