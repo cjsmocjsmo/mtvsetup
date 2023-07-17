@@ -43,16 +43,16 @@ pub fn setup() -> bool {
             }
         }
 
-        let usb1_thumbnailz = usb1_movies_vec_vec[2].clone();
-        if usb1_thumbnailz.clone().len() > 0 {
-            let mut count = 0;
-            for thumb in usb1_thumbnailz {
-                count = count + 1;
-                let _process_movie_posters =
-                    mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-                println!("thumb count: {}", count.clone());
-            }
-        }
+        // let usb1_thumbnailz = usb1_movies_vec_vec[2].clone();
+        // if usb1_thumbnailz.clone().len() > 0 {
+        //     let mut count = 0;
+        //     for thumb in usb1_thumbnailz {
+        //         count = count + 1;
+        //         let _process_movie_posters =
+        //             mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
+        //         println!("thumb count: {}", count.clone());
+        //     }
+        // }
     }
 
     let usb2 = env::var("MTV_USB2").expect("$MTV_USB2 is not set");
@@ -80,16 +80,16 @@ pub fn setup() -> bool {
             }
         }
 
-        let usb2_thumbnailz = usb2_movies_vec_vec[2].clone();
-        if usb2_thumbnailz.clone().len() > 0 {
-            let mut count = 0;
-            for thumb in usb2_thumbnailz {
-                count = count + 1;
-                let _process_movie_posters =
-                    mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-                println!("thumb count: {}", count.clone());
-            }
-        }
+        // let usb2_thumbnailz = usb2_movies_vec_vec[2].clone();
+        // if usb2_thumbnailz.clone().len() > 0 {
+        //     let mut count = 0;
+        //     for thumb in usb2_thumbnailz {
+        //         count = count + 1;
+        //         let _process_movie_posters =
+        //             mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
+        //         println!("thumb count: {}", count.clone());
+        //     }
+        // }
     }
 
     let usb3 = env::var("MTV_USB3").expect("$MTV_USB3 is not set");
@@ -117,16 +117,16 @@ pub fn setup() -> bool {
             }
         }
 
-        let usb3_thumbnailz = usb3_movies_vec_vec[2].clone();
-        if usb3_thumbnailz.clone().len() > 0 {
-            let mut count = 0;
-            for thumb in usb3_thumbnailz {
-                count = count + 1;
-                let _process_movie_posters =
-                    mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-                println!("thumb count: {}", count.clone());
-            }
-        }
+        // let usb3_thumbnailz = usb3_movies_vec_vec[2].clone();
+        // if usb3_thumbnailz.clone().len() > 0 {
+        //     let mut count = 0;
+        //     for thumb in usb3_thumbnailz {
+        //         count = count + 1;
+        //         let _process_movie_posters =
+        //             mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
+        //         println!("thumb count: {}", count.clone());
+        //     }
+        // }
     }
 
     let usb4 = env::var("MTV_USB4").expect("$MTV_USB4 is not set");
@@ -154,16 +154,16 @@ pub fn setup() -> bool {
             }
         }
 
-        let usb4_thumbnailz = usb4_movies_vec_vec[2].clone();
-        if usb4_thumbnailz.clone().len() > 0 {
-            let mut count = 0;
-            for thumb in usb4_thumbnailz {
-                count = count + 1;
-                let _process_movie_posters =
-                    mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
-                println!("thumb count: {}", count.clone());
-            }
-        }
+        // let usb4_thumbnailz = usb4_movies_vec_vec[2].clone();
+        // if usb4_thumbnailz.clone().len() > 0 {
+        //     let mut count = 0;
+        //     for thumb in usb4_thumbnailz {
+        //         count = count + 1;
+        //         let _process_movie_posters =
+        //             mtv_process_movie_images::process_movie_posters(thumb.clone(), count.clone());
+        //         println!("thumb count: {}", count.clone());
+        //     }
+        // }
     }
     println!("MTV Setup time is: {:?}", start.elapsed());
 
