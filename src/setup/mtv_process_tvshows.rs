@@ -45,9 +45,9 @@ fn get_season(astring: String) -> String {
     for p in parts {
         seavec.push(p);
     }
-    let seasonnum: String = seavec[1].to_string() + &seavec[2].to_string();
+    
 
-    seasonnum.to_string()
+    seavec[1].to_string()
 }
 
 fn get_episode(astring: String) -> String { 
@@ -64,9 +64,8 @@ fn get_episode(astring: String) -> String {
     for p in parts {
         epivec.push(p);
     }
-    let epinum: String = epivec[1].to_string() + &epivec[2].to_string();
-
-    epinum.to_string()
+    
+    epivec[1].to_string()
 }
 
 
