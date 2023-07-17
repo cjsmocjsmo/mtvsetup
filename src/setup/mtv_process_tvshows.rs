@@ -36,7 +36,10 @@ fn get_tv_episode_season(x: &String) -> (String, String) {
     }
     let idx = n_split_vec.len() - 2;
 
+    println!("this is x for parts: \n\t{}", x.clone());
+    
     let parts: Vec<char> = n_split_vec[idx].chars().collect();
+    println!("this is parts: {:#?}", parts);
 
     let season = parts[1].to_string() + &parts[2].to_string();
     let episode = parts[4].to_string() + &parts[5].to_string();
