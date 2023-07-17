@@ -1,6 +1,11 @@
 use std::env;
 use crate::setup::mtv_types;
 use rusqlite::Connection;
+use regex::Regex;
+
+// ^(S|s)\d{2}(E|e)\d{2}$  matches S01E01 or s01e01
+// ^[Ss]\d{2}$ matches s01 or S01
+// \b(S01)\b
 
 fn get_tv_catagory(x: &String) -> String {
     let name = crate::setup::mtv_split::split_movie_name(x.clone());
@@ -26,7 +31,33 @@ fn get_tv_catagory(x: &String) -> String {
     bar
 }
 
+fn get_season(astring: String) -> String { 
+    let my_captures: Vec<&str> = 
+        Regex::new(r"\b[Ss]\d{2}\b")
+            .unwrap().find_iter(&astring)
+            .map(|x| x.as_str()).collect();
+    let season = my_captures[0].to_string();
+
+    season
+}
+
+fn get_episode(astring: String) -> String { 
+    let my_captures: Vec<&str> = 
+        Regex::new(r"\b[Ee]\d{2}\b")
+            .unwrap().find_iter(&astring)
+            .map(|x| x.as_str()).collect();
+    let episode = my_captures[0].to_string();
+
+    episode
+}
+
+
 fn get_tv_episode_season(x: &String) -> (String, String) {
+    let epi = get_episode(x.clone());
+    println!("this is epi: {}", epi);
+    let sea = get_season(x.clone());
+    println!("this is sea: {}", sea);
+    
     let name = crate::setup::mtv_split::split_movie_name(x.clone());
     let n_split = name.split(" ");
     let mut n_split_vec = vec![];

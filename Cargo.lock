@@ -1060,6 +1060,7 @@ dependencies = [
  "image",
  "json",
  "md-5",
+ "regex",
  "rusqlite",
  "serde",
  "serde_json",
