@@ -39,10 +39,15 @@ fn get_season(astring: String) -> String {
     let mut season = String::from("None");
     if my_captures.len() > 0 {
         season = my_captures[0].to_string();
-        
     }
+    let mut seavec = Vec::new();
+    let parts = season.split("S");
+    for p in parts {
+        seavec.push(p);
+    }
+    let seasonnum: String = seavec[1].to_string() + &seavec[2].to_string();
 
-    season
+    seasonnum.to_string()
 }
 
 fn get_episode(astring: String) -> String { 
@@ -54,37 +59,46 @@ fn get_episode(astring: String) -> String {
     if my_captures.len() > 0 {
         episode = my_captures[0].to_string();
     } 
+    let mut epivec = Vec::new();
+    let parts = episode.split("E");
+    for p in parts {
+        epivec.push(p);
+    }
+    let epinum: String = epivec[1].to_string() + &epivec[2].to_string();
 
-    episode
+    epinum.to_string()
 }
 
 
 fn get_tv_episode_season(x: &String) -> (String, String) {
-    let epi = get_episode(x.clone());
-    println!("this is epi: {}", epi);
-    let sea = get_season(x.clone());
-    println!("this is sea: {}", sea);
+    let season = get_season(x.clone());
+    println!("this is season: {}", season);
+    let episode = get_episode(x.clone());
+    println!("this is episode: {}", episode);
 
-    let name = crate::setup::mtv_split::split_movie_name(x.clone());
-    let n_split = name.split(" ");
-    let mut n_split_vec = vec![];
-
-    for n in n_split {
-        n_split_vec.push(n);
-    }
-    let idx = n_split_vec.len() - 2;
-
-    println!("this is x for parts: \n\t{}", x.clone());
+    (season, episode)
     
-    let parts: Vec<char> = n_split_vec[idx].chars().collect();
-    println!("this is parts: {:#?}", parts);
 
-    let season = parts[1].to_string() + &parts[2].to_string();
-    let episode = parts[4].to_string() + &parts[5].to_string();
+    // let name = crate::setup::mtv_split::split_movie_name(x.clone());
+    // let n_split = name.split(" ");
+    // let mut n_split_vec = vec![];
 
-    let results = (season, episode);
+    // for n in n_split {
+    //     n_split_vec.push(n);
+    // }
+    // let idx = n_split_vec.len() - 2;
 
-    results
+    // println!("this is x for parts: \n\t{}", x.clone());
+    
+    // let parts: Vec<char> = n_split_vec[idx].chars().collect();
+    // println!("this is parts: {:#?}", parts);
+
+    // let season = parts[1].to_string() + &parts[2].to_string();
+    // let episode = parts[4].to_string() + &parts[5].to_string();
+
+    // let results = (season, episode);
+
+    // results
 }
 
 pub fn process_tvshows(tv: String, count: u32) {
