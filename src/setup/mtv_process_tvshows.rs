@@ -3,29 +3,19 @@ use crate::setup::mtv_types;
 use rusqlite::Connection;
 use regex::Regex;
 
-// ^(S|s)\d{2}(E|e)\d{2}$  matches S01E01 or s01e01
-// ^[Ss]\d{2}$ matches s01 or S01
-// \b(S01)\b
-
 fn get_tv_catagory(x: &String) -> String {
     let name = crate::setup::mtv_split::split_movie_name(x.clone());
     let n_split = name.split(" ");
     let mut n_split_vec = vec![];
-
     for n in n_split {
         n_split_vec.push(n);
     }
-
     let idx = n_split_vec.len() - 2;
-
     let mut newname_vec = vec![];
-
     let foo = n_split_vec.drain(0..idx);
-
     for f in foo {
         newname_vec.push(f);
     }
-
     let bar = newname_vec.join(" ");
 
     bar

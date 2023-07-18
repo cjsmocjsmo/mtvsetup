@@ -71,7 +71,7 @@ fn parse_catagory(x: String) -> String {
         return "Action".to_string();
     } else if x.contains("Arnold") {
         return "Arnold".to_string();
-    } else if x.contains("Bruce Willis") {
+    } else if x.contains("BruceWillis") {
         return "BruceWillis".to_string();
     } else if x.contains("Cartoons") {
         return "Cartoons".to_string();
