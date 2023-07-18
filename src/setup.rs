@@ -29,7 +29,7 @@ pub fn setup() -> bool {
             for mov in usb1_moviez {
                 count = count + 1;
                 let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-                // println!("{}", mov.clone());
+                println!("{}", mov.clone());
             }
         }
 
@@ -66,7 +66,7 @@ pub fn setup() -> bool {
             for mov in usb2_moviez {
                 count = count + 1;
                 let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-                // println!("{}", mov.clone());
+                println!("{}", mov.clone());
             }
         }
 
@@ -103,7 +103,7 @@ pub fn setup() -> bool {
             for mov in usb3_moviez {
                 count = count + 1;
                 let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-                // println!("{}", mov.clone());
+                println!("{}", mov.clone());
             }
         }
 
@@ -140,7 +140,7 @@ pub fn setup() -> bool {
             for mov in usb4_moviez {
                 count = count + 1;
                 let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-                // println!("{}", mov.clone());
+                println!("{}", mov.clone());
             }
         }
 

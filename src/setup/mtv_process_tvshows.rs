@@ -45,7 +45,6 @@ fn get_season(astring: String) -> String {
     for p in parts {
         seavec.push(p);
     }
-    
 
     seavec[1].to_string()
 }
@@ -68,47 +67,12 @@ fn get_episode(astring: String) -> String {
     epivec[1].to_string()
 }
 
-
-fn get_tv_episode_season(x: &String) -> (String, String) {
-    let season = get_season(x.clone());
-    println!("this is season: {}", season);
-    let episode = get_episode(x.clone());
-    println!("this is episode: {}", episode);
-
-    (season, episode)
-    
-
-    // let name = crate::setup::mtv_split::split_movie_name(x.clone());
-    // let n_split = name.split(" ");
-    // let mut n_split_vec = vec![];
-
-    // for n in n_split {
-    //     n_split_vec.push(n);
-    // }
-    // let idx = n_split_vec.len() - 2;
-
-    // println!("this is x for parts: \n\t{}", x.clone());
-    
-    // let parts: Vec<char> = n_split_vec[idx].chars().collect();
-    // println!("this is parts: {:#?}", parts);
-
-    // let season = parts[1].to_string() + &parts[2].to_string();
-    // let episode = parts[4].to_string() + &parts[5].to_string();
-
-    // let results = (season, episode);
-
-    // results
-}
-
 pub fn process_tvshows(tv: String, count: u32) {
     let catagory = get_tv_catagory(&tv);
-    let es = get_tv_episode_season(&tv);
-    let season = es.0;
-    let episode = es.1;
+    let season = get_season(tv.clone());
+    let episode = get_episode(tv.clone());
     let filesize = crate::setup::mtv_misc::get_file_size(&tv);
-
     let fname = crate::setup::mtv_split::split_filename(&tv.to_string());
-
     let tvshow = mtv_types::TVShow {
         id: count,
         tvid: crate::setup::mtv_misc::create_md5(&tv),
