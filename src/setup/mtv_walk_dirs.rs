@@ -19,6 +19,14 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
                 } else {
                     continue;
                 }
+            } else if fname.contains("TVShows") {
+                if fname.ends_with(".mp4") {
+                    tvshowsvec.push(fname.clone());
+                } else if fname.ends_with(".mkv") {
+                    tvshowsvec.push(fname.clone());
+                } else {
+                    continue;
+                }    
             } else if fname.contains("MovPosters") {
                 if fname.ends_with(".jpg") {
                     mov_tv_thumb_vec.push(fname);
@@ -44,14 +52,6 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
                     mov_tv_thumb_vec.push(fname);
                 } else if fname.ends_with(".avif") {
                     mov_tv_thumb_vec.push(fname);
-                } else {
-                    continue;
-                }
-            } else if fname.contains("TVShows") {
-                if fname.ends_with(".mp4") {
-                    tvshowsvec.push(fname.clone());
-                } else if fname.ends_with(".mkv") {
-                    tvshowsvec.push(fname.clone());
                 } else {
                     continue;
                 }
