@@ -174,7 +174,7 @@ pub async fn silo(path: web::Path<String>) -> impl Responder {
     let catagory = String::from("Silo");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
-    HttpResponse::Ok().json(result)
+    HttpResponse::Ok().body(result)
 }
 
 #[get("/scifi/thelastofus/{season}")]

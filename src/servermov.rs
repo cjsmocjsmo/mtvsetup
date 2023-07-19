@@ -48,14 +48,14 @@ pub async fn action() -> impl Responder {
 pub async fn arnold() -> impl Responder {
     let searcht = String::from("Arnold");
     let result = get_shows(searcht).await;
-    HttpResponse::Ok().json(result)
+    HttpResponse::Ok().body(result)
 }
 
 #[get("/brucelee")]
 pub async fn brucelee() -> impl Responder {
     let searcht = String::from("BruceLee");
     let result = get_shows(searcht).await;
-    HttpResponse::Ok().json(result)
+    HttpResponse::Ok().body(result)
 }
 
 #[get("/brucewillis")]
