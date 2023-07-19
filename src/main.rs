@@ -108,7 +108,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 // )
                 .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
         })
-        .bind(("192.168.0.26", 8080))?
+        .bind(("192.168.0.94", 8080))?
         .run()
         .await?;
     }

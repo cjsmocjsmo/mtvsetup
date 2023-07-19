@@ -7,7 +7,7 @@ services:
     networks:
       - mtv
     ports:
-      - 8888:8888
+      - 8080:8080
     volumes:
       - mtv_usb1_vol:/root/usb1/
       - mtv_usb2_vol:/root/usb2/
