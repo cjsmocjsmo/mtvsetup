@@ -73,10 +73,14 @@ fn parse_catagory(x: String) -> String {
         return "Action".to_string();
     } else if x.contains("Arnold") {
         return "Arnold".to_string();
+    } else if x.contains("BruceLee") {
+        return "BruceLee".to_string();
     } else if x.contains("BruceWillis") {
         return "BruceWillis".to_string();
     } else if x.contains("Cartoons") {
         return "Cartoons".to_string();
+    } else if x.contains("ChuckNorris") {
+        return "ChuckNorris".to_string();
     } else if x.contains("Comedy") {
         return "Comedy".to_string();
     } else if x.contains("Drama") {
