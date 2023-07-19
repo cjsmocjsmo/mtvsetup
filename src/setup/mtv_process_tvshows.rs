@@ -123,8 +123,6 @@ fn get_tv_catagory(x: String) -> String {
         }
 
         baz = foo_split_vec[1].to_string();
-        // let booz = baz.replace(" ", "");
-        // println!("baz: {}", booz);
     } else {
         println!("Fuck")
     }
@@ -132,24 +130,6 @@ fn get_tv_catagory(x: String) -> String {
     
     baz.trim().to_string()
 }
-
-// fn get_tv_catagory(x: &String) -> String {
-//     let name = crate::setup::mtv_split::split_movie_name(x.clone());
-//     let n_split = name.split(" ");
-//     let mut n_split_vec = vec![];
-//     for n in n_split {
-//         n_split_vec.push(n);
-//     }
-//     let idx = n_split_vec.len() - 2;
-//     let mut newname_vec = vec![];
-//     let foo = n_split_vec.drain(0..idx);
-//     for f in foo {
-//         newname_vec.push(f);
-//     }
-//     let bar = newname_vec.join(" ");
-
-//     bar
-// }
 
 fn get_season(astring: String) -> String { 
     let my_captures: Vec<&str> = 
