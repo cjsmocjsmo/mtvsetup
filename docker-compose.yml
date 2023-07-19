@@ -1,85 +1,45 @@
-version: "3.3"
-
 services:
-  db:
-    # image: andresvidal/rpi3-mongodb3
-    image: mongo:4.4.0
-    networks:
-      - mtv
-    ports:
-      - 27017:27017
-
   mtv:
-    image: mtv:0.0.12
+    image: mtv:0.0.1
     build: .
-    environment:
-###### DO NOT CHANGE ANYTHNING IN THIS SECTION #################
-      - MTV_MONGODB_ADDRESS=mongodb://db:27017/mtv
-      - MTV_MEDIA_PATH=/root/fsData
-
-      - MTV_MUSIC_PATH=/root/fsData/music
-      - MTV_MUSIC_THUMBNAIL_PATH=/root/fsData/thumbnails
-      - MTV_MUSIC_METADATA_PATH=/root/fsData/metadata
-
-      - MTV_MOVIES_PATH=/root/fsDataMov/movies
-      - MTV_MOVIES_METADATA_PATH=/root/fsDataMov/metadata
-      - MTV_MOVIES_POSTERS_PATH=/root/fsDataMov/posters
-      - MTV_MOVIES_THUMBNAIL_PATH=/root/fsDataMov/thumbnails
-
-      - MTV_TVSHOWS_PATH=/root/fsDataTVShows/tvshow
-      - MTV_TVSHOWS_METADATA_PATH=/root/fsDataTVShows/metadata
-      - MTV_TVSHOWS_POSTERS_PATH=/root/fsDataTVShows/posters
-      - MTV_TVSHOWS_THUMBNAIL_PATH=/root/fsDataTVShows/metadata
-
-      - MTV_GZIP_PATH=/root/gzip
-      - MTV_STATIC_PATH=/root/static
-      - MTV_DOCKER_VAR=DOCKER
-###### MAKE CHANGES BELOW AS NEEDED ##########################
-      - MTV_SERVER_ADDRESS=http://192.168.0.94
-      - MTV_SERVER_PORT=8888
-      - MTV_OFFSET=25 # number of songs per page.
-
     networks:
       - mtv
     ports:
       - 8888:8888
     volumes:
-      - mtv_music_vol:/root/fsData/
-      - mtv_mov_vol:/root/fsDataMov
-      - mtv_tv_vol:/root/fsDataTVShows
-      - mtv_static_vol:/root/static/
-      # - mtvlogvol:/root/logs/
-    depends_on:
-      - db
+      - mtv_usb1_vol:/root/usb1/
+      - mtv_usb2_vol:/root/usb2/
+      - mtv_usb3_vol:/root/usb3/
+      - mtv_usb4_vol:/root/usb4/
 
 networks:
   mtv:
 
 volumes:
-  mtv_music_vol:
+  mtv_usb1_vol:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/Music/
+      device: ${MTV_USB1}
       o: bind
 
-  mtv_mov_vol:
+  mtv_usb2_vol:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/Videos/Movies
+      device: ${MTV_USB2}
       o: bind
 
-  mtv_tv_vol:
+  mtv_usb3_vol:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/Videos/TVShows
+      device: ${MTV_USB3}
       o: bind
 
-  mtv_static_vol:
+  mtv_usb4_vol:
     driver: local
     driver_opts:
       type: none
-      device: /home/pipi/static
+      device: ${MTV_USB4}
       o: bind

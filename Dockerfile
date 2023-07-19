@@ -1,4 +1,4 @@
-FROM rust:buster AS builder
+FROM rust:bookworm AS builder
 
 RUN mkdir /usr/src/mtvsetup
 WORKDIR /usr/src/mtvsetup
@@ -16,44 +16,26 @@ COPY servertvs.rs .
 RUN cargo install --path .
 
 # FROM ubuntu:22.04
-FROM debian:bookworm
+FROM debian:bookworm-slim
 
 RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
-  apt-get -y autoclean && \
-  apt-get -y autoremove
+  apt-get install -y sqlite3 build-essential && \
+  apt-get -y autoremove && \
+  apt-get -y autoclean
 
 COPY --from=builder /usr/src/mtvsetup/target/release/mtvsetup /usr/local/bin/mtvsetup
-
+RUN chmod +x /usr/local/bin/mtvsetup
 WORKDIR /root/
 
 RUN \
-  mkdir ./static && chmod -R +rwx ./static && \
-  mkdir ./fsData && chmod -R +rwx ./fsData && \
-  mkdir ./gzip && chmod -R +rwx ./gzip && \
-  mkdir ./fsData/music && chmod -R +rwx ./fsData/music && \
-  mkdir ./fsData/thumbnails && chmod -R +rwx ./fsData/thumbnails && \
-  mkdir ./fsData/metadata && chmod -R +rwx ./fsData/metadata
-
-
-RUN \
-  mkdir ./fsDataMov && \
-  mkdir ./fsDataMov/movies && chmod -R +rwx ./fsDataMov/movies && \
-  mkdir ./fsDataMov/thumbnails && chmod -R +rwx ./fsDataMov/thumbnails && \
-  mkdir ./fsDataMov/metadata && chmod -R +rwx ./fsDataMov/metadata && \
-  mkdir ./fsDataMov/posters && chmod -R +rwx ./fsDataMov/posters
-
-
-RUN \
-  mkdir ./fsDataTVShows && chmod -R +rwx ./fsDataTVShows && \
-  mkdir ./fsDataTVShows/tvshows && chmod -R +rwx ./fsDataTVShows/tvshows && \
-  mkdir ./fsDataTVShows/thumbnails && chmod -R +rwx ./fsDataTVShows/thumbnails && \
-  mkdir ./fsDataTVShows/metadata && chmod -R +rwx ./fsDataTVShows/metadata && \
-  mkdir ./fsDataTVShows/posters && chmod -R +rwx ./fsDataTVShows/posters
-
+  mkdir ./usb1 && chmod -R +rwx ./usb1 && \
+  mkdir ./usb2 && chmod -R +rwx ./usb2 && \
+  mkdir ./usb3 && chmod -R +rwx ./usb3 && \
+  mkdir ./usb4 && chmod -R +rwx ./usb4 
 
 STOPSIGNAL SIGINT
 
 # CMD ["tail", "-f", "/dev/null"]
-CMD ["mtvsetup"]
+CMD ["/usr/local/bin/mtvsetup"]
