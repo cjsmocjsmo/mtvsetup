@@ -4,6 +4,7 @@ use rusqlite::Connection;
 use regex::Regex;
 
 fn get_tv_catagory(x: String) -> String {
+    let mut baz: String = String::new();
     if x.contains("S1") {
         let x_split = x.split("S1");
         let mut x_split_vec = vec![];
@@ -13,11 +14,18 @@ fn get_tv_catagory(x: String) -> String {
         let string_to_split = x_split_vec[1].to_string();
         let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
         println!("foo: {}", foo);
+        let mut foo_split_vec = Vec::new();
+        let foo_split = foo.split("/");
+        for f in foo_split {
+            foo_split_vec.push(f);
+        }
+
+        baz = foo_split_vec[1].to_string();
     }
     
 
     
-    "fuck".to_string()
+    baz
 }
 
 // fn get_tv_catagory(x: &String) -> String {

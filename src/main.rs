@@ -18,6 +18,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let setup = crate::setup::setup();
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
+    // let server_addr = env::var("MTV_SERVER_ADDR").expect("MTV_SERVER_ADDR not set");
+    // let server_port = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
     if setup {
         HttpServer::new(move || {
             let cors = Cors::default()
