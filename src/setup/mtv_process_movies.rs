@@ -1,5 +1,7 @@
 use std::env;
 use rusqlite::Connection;
+use crate::setup::mtv_split;
+use crate::setup::mtv_misc;
 
 fn get_poster_addr(x: String) -> String {
     let no_ext_name_res = x.split(".");
@@ -37,11 +39,11 @@ fn get_http_thumb_path(mname: String, year: String) -> String {
 }
 
 pub fn process_movies(x: String, count: u32) {
-    let mov_name = crate::setup::mtv_split::split_movie_name(x.clone());
-    let mov_year = crate::setup::mtv_split::split_movie_year(x.clone());
+    let mov_name = mtv_split::split_movie_name(x.clone());
+    let mov_year = mtv_split::split_movie_year(x.clone());
     let mov_poster_addr = get_poster_addr(x.clone());
-    let mov_size = crate::setup::mtv_misc::get_file_size(&x);
-    let mov_id = crate::setup::mtv_misc::create_md5(&x);
+    let mov_size = mtv_misc::get_file_size(&x);
+    let mov_id = mtv_misc::create_md5(&x);
     let cat = parse_catagory(x.clone());
     let http_thumb_path = get_http_thumb_path(mov_name.clone(), mov_year.clone());
     

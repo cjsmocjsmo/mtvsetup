@@ -16,7 +16,6 @@ COPY ./src/setup .
 
 WORKDIR /usr/src/mtvsetup
 
-
 RUN cargo install --path .
 
 # FROM ubuntu:22.04
