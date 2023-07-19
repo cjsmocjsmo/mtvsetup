@@ -10,9 +10,11 @@ WORKDIR /usr/src/mtvsetup/src
 COPY ./src/servertvs.rs .
 COPY ./src/servermov.rs .
 COPY ./src/main.rs .
+RUN mkdir /usr/src/mtvsetup/src/setup
+WORKDIR /usr/src/mtvsetup/src/setup
 COPY ./src/setup .
 
-
+WORKDIR /usr/src/mtvsetup
 
 
 RUN cargo install --path .
@@ -23,7 +25,7 @@ FROM debian:bookworm-slim
 RUN \
   apt-get update && \
   apt-get -y dist-upgrade && \
-  apt-get install -y sqlite3 build-essential && \
+  apt-get install -y sqlite3 && \
   apt-get -y autoremove && \
   apt-get -y autoclean
 
