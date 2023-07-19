@@ -3,23 +3,40 @@ use crate::setup::mtv_types;
 use rusqlite::Connection;
 use regex::Regex;
 
-fn get_tv_catagory(x: &String) -> String {
-    let name = crate::setup::mtv_split::split_movie_name(x.clone());
-    let n_split = name.split(" ");
-    let mut n_split_vec = vec![];
-    for n in n_split {
-        n_split_vec.push(n);
+fn get_tv_catagory(x: String) -> String {
+    if x.contains("S1") {
+        let x_split = x.split("S1");
+        let mut x_split_vec = vec![];
+        for xs in x_split {
+            x_split_vec.push(xs);
+        }
+        let string_to_split = x_split_vec[1].to_string();
+        let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
+        println!("foo: {}", foo);
     }
-    let idx = n_split_vec.len() - 2;
-    let mut newname_vec = vec![];
-    let foo = n_split_vec.drain(0..idx);
-    for f in foo {
-        newname_vec.push(f);
-    }
-    let bar = newname_vec.join(" ");
+    
 
-    bar
+    
+    "fuck".to_string()
 }
+
+// fn get_tv_catagory(x: &String) -> String {
+//     let name = crate::setup::mtv_split::split_movie_name(x.clone());
+//     let n_split = name.split(" ");
+//     let mut n_split_vec = vec![];
+//     for n in n_split {
+//         n_split_vec.push(n);
+//     }
+//     let idx = n_split_vec.len() - 2;
+//     let mut newname_vec = vec![];
+//     let foo = n_split_vec.drain(0..idx);
+//     for f in foo {
+//         newname_vec.push(f);
+//     }
+//     let bar = newname_vec.join(" ");
+
+//     bar
+// }
 
 fn get_season(astring: String) -> String { 
     let my_captures: Vec<&str> = 
@@ -58,7 +75,7 @@ fn get_episode(astring: String) -> String {
 }
 
 pub fn process_tvshows(tv: String, count: u32) {
-    let catagory = get_tv_catagory(&tv);
+    let catagory = get_tv_catagory(tv.clone());
     let season = get_season(tv.clone());
     let episode = get_episode(tv.clone());
     let filesize = crate::setup::mtv_misc::get_file_size(&tv);
