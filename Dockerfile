@@ -7,10 +7,12 @@ COPY Cargo.lock .
 
 RUN mkdir /usr/src/mtvsetup/src
 WORKDIR /usr/src/mtvsetup/src
-COPY setup .
-COPY main.rs .
-COPY servermovie.rs .
-COPY servertvs.rs .
+COPY ./src/servertvs.rs .
+COPY ./src/servermov.rs .
+COPY ./src/main.rs .
+COPY ./src/setup .
+
+
 
 
 RUN cargo install --path .
