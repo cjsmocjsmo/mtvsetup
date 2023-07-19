@@ -12,34 +12,34 @@ services:
       - mtv_usb3_vol:/root/usb3/
       - mtv_usb4_vol:/root/usb4/
 
-networks:
-  mtv:
+  networks:
+    mtv:
 
-volumes:
-  mtv_usb1_vol:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MTV_USB1}
-      o: bind
+  volumes:
+    mtv_usb1_vol:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${MTV_USB1}
+        o: bind
 
-  mtv_usb2_vol:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MTV_USB2}
-      o: bind
+    mtv_usb2_vol:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${MTV_USB2}
+        o: bind
 
-  mtv_usb3_vol:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MTV_USB3}
-      o: bind
+    mtv_usb3_vol:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${MTV_USB3}
+        o: bind
 
-  mtv_usb4_vol:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MTV_USB4}
-      o: bind
+    mtv_usb4_vol:
+      driver: local
+      driver_opts:
+        type: none
+        device: ${MTV_USB4}
+        o: bind
