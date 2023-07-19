@@ -37,10 +37,96 @@ fn get_tv_catagory(x: String) -> String {
             foo_split_vec.push(f);
         }
 
-        baz = foo_split_vec[1].to_string();
+        baz = foo_split_vec[1].trim().to_string();
         println!("baz: {}", baz);
+    } else if x.contains("S3") {
+        let x_split = x.split("S3");
+        let mut x_split_vec = vec![];
+        for xs in x_split {
+            x_split_vec.push(xs);
+        }
+        let string_to_split = x_split_vec[1].to_string();
+        let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
+        println!("foo: {}", foo);
+        let mut foo_split_vec = Vec::new();
+        let foo_split = foo.split("/");
+        for f in foo_split {
+            foo_split_vec.push(f);
+        }
+
+        baz = foo_split_vec[1].trim().to_string();
+        println!("baz: {}", baz);
+    } else if x.contains("S4") {
+        let x_split = x.split("S4");
+        let mut x_split_vec = vec![];
+        for xs in x_split {
+            x_split_vec.push(xs);
+        }
+        let string_to_split = x_split_vec[1].to_string();
+        let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
+        println!("foo: {}", foo);
+        let mut foo_split_vec = Vec::new();
+        let foo_split = foo.split("/");
+        for f in foo_split {
+            foo_split_vec.push(f);
+        }
+
+        baz = foo_split_vec[1].trim().to_string();
+        println!("baz: {}", baz);
+    } else if x.contains("S5") {
+        let x_split = x.split("S5");
+        let mut x_split_vec = vec![];
+        for xs in x_split {
+            x_split_vec.push(xs);
+        }
+        let string_to_split = x_split_vec[1].to_string();
+        let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
+        println!("foo: {}", foo);
+        let mut foo_split_vec = Vec::new();
+        let foo_split = foo.split("/");
+        for f in foo_split {
+            foo_split_vec.push(f);
+        }
+
+        baz = foo_split_vec[1].trim().to_string();
+        println!("baz: {}", baz);
+    } else if x.contains("S6") {
+        let x_split = x.split("S6");
+        let mut x_split_vec = vec![];
+        for xs in x_split {
+            x_split_vec.push(xs);
+        }
+        let string_to_split = x_split_vec[1].to_string();
+        let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
+        println!("foo: {}", foo);
+        let mut foo_split_vec = Vec::new();
+        let foo_split = foo.split("/");
+        for f in foo_split {
+            foo_split_vec.push(f);
+        }
+
+        baz = foo_split_vec[1].trim().to_string();
+        println!("baz: {}", baz);
+    } else if x.contains("S7") {
+        let x_split = x.split("S7");
+        let mut x_split_vec = vec![];
+        for xs in x_split {
+            x_split_vec.push(xs);
+        }
+        let string_to_split = x_split_vec[1].to_string();
+        let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
+        println!("foo: {}", foo);
+        let mut foo_split_vec = Vec::new();
+        let foo_split = foo.split("/");
+        for f in foo_split {
+            foo_split_vec.push(f);
+        }
+
+        baz = foo_split_vec[1].trim().to_string();
+        println!("baz: {}", baz);
+    } else {
+        println!("Fuck")
     }
-    
 
     
     baz
