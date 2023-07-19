@@ -9,7 +9,7 @@ pub async fn hello() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
 
-async fn get_shows(searcht: String) -> Vec<Movie> {
+async fn get_shows(searcht: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("ATS_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     let mut stmt = conn
@@ -32,7 +32,7 @@ async fn get_shows(searcht: String) -> Vec<Movie> {
         };
         result.push(movie);
     }
-    // let result = serde_json::to_string(&result).unwrap();
+    let result = serde_json::to_string(&result).unwrap();
 
     result
 }
@@ -41,7 +41,7 @@ async fn get_shows(searcht: String) -> Vec<Movie> {
 pub async fn action() -> impl Responder {
     let searcht = String::from("Action");
     let result = get_shows(searcht).await;
-    HttpResponse::Ok().json(result)
+    HttpResponse::Ok().body(result)
 }
 
 #[get("/arnold")]
