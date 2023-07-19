@@ -21,6 +21,7 @@ fn get_tv_catagory(x: String) -> String {
         }
 
         baz = foo_split_vec[1].to_string();
+        println!("baz: {}", baz);
     }
     
 
