@@ -122,14 +122,15 @@ fn get_tv_catagory(x: String) -> String {
             foo_split_vec.push(f);
         }
 
-        baz = foo_split_vec[1].trim().to_string();
+        baz = foo_split_vec[1].to_string();
+        let booz = baz.replace(" ", "");
         println!("baz: {}", baz);
     } else {
         println!("Fuck")
     }
 
     
-    baz
+    baz.trim().to_string()
 }
 
 // fn get_tv_catagory(x: &String) -> String {
