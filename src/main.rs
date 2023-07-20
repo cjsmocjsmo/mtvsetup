@@ -64,6 +64,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .service(servermov::therock)
                 .service(servermov::xmen)
 
+                .service(servermov::buzz)
+                .service(servermov::charliebrown)
+                .service(servermov::eternalquon)
+                .service(servermov::minions)
+                .service(servermov::oldies)
+                .service(servermov::tinkerbell)
+
                 .service(servertvs::fuubar)
                 .service(servertvs::houseofthedragon)
                 .service(servertvs::ringsofpower)

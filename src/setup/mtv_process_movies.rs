@@ -76,8 +76,12 @@ fn parse_catagory(x: String) -> String {
         return "BruceLee".to_string();
     } else if x.contains("BruceWillis") {
         return "BruceWillis".to_string();
+    }else if x.contains("Buzz") {
+        return "Buzz".to_string();
     } else if x.contains("Cartoons") {
         return "Cartoons".to_string();
+    } else if x.contains("CharlieBrown") {
+        return "CharlieBrown".to_string();
     } else if x.contains("ChuckNorris") {
         return "ChuckNorris".to_string();
     } else if x.contains("Comedy") {
@@ -86,6 +90,8 @@ fn parse_catagory(x: String) -> String {
         return "Drama".to_string();
     } else if x.contains("Documentary") {
         return "Documentary".to_string();
+    } else if x.contains("EternalQuon") {
+        return "EternalQuon".to_string();
     } else if x.contains("Fantasy") {
         return "Fantasy".to_string();
     } else if x.contains("Godzilla") {
@@ -106,10 +112,14 @@ fn parse_catagory(x: String) -> String {
         return "Kingsman".to_string();
     } else if x.contains("MenInBlack") {
         return "MenInBlack".to_string();
+    } else if x.contains("Minions") {
+        return "Minions".to_string();
     } else if x.contains("Misc") {
         return "Misc".to_string();
     } else if x.contains("NicolasCage") {
         return "NicolasCage".to_string();
+    } else if x.contains("Oldies") {
+        return "Oldies".to_string();
     } else if x.contains("Pirates") {
         return "Pirates".to_string();
     } else if x.contains("Riddick") {
@@ -122,6 +132,8 @@ fn parse_catagory(x: String) -> String {
         return "SuperHeros".to_string();
     } else if x.contains("SciFi") {
         return "SciFi".to_string();
+    } else if x.contains("TinkerBell") {
+        return "TinkerBell".to_string();
     } else if x.contains("TomCruize") {
         return "TomCruize".to_string();
     } else if x.contains("Transformers") {
