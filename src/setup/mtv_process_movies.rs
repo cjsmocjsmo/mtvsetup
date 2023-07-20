@@ -100,8 +100,8 @@ fn parse_catagory(x: String) -> String {
         return "JohnWayne".to_string();
     } else if x.contains("JohnWick") {
         return "JohnWick".to_string();
-    } else if x.contains("JurassicPard") {
-        return "JurassicPard".to_string();
+    } else if x.contains("JurassicPark") {
+        return "JurassicPark".to_string();
     } else if x.contains("Kingsman") {
         return "Kingsman".to_string();
     } else if x.contains("MenInBlack") {
@@ -118,8 +118,8 @@ fn parse_catagory(x: String) -> String {
         return "StarWars".to_string();
     } else if x.contains("StarTrek") {
         return "StarTrek".to_string();
-    } else if x.contains("SuperHeroes") {
-        return "SuperHeroes".to_string();
+    } else if x.contains("SuperHeros") {
+        return "SuperHeros".to_string();
     } else if x.contains("SciFi") {
         return "SciFi".to_string();
     } else if x.contains("TomCruize") {
