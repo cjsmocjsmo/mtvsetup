@@ -13,7 +13,7 @@ async fn get_shows(searcht: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("ATS_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     let mut stmt = conn
-        .prepare("SELECT * FROM movies WHERE catagory = ?1 ORDER BY episode ASC")
+        .prepare("SELECT * FROM movies WHERE catagory = ?1 ORDER BY year DEC")
         .unwrap();
     let mut rows = stmt.query(&[&searcht]).expect("Unable to query db");
     let mut result = Vec::new();
