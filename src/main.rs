@@ -100,7 +100,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .service(servertvs::hford1923)
                 .service(servertvs::secretinvasion)
                 .service(servertvs::falconandthewintersoldier)
-                .service(servertvs::reacher)
 
 
                 // .service(crate::func::insert_review)
