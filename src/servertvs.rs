@@ -360,7 +360,7 @@ async fn get_shows(cat: String, sea: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     let mut stmt = conn
-        .prepare("SELECT * FROM tvshows ORDER BY episode ASC WHERE catagory = ?1 AND season = ?2")
+        .prepare("SELECT * FROM tvshows WHERE catagory = ?1 AND season = ?2 ORDER BY episode ASC")
         .unwrap();
     let mut rows = stmt.query(&[&cat, &sea]).expect("Unable to query db");
     let mut result = Vec::new();
