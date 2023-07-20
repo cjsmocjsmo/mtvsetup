@@ -167,12 +167,103 @@ fn get_episode(astring: String) -> String {
     epivec[1].to_string()
 }
 
+fn get_tv_name(x: &String) -> String {
+    if x.contains("AlteredCarbon") {
+        return String::from("Altered Carbon");
+    } else if x.contains("CowboyBebop") {
+        return String::from("Cowboy Bebop");
+    } else if x.contains("ForAllManKind") {
+        return String::from("For All ManKind");
+    } else if x.contains("Foundation") {
+        return String::from("Foundation");
+    } else if x.contains("FuuBar") {
+        return String::from("FuuBar");
+    } else if x.contains("Halo") {
+        return String::from("Halo");
+    } else if x.contains("HFord1923") {
+        return String::from("1923");
+    } else if x.contains("HouseOfTheDragon") {
+        return String::from("House Of The Dragon");
+    } else if x.contains("LostInSpace") {
+        return String::from("Lost In Space");
+    } else if x.contains("MastersOfTheUniverse") {
+        return String::from("Masters Of The Universe");
+    } else if x.contains("NightSky") {
+        return String::from("Night Sky");
+    } else if x.contains("Orville") {
+        return String::from("Orville");
+    } else if x.contains("RaisedByWolves") {
+        return String::from("Raised By Wolves");
+    } else if x.contains("Silo") {
+        return String::from("Silo");
+    } else if x.contains("StarTrek/Discovery") {
+        return String::from("Discovery");
+    } else if x.contains("StarTrek/Picard") {
+        return String::from("Picard");
+    } else if x.contains("StarTrek/StrangeNewWorlds") {
+        return String::from("Strange New Worlds");
+    } else if x.contains("StarTrek/LowerDecks") {
+        return String::from("Lower Decks");
+    } else if x.contains("StarTrek/Prodigy") {
+        return String::from("Prodigy");
+    } else if x.contains("StarTrek/TNG") {
+        return String::from("The Next Generation");
+    } else if x.contains("StarTrek/STTV") {
+        return String::from("Star Trek");
+    } else if x.contains("StarTrek/Voyager") {
+        return String::from("Voyager");
+    } else if x.contains("StarTrek/ENT") {
+        return String::from("Enterprise");
+    } else if x.contains("Andor") {
+        return String::from("Andor");
+    } else if x.contains("BookOfBobaFett") {
+        return String::from("Boba Fett");
+    } else if x.contains("Mandalorian") {
+        return String::from("Mandalorian");
+    } else if x.contains("ObiWanKenobi") {
+        return String::from("Obi Wan");
+    } else if x.contains("TalesOfTheJedi") {
+        return String::from("Tales Of The Jedi");
+    } else if x.contains("TheBadBatch") {
+        return String::from("Bad Batch");
+    } else if x.contains("Visions") {
+        return String::from("Visions");
+    } else if x.contains("TheLastOfUs") {
+        return String::from("The Last Of Us");
+    } else if x.contains("TheLordOfTheRingsTheRingsOfPower") {
+        return String::from("Rings Of Power");
+    } else if x.contains("WheelOfTime") {
+        return String::from("Wheel Of Time");
+    } else if x.contains("FalconWinterSoldier") {
+        return String::from("Falcon Winter Soldier");
+    } else if x.contains("Hawkeye") {
+        return String::from("Hawkeye");
+    } else if x.contains("IAmGroot") {
+        return String::from("I Am Groot");
+    } else if x.contains("Loki") {
+        return String::from("Loki");
+    } else if x.contains("MoonKnight") {
+        return String::from("Moon Knight");
+    } else if x.contains("MSMarvel") {
+        return String::from("Ms Marvel");
+    } else if x.contains("SecretInvasion") {
+        return String::from("Secret Invasion");
+    } else if x.contains("SheHulk") {
+        return String::from("She Hulk");
+    } else if x.contains("WandaVision") {
+        return String::from("WandaVision");
+    } else {
+        return String::from("Fuck");
+    }
+    
+}
+
 pub fn process_tvshows(tv: String, count: u32) {
     let catagory = get_tv_catagory(tv.clone());
     let season = get_season(tv.clone());
     let episode = get_episode(tv.clone());
     let filesize = crate::setup::mtv_utils::get_file_size(&tv);
-    let fname = crate::setup::mtv_utils::split_filename(&tv.to_string());
+    let fname = get_tv_name(&tv);
     let tvshow = mtv_types::TVShow {
         id: count,
         tvid: crate::setup::mtv_utils::create_md5(&tv),

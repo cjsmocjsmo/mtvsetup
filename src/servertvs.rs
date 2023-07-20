@@ -262,7 +262,7 @@ pub async fn halo(path: web::Path<String>) -> impl Responder {
 
 #[get("/science/prehistoricplanet/{season}")]
 pub async fn prehistoricplanet(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Prehistoric Planet");
+    let catagory = String::from("Prehistoric Planet 2022");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -360,7 +360,7 @@ async fn get_shows(cat: String, sea: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     let mut stmt = conn
-        .prepare("SELECT * FROM tvshows WHERE catagory = ?1 AND season = ?2")
+        .prepare("SELECT * FROM tvshows ORDER BY episode ASC WHERE catagory = ?1 AND season = ?2")
         .unwrap();
     let mut rows = stmt.query(&[&cat, &sea]).expect("Unable to query db");
     let mut result = Vec::new();
@@ -368,7 +368,7 @@ async fn get_shows(cat: String, sea: String) -> String {
         let show = crate::setup::mtv_types::TVShow {
             id: row.get(0).expect("Unable to get id"),
             tvid: row.get(1).expect("Unable to get tvid"),
-            size: row.get(2).expect("Unable to get size"),
+            size: row.get(2).expect("Unable to get size"), 
             catagory: row.get(3).expect("Unable to get catagory"),
             name: row.get(4).expect("Unable to get name"),
             season: row.get(5).expect("Unable to get season"),
