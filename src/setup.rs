@@ -2,13 +2,12 @@ use std::env;
 use std::time::Instant;
 
 mod mtv_image;
-mod mtv_misc;
 mod mtv_process_movies;
 mod mtv_process_tvshows;
-mod mtv_split;
 mod mtv_tables;
 pub mod mtv_types;
 mod mtv_walk_dirs;
+mod mtv_utils;
 
 pub fn setup() -> bool {
     let start = Instant::now();

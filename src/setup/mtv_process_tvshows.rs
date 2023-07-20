@@ -171,11 +171,11 @@ pub fn process_tvshows(tv: String, count: u32) {
     let catagory = get_tv_catagory(tv.clone());
     let season = get_season(tv.clone());
     let episode = get_episode(tv.clone());
-    let filesize = crate::setup::mtv_misc::get_file_size(&tv);
-    let fname = crate::setup::mtv_split::split_filename(&tv.to_string());
+    let filesize = crate::setup::mtv_utils::get_file_size(&tv);
+    let fname = crate::setup::mtv_utils::split_filename(&tv.to_string());
     let tvshow = mtv_types::TVShow {
         id: count,
-        tvid: crate::setup::mtv_misc::create_md5(&tv),
+        tvid: crate::setup::mtv_utils::create_md5(&tv),
         size: filesize.to_string(),
         catagory: catagory,
         name: fname,
