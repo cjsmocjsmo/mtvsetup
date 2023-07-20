@@ -212,9 +212,9 @@ pub async fn startrek() -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
-#[get("/superheroes")]
+#[get("/superheros")]
 pub async fn superheroes() -> impl Responder {
-    let searcht = String::from("SuperHeroes");
+    let searcht = String::from("SuperHeros");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
@@ -261,42 +261,42 @@ pub async fn xmen() -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
-#[get("/Buzz")]
+#[get("/buzz")]
 pub async fn buzz() -> impl Responder {
     let searcht = String::from("Buzz");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
 
-#[get("/CharlieBrown")]
+#[get("/charliebrown")]
 pub async fn charliebrown() -> impl Responder {
     let searcht = String::from("CharlieBrown");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
 
-#[get("/EternalQuon")]
+#[get("/eternalquon")]
 pub async fn eternalquon() -> impl Responder {
     let searcht = String::from("EternalQuon");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
 
-#[get("/Minions")]
+#[get("/minions")]
 pub async fn minions() -> impl Responder {
     let searcht = String::from("Minions");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
 
-#[get("/Oldies")]
+#[get("/oldies")]
 pub async fn oldies() -> impl Responder {
     let searcht = String::from("Oldies");
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
 
-#[get("/TinkerBell")]
+#[get("/tinkerbell")]
 pub async fn tinkerbell() -> impl Responder {
     let searcht = String::from("TinkerBell");
     let result = get_shows(searcht).await;
