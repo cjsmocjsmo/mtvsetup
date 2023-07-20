@@ -3,7 +3,7 @@ use crate::setup::mtv_types;
 use rusqlite::Connection;
 use regex::Regex;
 
-fn get_tv_catagory(x: String) -> String {
+fn get_tv_catagory(x: &String) -> String {
     let mut baz: String = String::new();
     if x.contains("S1") {
         let x_split = x.split("S1");
@@ -131,7 +131,7 @@ fn get_tv_catagory(x: String) -> String {
     baz.trim().to_string()
 }
 
-fn get_season(astring: String) -> String { 
+fn get_season(astring: &String) -> String { 
     let my_captures: Vec<&str> = 
         Regex::new(r"S\d{2}")
             .unwrap().find_iter(&astring)
@@ -149,7 +149,7 @@ fn get_season(astring: String) -> String {
     seavec[1].to_string()
 }
 
-fn get_episode(astring: String) -> String { 
+fn get_episode(astring: &String) -> String { 
     let my_captures: Vec<&str> = 
         Regex::new(r"E\d{2}")
             .unwrap().find_iter(&astring)
@@ -259,9 +259,9 @@ fn get_tv_name(x: &String) -> String {
 }
 
 pub fn process_tvshows(tv: String, count: u32) {
-    let catagory = get_tv_catagory(tv.clone());
-    let season = get_season(tv.clone());
-    let episode = get_episode(tv.clone());
+    let catagory = get_tv_catagory(&tv);
+    let season = get_season(&tv);
+    let episode = get_episode(&tv);
     let filesize = crate::setup::mtv_utils::get_file_size(&tv);
     let fname = get_tv_name(&tv);
     let tvshow = mtv_types::TVShow {
