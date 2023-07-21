@@ -212,8 +212,8 @@ fn get_tv_catagory_name(x: &String) -> (String, String) {
         return (String::from("STTV"), String::from("STTV"));
     } else if x.contains("StarTrek/Voyager") {
         return (String::from("Voyager"), String::from("Voyager"));
-    } else if x.contains("StarTrek/ENT") {
-        return (String::from("ENT"), String::from("ENT"));
+    } else if x.contains("StarTrek/Enterprise") {
+        return (String::from("Enterprise"), String::from("Enterprise"));
     } else if x.contains("Andor") {
         return (String::from("Andor"), String::from("Andor"));
     } else if x.contains("BookOfBobaFett") {
@@ -252,6 +252,8 @@ fn get_tv_catagory_name(x: &String) -> (String, String) {
         return (String::from("SheHulk"), String::from("She Hulk"));
     } else if x.contains("WandaVision") {
         return (String::from("WandaVision"), String::from("Wanda Vision"));
+    } else if x.contains("PrehistoricPlanet") {
+        return (String::from("PrehistoricPlanet"), String::from("Prehistoric Planet"));
     } else {
         return (String::from("None"), String::from("None"));
     }

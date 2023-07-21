@@ -94,7 +94,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .service(servertvs::silo)
                 .service(servertvs::thelastofus)
                 .service(servertvs::foundation)
-                .service(servertvs::alienworlds)
                 .service(servertvs::alteredcarbon)
                 .service(servertvs::cowboybebop)
                 .service(servertvs::forallmankind)
@@ -106,7 +105,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .service(servertvs::shehulk)
                 .service(servertvs::hford1923)
                 .service(servertvs::secretinvasion)
-                .service(servertvs::falconandthewintersoldier)
+                .service(servertvs::falconwintersoldier)
 
 
                 // .service(crate::func::insert_review)
