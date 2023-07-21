@@ -13,7 +13,7 @@ pub async fn fuubar(path: web::Path<String>) -> impl Responder {
 #[get("/fantasy/houseofthedragon/{season}")]
 pub async fn houseofthedragon(path: web::Path<String>) -> impl Responder {
     let season = path.into_inner();
-    let catagory = String::from("House Of The Dragon");
+    let catagory = String::from("HouseOfTheDragon");
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
@@ -21,7 +21,7 @@ pub async fn houseofthedragon(path: web::Path<String>) -> impl Responder {
 #[get("/fantasy/ringsofpower/{season}")]
 pub async fn ringsofpower(path: web::Path<String>) -> impl Responder {
     let season = path.into_inner();
-    let catagory = String::from("Rings Of Power");
+    let catagory = String::from("RingsOfPower");
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
@@ -29,7 +29,7 @@ pub async fn ringsofpower(path: web::Path<String>) -> impl Responder {
 #[get("/fantasy/wheeloftime/{season}")]
 pub async fn wheeloftime(path: web::Path<String>) -> impl Responder {
     let season = path.into_inner();
-    let catagory = String::from("Wheel Of Time");
+    let catagory = String::from("WheelOfTime");
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
@@ -85,7 +85,7 @@ pub async fn picard(path: web::Path<String>) -> impl Responder {
 #[get("/startrek/lowerdecks/{season}")]
 pub async fn lowerdecks(path: web::Path<String>) -> impl Responder {
     let season = path.into_inner();
-    let catagory = String::from("Lower Decks");
+    let catagory = String::from("LowerDecks");
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
@@ -101,7 +101,7 @@ pub async fn prodigy(path: web::Path<String>) -> impl Responder {
 #[get("/startrek/strangenewworlds/{season}")]
 pub async fn strangenewworlds(path: web::Path<String>) -> impl Responder {
     let season = path.into_inner();
-    let catagory = String::from("Strange New Worlds");
+    let catagory = String::from("StrangeNewWorlds");
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
@@ -116,7 +116,7 @@ pub async fn andor(path: web::Path<String>) -> impl Responder {
 
 #[get("/starwars/badbatch/{season}")]
 pub async fn badbatch(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Bad Batch");
+    let catagory = String::from("BadBatch");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -124,7 +124,7 @@ pub async fn badbatch(path: web::Path<String>) -> impl Responder {
 
 #[get("/starwars/bobafett/{season}")]
 pub async fn bobafett(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("BobbaFett");
+    let catagory = String::from("BobaFett");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -140,7 +140,7 @@ pub async fn mandalorian(path: web::Path<String>) -> impl Responder {
 
 #[get("/starwars/talesofthejedi/{season}")]
 pub async fn talesofthejedi(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Tales Of The Jedi");
+    let catagory = String::from("TalesOfTheJedi");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -148,7 +148,7 @@ pub async fn talesofthejedi(path: web::Path<String>) -> impl Responder {
 
 #[get("/starwars/obiwan/{season}")]
 pub async fn obiwankenobi(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Obi Wan");
+    let catagory = String::from("ObiWan");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -170,15 +170,17 @@ pub async fn silo(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
-#[get("/scifi/thelastofus/{season}")]
+#[get("/thelastofus/{season}")]
 pub async fn thelastofus(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("The Last Of Us");
+    let catagory = String::from("TheLastOfUs");
     let season = path.into_inner();
+    println!("catagory: {}", catagory);
+    println!("season: {}", season);
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
 
-#[get("/scifi/foundation/{season}")]
+#[get("/foundation/{season}")]
 pub async fn foundation(path: web::Path<String>) -> impl Responder {
     let catagory = String::from("Foundation");
     let season = path.into_inner();
@@ -188,7 +190,7 @@ pub async fn foundation(path: web::Path<String>) -> impl Responder {
 
 #[get("/science/alienworlds/{season}")]
 pub async fn alienworlds(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Alien Worlds");
+    let catagory = String::from("AlienWorlds");
     let season = path.into_inner();
     println!("catagory: {}", catagory);
     println!("season: {}", season);
@@ -198,15 +200,17 @@ pub async fn alienworlds(path: web::Path<String>) -> impl Responder {
 
 #[get("/scifi/alteredcarbon/{season}")]
 pub async fn alteredcarbon(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Altered Carbon");
+    let catagory = String::from("AlteredCarbon");
     let season = path.into_inner();
+    println!("catagory: {}", catagory);
+    println!("season: {}", season);
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
 
 #[get("/scifi/cowboybebop/{season}")]
 pub async fn cowboybebop(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Cowboy Bebop");
+    let catagory = String::from("CowboyBebop");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -214,7 +218,7 @@ pub async fn cowboybebop(path: web::Path<String>) -> impl Responder {
 
 #[get("/scifi/forallmankind/{season}")]
 pub async fn forallmankind(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("For All Mankind");
+    let catagory = String::from("ForAllMankind");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -222,7 +226,7 @@ pub async fn forallmankind(path: web::Path<String>) -> impl Responder {
 
 #[get("/scifi/lostinspace/{season}")]
 pub async fn lostinspace(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Lost In Space");
+    let catagory = String::from("LostInSpace");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -230,7 +234,7 @@ pub async fn lostinspace(path: web::Path<String>) -> impl Responder {
 
 #[get("/scifi/raisedbywolves/{season}")]
 pub async fn raisedbywolves(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Raised By Wolves");
+    let catagory = String::from("RaisedByWolves");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -238,7 +242,7 @@ pub async fn raisedbywolves(path: web::Path<String>) -> impl Responder {
 
 #[get("/scifi/nightsky/{season}")]
 pub async fn nightsky(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Night Sky");
+    let catagory = String::from("NightSky");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -262,7 +266,7 @@ pub async fn halo(path: web::Path<String>) -> impl Responder {
 
 #[get("/science/prehistoricplanet/{season}")]
 pub async fn prehistoricplanet(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Prehistoric Planet 2022");
+    let catagory = String::from("PrehistoricPlanet");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -270,7 +274,7 @@ pub async fn prehistoricplanet(path: web::Path<String>) -> impl Responder {
 
 #[get("/superheroes/secretinvasion/{season}")]
 pub async fn secretinvasion(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Secret Invasion");
+    let catagory = String::from("SecretInvasion");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -286,7 +290,7 @@ pub async fn loki(path: web::Path<String>) -> impl Responder {
 
 #[get("/superheroes/iamgroot/{season}")]
 pub async fn iamgroot(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("I Am Groot");
+    let catagory = String::from("IAmGroot");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -294,7 +298,7 @@ pub async fn iamgroot(path: web::Path<String>) -> impl Responder {
 
 #[get("/superheroes/falconandthewintersoldier/{season}")]
 pub async fn falconandthewintersoldier(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Falcon And The Winter Soldier");
+    let catagory = String::from("FalconAndTheWinterSoldier");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -302,7 +306,7 @@ pub async fn falconandthewintersoldier(path: web::Path<String>) -> impl Responde
 
 #[get("/superheroes/msmarvel/{season}")]
 pub async fn msmarvel(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Ms Marvel");
+    let catagory = String::from("MsMarvel");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -318,7 +322,7 @@ pub async fn wandavision(path: web::Path<String>) -> impl Responder {
 
 #[get("/superheroes/moonknight/{season}")]
 pub async fn moonknight(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Moonknight");
+    let catagory = String::from("MoonKnight");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
@@ -334,7 +338,7 @@ pub async fn hawkeye(path: web::Path<String>) -> impl Responder {
 
 #[get("/superheroes/shehulk/{season}")]
 pub async fn shehulk(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("Shehulk");
+    let catagory = String::from("SheHulk");
     let season = path.into_inner();
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
