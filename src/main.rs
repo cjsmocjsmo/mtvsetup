@@ -21,11 +21,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let setup = crate::setup::setup();
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
-    // let m1 = env::var("MTV_P1").expect("MTV_M1 not set").as_bytes().to_owned();
-    // let m2 = env::var("MTV_P2").expect("MTV_M2 not set").as_bytes().to_owned();
-    // let m3 = env::var("MTV_P3").expect("MTV_M3 not set").as_bytes().to_owned();
-    // let m4 = env::var("MTV_P4").expect("MTV_M4 not set").as_bytes().to_owned();
-
     let foobar = env::var("MTV_RAW_ADDR").expect("MTV_RAW_ADDR not set");
     let mtv_v4_addr = Ipv4Addr::from_str(&foobar).unwrap();
     let myport = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
@@ -118,13 +113,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .service(servertvs::hford1923)
                 .service(servertvs::secretinvasion)
                 .service(servertvs::falconwintersoldier)
-
-
-                // .service(crate::func::insert_review)
-                // .route(
-                //     "/hey",
-                //     web::get().to(crate::func::server_functions::manual_hello),
-                // )
                 .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
         })
         .bind(socket)?
