@@ -6,6 +6,8 @@ use dotenv::dotenv;
 use std::env;
 // use serde::{Deserialize, Serialize};
 // use log::{error, info, debug};
+use std::net::{Ipv4Addr, IpAddr, SocketAddr};
+// use std::str::FromStr;
 
 pub mod servermov;
 pub mod servertvs;
@@ -18,8 +20,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let setup = crate::setup::setup();
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
-    // let server_addr = env::var("MTV_SERVER_ADDR").expect("MTV_SERVER_ADDR not set");
-    // let server_port = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
+    let m1 = env::var("MTV_P1").expect("MTV_M1 not set").as_bytes().to_owned();
+    let m2 = env::var("MTV_P2").expect("MTV_M2 not set").as_bytes().to_owned();
+    let m3 = env::var("MTV_P3").expect("MTV_M3 not set").as_bytes().to_owned();
+    let m4 = env::var("MTV_P4").expect("MTV_M4 not set").as_bytes().to_owned();
+    let mtv_v4_addr = Ipv4Addr::new(m1[0], m2[0], m3[0], m4[0]);
+    let myport = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
+    let port: u16 = myport.parse().unwrap();
+    let socket = SocketAddr::new(IpAddr::V4(mtv_v4_addr), port);
     if setup {
         HttpServer::new(move || {
             let cors = Cors::default()
@@ -115,7 +123,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 // )
                 .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
         })
-        .bind(("192.168.0.94", 8080))?
+        .bind(socket)?
         .run()
         .await?;
     }
