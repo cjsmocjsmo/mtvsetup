@@ -28,6 +28,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let myport = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
     let port: u16 = myport.parse().unwrap();
     let socket = SocketAddr::new(IpAddr::V4(mtv_v4_addr), port);
+    println!("MTV_SERVER_ADDR: {}", socket);
     if setup {
         HttpServer::new(move || {
             let cors = Cors::default()
