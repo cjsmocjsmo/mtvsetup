@@ -7,6 +7,7 @@ use std::env;
 // use serde::{Deserialize, Serialize};
 // use log::{error, info, debug};
 use std::net::{Ipv4Addr, IpAddr, SocketAddr};
+use std::str::FromStr;
 // use std::str::FromStr;
 
 pub mod servermov;
@@ -20,11 +21,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let setup = crate::setup::setup();
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
-    let m1 = env::var("MTV_P1").expect("MTV_M1 not set").as_bytes().to_owned();
-    let m2 = env::var("MTV_P2").expect("MTV_M2 not set").as_bytes().to_owned();
-    let m3 = env::var("MTV_P3").expect("MTV_M3 not set").as_bytes().to_owned();
-    let m4 = env::var("MTV_P4").expect("MTV_M4 not set").as_bytes().to_owned();
-    let mtv_v4_addr = Ipv4Addr::new(m1[0], m2[0], m3[0], m4[0]);
+    // let m1 = env::var("MTV_P1").expect("MTV_M1 not set").as_bytes().to_owned();
+    // let m2 = env::var("MTV_P2").expect("MTV_M2 not set").as_bytes().to_owned();
+    // let m3 = env::var("MTV_P3").expect("MTV_M3 not set").as_bytes().to_owned();
+    // let m4 = env::var("MTV_P4").expect("MTV_M4 not set").as_bytes().to_owned();
+
+    let foobar = env::var("MTV_RAW_ADDR").expect("MTV_RAW_ADDR not set");
+    let mtv_v4_addr = Ipv4Addr::from_str(&foobar).unwrap();
     let myport = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
     let port: u16 = myport.parse().unwrap();
     let socket = SocketAddr::new(IpAddr::V4(mtv_v4_addr), port);
