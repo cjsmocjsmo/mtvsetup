@@ -65,7 +65,7 @@ pub async fn sttv(path: web::Path<String>) -> impl Responder {
 #[get("/startrek/enterprise/{season}")]
 pub async fn enterprise(path: web::Path<String>) -> impl Responder {
     let season = path.into_inner();
-    let catagory = String::from("ENT");
+    let catagory = String::from("Enterprise");
     println!("catagory: {}", catagory);
     println!("season: {}", season);
     let result = get_shows(catagory, season).await;
