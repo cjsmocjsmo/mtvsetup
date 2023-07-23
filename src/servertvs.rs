@@ -307,7 +307,7 @@ pub async fn halo(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
-#[get("/science/prehistoricplanet/{season}")]
+#[get("/prehistoricplanet/{season}")]
 pub async fn prehistoricplanet(path: web::Path<String>) -> impl Responder {
     let catagory = String::from("PrehistoricPlanet");
     let season = path.into_inner();
