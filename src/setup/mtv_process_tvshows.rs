@@ -257,7 +257,6 @@ fn get_tv_catagory_name(x: &String) -> (String, String) {
     } else {
         return (String::from("None"), String::from("None"));
     }
-    
 }
 
 pub fn process_tvshows(tv: String, count: u32) {
@@ -287,6 +286,4 @@ pub fn process_tvshows(tv: String, count: u32) {
         
     )
     .expect("Unable to insert new tvshow info");
-
-    
 }

@@ -1,6 +1,6 @@
-use std::env;
-use rusqlite::Connection;
 use crate::setup::mtv_utils;
+use rusqlite::Connection;
+use std::env;
 
 fn get_poster_addr(x: String) -> String {
     let no_ext_name_res = x.split(".");
@@ -45,7 +45,7 @@ pub fn process_movies(x: String, count: u32) {
     let mov_id = mtv_utils::create_md5(&x);
     let cat = parse_catagory(x.clone());
     let http_thumb_path = get_http_thumb_path(mov_name.clone(), mov_year.clone());
-    
+
     let mojo = crate::setup::mtv_types::Movie {
         id: count,
         name: mov_name,
@@ -68,83 +68,136 @@ pub fn process_movies(x: String, count: u32) {
 }
 
 fn parse_catagory(x: String) -> String {
-    if x.contains("Action") {
-        return "Action".to_string();
-    } else if x.contains("Arnold") {
-        return "Arnold".to_string();
-    } else if x.contains("BruceLee") {
-        return "BruceLee".to_string();
-    } else if x.contains("BruceWillis") {
-        return "BruceWillis".to_string();
-    }else if x.contains("Buzz") {
-        return "Buzz".to_string();
-    } else if x.contains("Cartoons") {
-        return "Cartoons".to_string();
-    } else if x.contains("CharlieBrown") {
-        return "CharlieBrown".to_string();
-    } else if x.contains("ChuckNorris") {
-        return "ChuckNorris".to_string();
-    } else if x.contains("Comedy") {
-        return "Comedy".to_string();
-    } else if x.contains("Drama") {
-        return "Drama".to_string();
-    } else if x.contains("Documentary") {
-        return "Documentary".to_string();
-    } else if x.contains("EternalQuon") {
-        return "EternalQuon".to_string();
-    } else if x.contains("Fantasy") {
-        return "Fantasy".to_string();
-    } else if x.contains("Godzilla") {
-        return "Godzilla".to_string();
-    } else if x.contains("HarryPotter") {
-        return "HarryPotter".to_string();
-    } else if x.contains("IndianaJones") {
-        return "IndianaJones".to_string();
-    } else if x.contains("JamesBond") {
-        return "JamesBond".to_string();
-    } else if x.contains("JohnWayne") {
-        return "JohnWayne".to_string();
-    } else if x.contains("JohnWick") {
-        return "JohnWick".to_string();
-    } else if x.contains("JurassicPark") {
-        return "JurassicPark".to_string();
-    } else if x.contains("Kingsman") {
-        return "Kingsman".to_string();
-    } else if x.contains("MenInBlack") {
-        return "MenInBlack".to_string();
-    } else if x.contains("Minions") {
-        return "Minions".to_string();
-    } else if x.contains("Misc") {
-        return "Misc".to_string();
-    } else if x.contains("NicolasCage") {
-        return "NicolasCage".to_string();
-    } else if x.contains("Oldies") {
-        return "Oldies".to_string();
-    } else if x.contains("Pirates") {
-        return "Pirates".to_string();
-    } else if x.contains("Riddick") {
-        return "Riddick".to_string();
-    } else if x.contains("StarWars") {
-        return "StarWars".to_string();
-    } else if x.contains("StarTrek") {
-        return "StarTrek".to_string();
-    } else if x.contains("SuperHeros") {
-        return "SuperHeros".to_string();
-    } else if x.contains("SciFi") {
-        return "SciFi".to_string();
-    } else if x.contains("TinkerBell") {
-        return "TinkerBell".to_string();
-    } else if x.contains("TomCruize") {
-        return "TomCruize".to_string();
-    } else if x.contains("Transformers") {
-        return "Transformers".to_string();
-    } else if x.contains("Tremors") {
-        return "Tremors".to_string();
-    } else if x.contains("TheRock") {
-        return "TheRock".to_string();
-    } else if x.contains("XMen") {
-        return "XMen".to_string();
-    } else {
-        return "Unknown".to_string();
-    };
+    let boo = vec![
+        "Action",
+        "Arnold",
+        "BruceLee",
+        "BruceWillis",
+        "Buzz",
+        "Cartoons",
+        "CharlieBrown",
+        "ChuckNorris",
+        "Comedy",
+        "Documentary",
+        "Drama",
+        "EternalQuon",
+        "Fantasy",
+        "Godzilla",
+        "HarryPotter",
+        "IndianaJones",
+        "JamesBond",
+        "JohnWayne",
+        "JohnWick",
+        "JurassicPark",
+        "Kingsman",
+        "MenInBlack",
+        "Minions",
+        "Misc",
+        "NicolasCage",
+        "Oldies",
+        "Pirates",
+        "Riddick",
+        "SciFi",
+        "StarTrek",
+        "StarWars",
+        "SuperHeros",
+        "TheRock",
+        "TinkerBell",
+        "TomCruize",
+        "Transformers",
+        "Tremors",
+        "XMen"
+    ];
+
+    let mut result = String::new();
+
+    for b in boo {
+        if x.contains(b) {
+            result = b.to_string();
+        }
+    }
+
+    result
 }
+
+// fn parse_catagory(x: String) -> String {
+//     if x.contains("Action") {
+//         return "Action".to_string();
+//     } else if x.contains("Arnold") {
+//         return "Arnold".to_string();
+//     } else if x.contains("BruceLee") {
+//         return "BruceLee".to_string();
+//     } else if x.contains("BruceWillis") {
+//         return "BruceWillis".to_string();
+//     } else if x.contains("Buzz") {
+//         return "Buzz".to_string();
+//     } else if x.contains("Cartoons") {
+//         return "Cartoons".to_string();
+//     } else if x.contains("CharlieBrown") {
+//         return "CharlieBrown".to_string();
+//     } else if x.contains("ChuckNorris") {
+//         return "ChuckNorris".to_string();
+//     } else if x.contains("Comedy") {
+//         return "Comedy".to_string();
+//     } else if x.contains("Drama") {
+//         return "Drama".to_string();
+//     } else if x.contains("Documentary") {
+//         return "Documentary".to_string();
+//     } else if x.contains("EternalQuon") {
+//         return "EternalQuon".to_string();
+//     } else if x.contains("Fantasy") {
+//         return "Fantasy".to_string();
+//     } else if x.contains("Godzilla") {
+//         return "Godzilla".to_string();
+//     } else if x.contains("HarryPotter") {
+//         return "HarryPotter".to_string();
+//     } else if x.contains("IndianaJones") {
+//         return "IndianaJones".to_string();
+//     } else if x.contains("JamesBond") {
+//         return "JamesBond".to_string();
+//     } else if x.contains("JohnWayne") {
+//         return "JohnWayne".to_string();
+//     } else if x.contains("JohnWick") {
+//         return "JohnWick".to_string();
+//     } else if x.contains("JurassicPark") {
+//         return "JurassicPark".to_string();
+//     } else if x.contains("Kingsman") {
+//         return "Kingsman".to_string();
+//     } else if x.contains("MenInBlack") {
+//         return "MenInBlack".to_string();
+//     } else if x.contains("Minions") {
+//         return "Minions".to_string();
+//     } else if x.contains("Misc") {
+//         return "Misc".to_string();
+//     } else if x.contains("NicolasCage") {
+//         return "NicolasCage".to_string();
+//     } else if x.contains("Oldies") {
+//         return "Oldies".to_string();
+//     } else if x.contains("Pirates") {
+//         return "Pirates".to_string();
+//     } else if x.contains("Riddick") {
+//         return "Riddick".to_string();
+//     } else if x.contains("StarWars") {
+//         return "StarWars".to_string();
+//     } else if x.contains("StarTrek") {
+//         return "StarTrek".to_string();
+//     } else if x.contains("SuperHeros") {
+//         return "SuperHeros".to_string();
+//     } else if x.contains("SciFi") {
+//         return "SciFi".to_string();
+//     } else if x.contains("TinkerBell") {
+//         return "TinkerBell".to_string();
+//     } else if x.contains("TomCruize") {
+//         return "TomCruize".to_string();
+//     } else if x.contains("Transformers") {
+//         return "Transformers".to_string();
+//     } else if x.contains("Tremors") {
+//         return "Tremors".to_string();
+//     } else if x.contains("TheRock") {
+//         return "TheRock".to_string();
+//     } else if x.contains("XMen") {
+//         return "XMen".to_string();
+//     } else {
+//         return "Unknown".to_string();
+//     };
+// }
