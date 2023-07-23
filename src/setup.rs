@@ -7,7 +7,7 @@ mod mtv_process_tvshows;
 mod mtv_tables;
 pub mod mtv_types;
 mod mtv_walk_dirs;
-mod mtv_utils;
+pub mod mtv_utils;
 
 pub fn setup() -> bool {
     let start = Instant::now();

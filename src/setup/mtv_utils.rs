@@ -1,6 +1,21 @@
 use filesize::PathExt;
 use md5::{Digest, Md5};
 use std::path::Path;
+use std::net::{Ipv4Addr, IpAddr, SocketAddr};
+use std::str::FromStr;
+use std::env;
+
+pub fn gen_server_addr() -> SocketAddr {
+    let raw_addr = env::var("MTV_RAW_ADDR").expect("MTV_RAW_ADDR not set");
+    let mtv_v4_addr = Ipv4Addr::from_str(&raw_addr).unwrap();
+    let port: u16 = env::var("MTV_SERVER_PORT")
+        .expect("MTV_SERVER_PORT not set")
+        .parse()
+        .unwrap();
+    let socket = SocketAddr::new(IpAddr::V4(mtv_v4_addr), port);
+
+    socket
+}
 
 // pub fn split_filename(x: &String) -> String {
 //     let filesplit = x.split("/");

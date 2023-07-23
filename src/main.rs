@@ -1,14 +1,8 @@
-// use actix_web::{get, web, App, HttpResponse, HttpServer, Responder};
 use actix_cors::Cors;
 use actix_files as fs;
 use actix_web::{App, HttpServer};
 use dotenv::dotenv;
 use std::env;
-// use serde::{Deserialize, Serialize};
-// use log::{error, info, debug};
-use std::net::{Ipv4Addr, IpAddr, SocketAddr};
-use std::str::FromStr;
-// use std::str::FromStr;
 
 pub mod servermov;
 pub mod servertvs;
@@ -18,15 +12,11 @@ pub mod setup;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
     env_logger::init();
-    let setup = crate::setup::setup();
+    let setup = setup::setup();
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
-    let foobar = env::var("MTV_RAW_ADDR").expect("MTV_RAW_ADDR not set");
-    let mtv_v4_addr = Ipv4Addr::from_str(&foobar).unwrap();
-    let myport = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
-    let port: u16 = myport.parse().unwrap();
-    let socket = SocketAddr::new(IpAddr::V4(mtv_v4_addr), port);
-    println!("MTV_SERVER_ADDR: {}", socket);
+    let socket = setup::mtv_utils::gen_server_addr();
+    println!("MTV_SERVER_ADDR: http://{}", socket);
     if setup {
         HttpServer::new(move || {
             let cors = Cors::default()
@@ -70,14 +60,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 .service(servermov::tremors)
                 .service(servermov::therock)
                 .service(servermov::xmen)
-
                 .service(servermov::buzz)
                 .service(servermov::charliebrown)
                 .service(servermov::eternalquon)
                 .service(servermov::minions)
                 .service(servermov::oldies)
                 .service(servermov::tinkerbell)
-
                 .service(servertvs::fuubar)
                 .service(servertvs::houseofthedragon)
                 .service(servertvs::ringsofpower)
