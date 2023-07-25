@@ -3,7 +3,7 @@ Description=MTV serice file
 After=network.target
 
 [Service]
-ExecStart=/home/pi/mtvsetup/target/release/mtvsetup
+ExecStart=/home/pi/mtvsetup/start.sh
 Type=notify
 Restart=always
 
