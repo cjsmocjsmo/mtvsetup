@@ -9,4 +9,6 @@ touch /home/pi/mtvsetup/mtv.db;
 
 git pull;
 
-cargo run --release --bin mtvsetup -- clean;
+cargo build --release --bin mtvsetup -- clean;
+
+/home/pi/mtvsetup/target/release/mtvsetup
