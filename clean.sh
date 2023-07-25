@@ -1,14 +1,27 @@
 #!/bin/bash
 
-# Remove all files created by the build process.
-sudo rm -rf //home/pi/mtvsetup/thumbnails;
-mkdir /home/pi/mtvsetup/thumbnails;
+cd /home/pi/mtvsetup;
 
-rm -rf /home/pi/mtvsetup/mtv.db;
-touch /home/pi/mtvsetup/mtv.db;
+sudo systemctl stop mtvsetup.service;
+
+sudo rm -rf ./thumbnails;
+mkdir ./thumbnails;
+
+rm -rf ./mtv.db;
+touch ./mtv.db;
 
 git pull;
 
 cargo build --release --bin mtvsetup;
 
-nohup /home/pi/mtvsetup/target/release/mtvsetup >/dev/null 2>&1 &
+rm /usr/local/bin/mtvsetup;
+mv ./target/release/mtvsetup /usr/local/bin/mtvsetup;
+
+chmod +xr /usr/local/bin/mtvsetup;
+chown root:root /usr/local/bin/mtvsetup;
+
+sudo systemctl start mtvsetup.service;
+
+# /usr/local/bin/mtvsetup
+
+# nohup ./target/release/mtvsetup >/dev/null 2>&1 &

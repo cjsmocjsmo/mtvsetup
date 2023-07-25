@@ -1,0 +1,12 @@
+[Unit]
+Description=MTV serice file
+After=network.target
+
+[Service]
+ExecStart=/bin/sh /usr/local/bin/mtvsetup
+Type=notify
+Restart=always
+
+
+[Install]
+WantedBy=default.target
