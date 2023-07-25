@@ -1,4 +1,3 @@
 #!/bin/sh
 
-cd /home/pi/mtvsetup;
-./target/release/mtvsetup
+cargo run --release --bin mtvsetup
