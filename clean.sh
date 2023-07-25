@@ -14,11 +14,7 @@ git pull;
 
 cargo build --release --bin mtvsetup;
 
-rm /usr/local/bin/mtvsetup;
-mv ./target/release/mtvsetup /usr/local/bin/mtvsetup;
 
-chmod +xr /usr/local/bin/mtvsetup;
-chown root:root /usr/local/bin/mtvsetup;
 
 sudo systemctl start mtvsetup.service;
 
