@@ -9,6 +9,6 @@ touch /home/pi/mtvsetup/mtv.db;
 
 git pull;
 
-cargo build --release --bin mtvsetup -- clean;
+cargo build --release --bin mtvsetup;
 
 nohup /home/pi/mtvsetup/target/release/mtvsetup >/dev/null 2>&1 &
