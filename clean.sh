@@ -11,4 +11,4 @@ git pull;
 
 cargo build --release --bin mtvsetup -- clean;
 
-/home/pi/mtvsetup/target/release/mtvsetup
+nohup /home/pi/mtvsetup/target/release/mtvsetup >/dev/null 2>&1 &
