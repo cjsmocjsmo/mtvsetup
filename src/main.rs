@@ -1,16 +1,16 @@
 use actix_cors::Cors;
 use actix_files as fs;
 use actix_web::{App, HttpServer};
-use dotenv::dotenv;
 use std::env;
 
 pub mod servermov;
 pub mod servertvs;
+pub mod envvars;
 pub mod setup;
 
 #[actix_web::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    dotenv().ok();
+    let _vars = envvars::set_env_vars();
     env_logger::init();
     let setup = setup::setup();
     let thumb_path =
