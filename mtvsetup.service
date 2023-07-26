@@ -1,5 +1,5 @@
 [Unit]
-Description=MTV serice file
+Description=MTV service file
 After=network.target
 
 [Service]
