@@ -5,8 +5,8 @@ After=network.target
 [Service]
 ExecStart=/usr/bin/sh /usr/share/mtvsetup/mtvsetup/start.sh
 Restart=always
-User=pipi
-Group=pipi
+User=root
+Group=root
 
 
 [Install]
