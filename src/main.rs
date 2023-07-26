@@ -5,6 +5,7 @@ use std::env;
 
 pub mod servermov;
 pub mod servertvs;
+pub mod serversetup;
 pub mod envvars;
 pub mod setup;
 
@@ -12,13 +13,13 @@ pub mod setup;
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _vars = envvars::set_env_vars();
     env_logger::init();
-    let setup = setup::setup();
+    // let setup = setup::setup();
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
     let socket = setup::mtv_utils::gen_server_addr();
     println!("MTV_SERVER_ADDR: http://{}", socket.clone());
     println!("MTV_SERVER_ADDR: http://{}", socket.clone());
-    if setup {
+    // if setup {
         HttpServer::new(move || {
             let cors = Cors::default()
                 .allow_any_origin()
@@ -29,6 +30,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             App::new()
                 .wrap(cors)
                 .service(servermov::hello)
+                .service(serversetup::run_setup)
                 .service(servermov::action)
                 .service(servermov::arnold)
                 .service(servermov::brucelee)
@@ -113,6 +115,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .bind(socket)?
         .run()
         .await?;
-    }
+    // }
     Ok(())
 }
