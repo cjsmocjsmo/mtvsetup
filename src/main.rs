@@ -16,7 +16,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
     let socket = setup::mtv_utils::gen_server_addr();
-    println!("MTV_SERVER_ADDR: http://{}", socket);
+    println!("MTV_SERVER_ADDR: http://{}", socket.clone());
+    println!("MTV_SERVER_ADDR: http://{}", socket.clone());
     if setup {
         HttpServer::new(move || {
             let cors = Cors::default()
