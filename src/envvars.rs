@@ -4,15 +4,15 @@ pub fn set_env_vars() {
 
     let usb1 = env::var("MTV_USB1");
     if usb1.is_err() {
-        env::set_var("MTV_USB1", "/media/pi/USB2/media");
+        env::set_var("MTV_USB1", "/media/pi/PiTB/media");
     }
     let usb2 = env::var("MTV_USB2");
     if usb2.is_err() {
-        env::set_var("MTV_USB2", "/media/pi/USB3/media");
+        env::set_var("MTV_USB2", "None");
     }
     let usb3 = env::var("MTV_USB3");
     if usb3.is_err() {
-        env::set_var("MTV_USB3", "/media/pi/USB3/media");
+        env::set_var("MTV_USB3", "None");
     }
     let usb4 = env::var("MTV_USB4");
     if usb4.is_err() {
@@ -24,7 +24,7 @@ pub fn set_env_vars() {
     }
     let static_path = env::var("MTV_STATIC_PATH");
     if static_path.is_err() {
-        env::set_var("MTV_STATIC_PATH", "/usr/share/static");
+        env::set_var("MTV_STATIC_PATH", "/usr/share/mtvsetup/mtvsetup/static");
     }
     let raw_addr = env::var("MTV_RAW_ADDR");
     if raw_addr.is_err() {
