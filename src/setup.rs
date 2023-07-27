@@ -23,6 +23,8 @@ pub fn setup() -> bool {
 
     let usblist = Vec::from([usb1, usb2, usb3, usb4]);
 
+    println!("usblist: {:?}", usblist.clone());
+
     for usb in usblist {
         if usb != "None" {
             let usb_movies_vec_vec = mtv_walk_dirs::walk_movies_dir(usb.clone());
