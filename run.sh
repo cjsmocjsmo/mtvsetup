@@ -12,11 +12,14 @@ if [ ! -d $MTVP ]; then
     sudo mkdir $MTVP;
     sudo chmod +xwr $MTVP;
     cd $MTVP;
-    git pull;
-else
-    cd $MTVP;
+    git clone https://github.com/cjsmocjsmo/mtvsetup.git;
+fi
+
+if [ -d $MTVSTP ]; then
+    cd $MTVSTP;
     git pull;
 fi
+
 echo "removing thumbnails";
 if [ -d $MTVSTP/thumbnails ]; then
     sudo rm -rf $MTVSTP/thumbnails;
