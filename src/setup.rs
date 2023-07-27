@@ -12,6 +12,8 @@ pub mod mtv_utils;
 pub fn setup() -> bool {
     let start = Instant::now();
 
+    let _vars = crate::envvars::set_env_vars();
+
     let _tables = mtv_tables::create_tables();
 
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");

@@ -2,7 +2,6 @@ use actix_web::{get, web, HttpResponse, Responder};
 
 #[get("/setup/{status}")]
 pub async fn run_setup(path: web::Path<String>) -> impl Responder {
-    let _vars = crate::envvars::set_env_vars();
     let fuck = path.clone();
     let _status = path.into_inner();
     let _setup = crate::setup::setup();
