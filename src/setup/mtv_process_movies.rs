@@ -98,6 +98,7 @@ fn parse_catagory(x: String) -> String {
         "Pirates",
         "Riddick",
         "SciFi",
+        "Stalone",
         "StarTrek",
         "StarWars",
         "SuperHeros",

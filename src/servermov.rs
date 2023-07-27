@@ -302,3 +302,10 @@ pub async fn tinkerbell() -> impl Responder {
     let result = get_shows(searcht).await;
     HttpResponse::Ok().body(result)
 }
+
+#[get("/stalone")]
+pub async fn stalone() -> impl Responder {
+    let searcht = String::from("Stalone");
+    let result = get_shows(searcht).await;
+    HttpResponse::Ok().body(result)
+}
