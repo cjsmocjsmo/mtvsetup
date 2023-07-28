@@ -113,26 +113,10 @@ use regex::Regex;
 //         for xs in x_split {
 //             x_split_vec.push(xs);
 //         }
-//         let string_to_split = x_split_vec[1].to_string();
-//         let foo = Regex::new(r"S\d{2}").unwrap().split(&string_to_split).collect::<Vec<&str>>()[0].to_string();
-//         println!("foo: {}", foo);
-//         let mut foo_split_vec = Vec::new();
-//         let foo_split = foo.split("/");
-//         for f in foo_split {
-//             foo_split_vec.push(f);
-//         }
 
-//         baz = foo_split_vec[1].to_string();
-//     } else {
-//         println!("Fuck")
-//     }
 
-    
-//     baz.trim().to_string()
-// }
-
-fn get_season(astring: &String) -> String { 
-    let my_captures: Vec<&str> = 
+fn get_season(astring: &String) -> String {
+    let my_captures: Vec<&str> =
         Regex::new(r"S\d{2}")
             .unwrap().find_iter(&astring)
             .map(|x| x.as_str()).collect();
@@ -149,21 +133,21 @@ fn get_season(astring: &String) -> String {
     seavec[1].to_string()
 }
 
-fn get_episode(astring: &String) -> String { 
-    let my_captures: Vec<&str> = 
+fn get_episode(astring: &String) -> String {
+    let my_captures: Vec<&str> =
         Regex::new(r"E\d{2}")
             .unwrap().find_iter(&astring)
             .map(|x| x.as_str()).collect();
-    let mut episode = String::from("None");    
+    let mut episode = String::from("None");
     if my_captures.len() > 0 {
         episode = my_captures[0].to_string();
-    } 
+    }
     let mut epivec = Vec::new();
     let parts = episode.split("E");
     for p in parts {
         epivec.push(p);
     }
-    
+
     epivec[1].to_string()
 }
 
@@ -283,7 +267,7 @@ pub fn process_tvshows(tv: String, count: u32) {
     conn.execute(
         "INSERT INTO tvshows (tvid, size, catagory, name, season, episode, path, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
         &[&tvshow.tvid, &tvshow.size, &tvshow.catagory, &tvshow.name, &tvshow.season, &tvshow.episode, &tvshow.path, &tvshow.idx],
-        
+
     )
     .expect("Unable to insert new tvshow info");
 }
