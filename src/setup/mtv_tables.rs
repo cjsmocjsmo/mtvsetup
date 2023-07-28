@@ -1,10 +1,11 @@
 use rusqlite::{Connection, Result};
 use std::env;
+use std::fs;
 
 pub fn create_tables() -> Result<()> {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
-    let conn = Connection::open(db_path)?;
-    
+    let conn = Connection::open(db_path.clone())?;
+
     conn.execute(
         "CREATE TABLE IF NOT EXISTS movies (
             id INTEGER PRIMARY KEY,
@@ -15,7 +16,7 @@ pub fn create_tables() -> Result<()> {
             path TEXT NOT NULL,
             idx TEXT NOT NULL,
             movid TEXT NOT NULL UNIQUE,
-            catagory TEXT NOT NULL, 
+            catagory TEXT NOT NULL,
             httpthumbpath TEXT NOT NULL
          )",
         (),
@@ -50,4 +51,19 @@ pub fn create_tables() -> Result<()> {
     )?;
 
     Ok(())
+}
+
+pub fn db_file_exists() -> bool {
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let metadata = fs::metadata(db_path).unwrap();
+    if metadata.is_file() {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+pub fn create_db_file() {
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    fs::File::create(db_path.clone()).expect("Unable to create file");
 }

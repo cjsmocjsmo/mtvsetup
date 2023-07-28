@@ -1,20 +1,29 @@
 use std::env;
 use std::time::Instant;
+use crate::envvars;
 
-mod mtv_image;
+pub mod mtv_image;
 mod mtv_process_movies;
 mod mtv_process_tvshows;
-mod mtv_tables;
+pub mod mtv_tables;
 pub mod mtv_types;
-mod mtv_walk_dirs;
 pub mod mtv_utils;
+mod mtv_walk_dirs;
 
 pub fn setup() -> bool {
     let start = Instant::now();
 
-    let _vars = crate::envvars::set_env_vars();
+    let _vars = envvars::set_env_vars();
+
+    if !mtv_tables::db_file_exists() {
+        mtv_tables::create_db_file();
+    }
 
     let _tables = mtv_tables::create_tables();
+
+    if !mtv_image::thumbnail_dir_exists() {
+        mtv_image::create_thumbnail_dir();
+    }
 
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
     let usb2 = env::var("MTV_USB2").expect("$MTV_USB2 is not set");

@@ -7,6 +7,22 @@ use std::env;
 use crate::setup::mtv_utils::create_md5;
 use crate::setup::mtv_types::MovieImage;
 
+pub fn thumbnail_dir_exists() -> bool {
+    let mtv_movies_thumbnail_path =
+        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
+    let path = std::path::Path::new(&mtv_movies_thumbnail_path);
+    if path.exists() && path.is_dir() {
+        return true
+    } else {
+        return false
+    }
+}
+
+pub fn create_thumbnail_dir() {
+    let mtv_movies_thumbnail_path =
+        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
+    std::fs::create_dir_all(mtv_movies_thumbnail_path).expect("Unable to create thumbnail dir");
+}
 
 fn create_movie_thumbnail(x: String) -> (String, String) {
     let mtv_movies_thumbnail_path =
