@@ -14,6 +14,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     env_logger::init();
     let _vars = envvars::set_env_vars();
 
+    if !setup::mtv_tables::db_file_exists() {
+        setup::mtv_tables::create_db_file();
+    }
+
     if setup::mtv_image::thumbnail_dir_exists() == false {
         setup::mtv_image::create_thumbnail_dir();
     }
