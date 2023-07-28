@@ -1,5 +1,6 @@
 use rusqlite::{Connection, Result};
 use std::env;
+use std::path::Path;
 use std::fs;
 
 pub fn create_tables() -> Result<()> {
@@ -55,8 +56,8 @@ pub fn create_tables() -> Result<()> {
 
 pub fn db_file_exists() -> bool {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
-    let metadata = fs::metadata(db_path).unwrap();
-    if metadata.is_file() {
+    let path = Path::new(&db_path);
+    if path.exists() {
         return true;
     } else {
         return false;
