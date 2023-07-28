@@ -11,9 +11,12 @@ pub mod setup;
 
 #[actix_web::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let _vars = envvars::set_env_vars();
     env_logger::init();
-    // let setup = setup::setup();
+    let _vars = envvars::set_env_vars();
+
+    if setup::mtv_image::thumbnail_dir_exists() == false {
+        setup::mtv_image::create_thumbnail_dir();
+    }
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
     let socket = setup::mtv_utils::gen_server_addr();
