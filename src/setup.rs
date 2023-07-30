@@ -2,6 +2,7 @@ use std::env;
 use std::time::Instant;
 use crate::envvars;
 
+
 pub mod mtv_image;
 mod mtv_process_movies;
 mod mtv_process_tvshows;
@@ -72,7 +73,15 @@ pub fn setup() -> bool {
             }
         }
     }
-    println!("MTV Setup time is: {:?}", start.elapsed());
+    // let setup_time = println!("MTV Setup time is: {:?}", start.elapsed());
+
+    let _write_file = crate::setup::mtv_utils::write_current_datetime_to_file(start.elapsed());
+
+
+
+
+
+
 
     true
 }

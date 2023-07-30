@@ -4,6 +4,9 @@ use std::path::Path;
 use std::net::{Ipv4Addr, IpAddr, SocketAddr};
 use std::str::FromStr;
 use std::env;
+use std::io::Write;
+use std::time::SystemTime;
+use std::time::Duration;
 
 pub fn gen_server_addr() -> SocketAddr {
     let raw_addr = env::var("MTV_RAW_ADDR").expect("MTV_RAW_ADDR not set");
@@ -86,6 +89,21 @@ pub fn get_file_size(x: &String) -> u64 {
     path.size_on_disk().unwrap()
 }
 
+pub fn write_current_datetime_to_file(x: Duration) {
+    let save_addr = env::var("MTV_FILE_ADDR").expect("MTV_FILE_ADDR not set");
+    let now = SystemTime::now();
+    let formatted_datetime = format!("Setup Time: {:?}\n\t taking: {:?} milis", now, x);
+
+    let mut file = std::fs::File::create(save_addr).unwrap();
+    file.write_all(formatted_datetime.as_bytes()).unwrap();
+}
+
+pub fn mtvsetup_file_check() -> bool {
+    let save_addr = env::var("MTV_FILE_ADDR").expect("MTV_FILE_ADDR not set");
+    let path = Path::new(&save_addr);
+
+    path.exists()
+}
 // pub fn media_total_size(addr: String) -> String {
 //     let total_size = WalkDir::new(addr)
 //         .min_depth(1)
