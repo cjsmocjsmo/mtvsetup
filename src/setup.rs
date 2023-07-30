@@ -15,15 +15,15 @@ pub fn setup() -> bool {
 
     let _vars = envvars::set_env_vars();
 
-    // if !mtv_tables::db_file_exists() {
-    //     mtv_tables::create_db_file();
-    // }
+    if mtv_tables::db_file_exists() == false {
+        mtv_tables::create_db_file();
+    }
+
+    if mtv_image::thumbnail_dir_exists() == false {
+        mtv_image::create_thumbnail_dir();
+    }
 
     let _tables = mtv_tables::create_tables();
-
-    // if !mtv_image::thumbnail_dir_exists() {
-    //     mtv_image::create_thumbnail_dir();
-    // }
 
     let usb1 = env::var("MTV_USB1").expect("$MTV_USB1 is not set");
     let usb2 = env::var("MTV_USB2").expect("$MTV_USB2 is not set");
