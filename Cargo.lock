@@ -1045,6 +1045,7 @@ dependencies = [
  "env_logger",
  "filesize",
  "image",
+ "log",
  "md-5",
  "regex",
  "rusqlite",

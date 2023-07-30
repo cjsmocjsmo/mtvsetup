@@ -16,7 +16,7 @@ pub async fn db_file_check(path: web::Path<String>) -> impl Responder {
 #[get("/setup/{status}")]
 pub async fn run_setup(path: web::Path<String>) -> impl Responder {
     let fuck = path.into_inner();
-    let _setup = setup::setup();
-    let result = format!("Go to http://{} is complete!", fuck.clone());
-    HttpResponse::Ok().body(result)
+    let stp = setup::setup();
+    let setup = stp.to_string();
+    HttpResponse::Ok().body(setup)
 }

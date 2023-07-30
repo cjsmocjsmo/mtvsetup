@@ -3,28 +3,42 @@ use actix_files as fs;
 use actix_web::{App, HttpServer};
 use std::env;
 
+
 pub mod envvars;
 pub mod servermov;
 pub mod serversetup;
 pub mod servertvs;
 pub mod setup;
 
-#[actix_web::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    env_logger::init();
-    let _vars = envvars::set_env_vars();
+use env_logger::{Builder, Target};
 
-    if !setup::mtv_tables::db_file_exists() {
+#[actix_web::main]
+
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    Builder::new()
+        .target(Target::Stdout)
+        .init();
+
+    log::info!("MTV Start");
+    let _vars = envvars::set_env_vars();
+    log::info!("Env Vars have been set");
+
+
+    if setup::mtv_tables::db_file_exists() == false {
         setup::mtv_tables::create_db_file();
+        log::info!("created db file")
     }
 
     if setup::mtv_image::thumbnail_dir_exists() == false {
         setup::mtv_image::create_thumbnail_dir();
+        log::info!("created thumb dir")
     }
+
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
+
     let socket = setup::mtv_utils::gen_server_addr();
-    println!("To setup db go to: http://{}/run_setup", socket.clone());
+    println!("To setup db go to: http://{}/setup/now", socket.clone());
     HttpServer::new(move || {
         let cors = Cors::default()
             .allow_any_origin()
