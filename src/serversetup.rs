@@ -15,7 +15,7 @@ pub async fn db_file_check(path: web::Path<String>) -> impl Responder {
 
 #[get("/setup/{status}")]
 pub async fn run_setup(path: web::Path<String>) -> impl Responder {
-    let fuck = path.into_inner();
+    let _fuck = path.into_inner();
     let stp = setup::setup();
     let setup = stp.to_string();
     HttpResponse::Ok().body(setup)
