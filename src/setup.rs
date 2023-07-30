@@ -19,9 +19,9 @@ pub fn setup() -> bool {
         mtv_tables::create_db_file();
     }
 
-    if mtv_image::thumbnail_dir_exists() == false {
-        mtv_image::create_thumbnail_dir();
-    }
+    // if mtv_image::thumbnail_dir_exists() == false {
+    //     mtv_image::create_thumbnail_dir();
+    // }
 
     let _tables = mtv_tables::create_tables();
 

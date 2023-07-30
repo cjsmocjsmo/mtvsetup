@@ -29,10 +29,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //     log::info!("created db file")
     // }
 
-    // if setup::mtv_image::thumbnail_dir_exists() == false {
-    //     setup::mtv_image::create_thumbnail_dir();
-    //     log::info!("created thumb dir")
-    // }
+    if setup::mtv_image::thumbnail_dir_exists() == false {
+        setup::mtv_image::create_thumbnail_dir();
+        log::info!("created thumb dir")
+    }
 
     let thumb_path =
         env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
