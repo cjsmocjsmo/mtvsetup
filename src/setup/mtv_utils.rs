@@ -90,7 +90,7 @@ pub fn get_file_size(x: &String) -> u64 {
 }
 
 pub fn write_current_datetime_to_file(x: Duration) {
-    let save_addr = env::var("MTV_FILE_ADDR").expect("MTV_FILE_ADDR not set");
+    let save_addr = env::var("MTV_FILE_PATH").expect("MTV_FILE_PATH not set");
     let now = SystemTime::now();
     let formatted_datetime = format!("Setup Time: {:?}\n\t taking: {:?} milis", now, x);
 
