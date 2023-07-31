@@ -13,6 +13,6 @@ cargo build --release --bin mtvsetup;
 sudo mv ./target/release/mtvsetup /usr/bin/;
 sudo chmod +xr /usr/bin/mtvsetup;
 sudo chown root:root /usr/bin/mtvsetup;
-# sudo systemctl daemon-reload;
-# sudo systemctl start mtvsetup.service;
-# sudo systemctl status mtvsetup.service
+sudo systemctl daemon-reload;
+sudo systemctl start mtvsetup.service;
+sudo systemctl status mtvsetup.service
