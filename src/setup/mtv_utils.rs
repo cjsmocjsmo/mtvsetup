@@ -99,7 +99,7 @@ pub fn write_current_datetime_to_file(x: Duration) {
 }
 
 pub fn mtvsetup_file_check() -> bool {
-    let save_addr = env::var("MTV_FILE_ADDR").expect("MTV_FILE_ADDR not set");
+    let save_addr = env::var("MTV_FILE_PATH").expect("MTV_FILE_PATH not set");
     let path = Path::new(&save_addr);
 
     path.exists()
