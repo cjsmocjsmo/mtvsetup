@@ -275,13 +275,6 @@ pub async fn charliebrown() -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
-#[get("/eternalquon")]
-pub async fn eternalquon() -> impl Responder {
-    let searcht = String::from("EternalQuon");
-    let result = get_shows(searcht).await;
-    HttpResponse::Ok().body(result)
-}
-
 #[get("/minions")]
 pub async fn minions() -> impl Responder {
     let searcht = String::from("Minions");

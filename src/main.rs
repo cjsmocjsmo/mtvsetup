@@ -85,7 +85,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .service(servermov::xmen)
             .service(servermov::buzz)
             .service(servermov::charliebrown)
-            .service(servermov::eternalquon)
             .service(servermov::minions)
             .service(servermov::oldies)
             .service(servermov::tinkerbell)
@@ -131,6 +130,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .service(servertvs::shehulk)
             .service(servertvs::wandavision)
             .service(servertvs::hford1923)
+            .service(servertvs::prehistoricplanet)
             .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
     })
     .bind(socket)?
