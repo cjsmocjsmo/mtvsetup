@@ -133,6 +133,16 @@ pub async fn strangenewworlds(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
+#[get("/starwars/ahsoka/{season}")]
+pub async fn ahsoka(path: web::Path<String>) -> impl Responder {
+    let catagory = String::from("Ahsoka");
+    let season = path.into_inner();
+    println!("catagory: {}", catagory);
+    println!("season: {}", season);
+    let result = get_shows(catagory, season).await;
+    HttpResponse::Ok().body(result)
+}
+
 #[get("/starwars/andor/{season}")]
 pub async fn andor(path: web::Path<String>) -> impl Responder {
     let catagory = String::from("Andor");
@@ -416,6 +426,8 @@ pub async fn hford1923(path: web::Path<String>) -> impl Responder {
     let result = get_shows(catagory, season).await;
     HttpResponse::Ok().body(result)
 }
+
+
 
 async fn get_shows(cat: String, sea: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
