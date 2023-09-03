@@ -23,13 +23,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _vars = envvars::set_env_vars();
     log::info!("Env Vars have been set");
 
-
     // if setup::mtv_tables::db_file_exists() == false {
     //     setup::mtv_tables::create_db_file();
     //     log::info!("created db file")
     // }
+    let t_dir_exists = setup::mtv_image::thumbnail_dir_exists();
 
-    if setup::mtv_image::thumbnail_dir_exists() == false {
+    if !t_dir_exists {
         setup::mtv_image::create_thumbnail_dir();
         log::info!("created thumb dir")
     }
