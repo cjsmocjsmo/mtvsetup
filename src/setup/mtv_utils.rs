@@ -105,18 +105,18 @@ pub fn mtvsetup_file_check() -> bool {
     path.exists()
 }
 
-pub fn db_check_file_exists() -> bool {
-    let save_addr = env::var("MTV_DB_CHECK_FILE").expect("MTV_DB_CHECK_FILE not set");
-    let path = Path::new(&save_addr);
+// pub fn db_check_file_exists() -> bool {
+//     let save_addr = env::var("MTV_DB_CHECK_FILE").expect("MTV_DB_CHECK_FILE not set");
+//     let path = Path::new(&save_addr);
 
-    path.exists()
-}
+//     path.exists()
+// }
 
-pub fn gen_db_check_file() {
-    let save_addr = env::var("MTV_DB_CHECK_FILE").expect("MTV_DB_CHECK_FILE not set");
-    let mut file = std::fs::File::create(save_addr).unwrap();
-    file.write_all(b"1").unwrap();
-}
+// pub fn gen_db_check_file() {
+//     let save_addr = env::var("MTV_DB_CHECK_FILE").expect("MTV_DB_CHECK_FILE not set");
+//     let mut file = std::fs::File::create(save_addr).unwrap();
+//     file.write_all(b"1").unwrap();
+// }
 // pub fn media_total_size(addr: String) -> String {
 //     let total_size = WalkDir::new(addr)
 //         .min_depth(1)

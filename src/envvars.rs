@@ -62,10 +62,10 @@ pub fn set_env_vars() {
     if db_path.is_err() {
         env::set_var("MTV_DB_PATH", "/usr/share/mtvsetup/mtvsetup/db/mtv.db");
     }
-    let db_check_file_path = env::var("MTV_DB_CHECK_FILE_PATH");
-    if db_check_file_path.is_err() {
-        env::set_var("MTV_DB_CHECK_FILE_PATH", "/usr/share/mtvsetup/mtvsetup/db/db_check_file.txt");
-    }
+    // let db_check_file_path = env::var("MTV_DB_CHECK_FILE_PATH");
+    // if db_check_file_path.is_err() {
+    //     env::set_var("MTV_DB_CHECK_FILE_PATH", "/usr/share/mtvsetup/mtvsetup/db/db_check_file.txt");
+    // }
 
     let db_path = env::var("MTV_FILE_PATH");
     if db_path.is_err() {
