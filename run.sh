@@ -5,10 +5,10 @@ if [ -f /etc/systemd/system/mtvsetup.service ]; then
     sudo systemctl stop mtvsetup.service;
 fi
 cd $MTVP;
-sudo rm -rf $MTVP + "/thumbnails";
-sudo rm -rf $MTVP + "/db";
-mkdir $MTVP + "/db";
-touch $MTVP + "/db/mtv.db";
+sudo rm -rf $MTVP/thumbnails;
+sudo rm -rf $MTVP/db;
+mkdir $MTVP/db;
+touch $MTVP/db/mtv.db;
 sudo rm -rf $MTVP/setup.mtv;
 git pull;
 cargo build --release --bin mtvsetup;
