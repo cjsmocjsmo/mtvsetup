@@ -3,7 +3,13 @@ use std::env;
 use std::path::Path;
 use std::fs;
 
-pub fn create_tables() -> Result<()> {
+pub fn create_tables() {
+    let _cmt = create_movies_table();
+    let _ctvt = create_tvshows_table();
+    let _cit = create_images_table();
+}
+
+pub fn create_movies_table() -> Result<()> {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path.clone())?;
 
@@ -22,6 +28,13 @@ pub fn create_tables() -> Result<()> {
          )",
         (),
     )?;
+
+    Ok(())
+}
+
+pub fn create_tvshows_table() -> Result<()> {
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path.clone())?;
     conn.execute(
         "CREATE TABLE IF NOT EXISTS tvshows (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,6 +49,13 @@ pub fn create_tables() -> Result<()> {
          )",
         (),
     )?;
+
+    Ok(())
+}
+
+pub fn create_images_table() -> Result<()> {
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path.clone())?;
     conn.execute(
         "CREATE TABLE IF NOT EXISTS images (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -47,6 +67,23 @@ pub fn create_tables() -> Result<()> {
             thumbpath TEXT NOT NULL,
             idx INTEGER NOT NULL,
             httpthumbpath TEXT NOT NULL
+         )",
+        (),
+    )?;
+
+    Ok(())
+}
+
+pub fn create_stats_table() -> Result<()> {
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path.clone())?;
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS stats (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            moviecount TEXT NOT NULL,
+            tvshowcount TEXT NOT NULL,
+            postercount TEXT NOT NULL,
+            size TEXT NOT NULL,
          )",
         (),
     )?;

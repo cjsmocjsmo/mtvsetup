@@ -67,7 +67,28 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
             }
         }
     }
-    let media_vec = vec![moviesvec, tvshowsvec, mov_tv_thumb_vec];
+    let mut fsizevec = Vec::new();
+    for m in moviesvec.clone() {
+        let fsize = crate::setup::mtv_utils::get_file_size(&m);
+        fsizevec.push(fsize);
+    };
+
+    for tv in tvshowsvec.clone() {
+        let fsize = crate::setup::mtv_utils::get_file_size(&tv);
+        fsizevec.push(fsize);
+    };
+
+    for img in mov_tv_thumb_vec.clone() {
+        let fsize = crate::setup::mtv_utils::get_file_size(&img);
+        fsizevec.push(fsize);
+    };
+
+    let mut fsizevecsum = Vec::new();
+    let fsizevecsumvecc = fsizevec.iter().sum::<u64>().to_string();
+    fsizevecsum.push(fsizevecsumvecc);
+
+
+    let media_vec = vec![moviesvec.clone(), tvshowsvec, mov_tv_thumb_vec, fsizevecsum];
 
     media_vec
 }

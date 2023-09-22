@@ -1,6 +1,7 @@
 use crate::envvars;
 use std::env;
 use std::time::Instant;
+use rusqlite::Connection;
 
 pub mod mtv_image;
 mod mtv_process_movies;
@@ -15,11 +16,7 @@ pub fn setup() -> bool {
 
     let _vars = envvars::set_env_vars();
 
-    let _tables = mtv_tables::create_db_file();
-
-    // if mtv_image::thumbnail_dir_exists() == false {
-    //     mtv_image::create_thumbnail_dir();
-    // }
+    let _dbfile = mtv_tables::create_db_file();
 
     let _tables = mtv_tables::create_tables();
 
@@ -30,11 +27,23 @@ pub fn setup() -> bool {
 
     let usblist = Vec::from([usb1, usb2, usb3, usb4]);
 
+    let mut thumbcount = String::new();
+    let mut moviecount = String::new();
+    let mut tvshowcount = String::new();
+    let mut fsizevec: Vec<u64> = Vec::new();
+
+
     println!("usblist: {:?}", usblist.clone());
 
     for usb in usblist {
         if usb != "None" {
             let usb_movies_vec_vec = mtv_walk_dirs::walk_movies_dir(usb.clone());
+
+            let fsize = usb_movies_vec_vec[3].clone();
+
+            fsizevec.push(fsize[0].clone().parse().unwrap());
+
+
 
             let usb_thumbnailz = usb_movies_vec_vec[2].clone();
             if usb_thumbnailz.clone().len() > 0 {
@@ -46,7 +55,8 @@ pub fn setup() -> bool {
                         count.clone(),
                     );
                     println!("thumb count: {}", count.clone());
-                }
+                };
+                thumbcount = count.clone().to_string();
             }
 
             let usb_moviez = usb_movies_vec_vec[0].clone();
@@ -57,6 +67,7 @@ pub fn setup() -> bool {
                     let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
                 }
                 println!("movie count: {}", count.clone());
+                moviecount = count.clone().to_string();
             }
 
             let usb_tvshowz = usb_movies_vec_vec[1].clone();
@@ -67,9 +78,27 @@ pub fn setup() -> bool {
                     let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
                 }
                 println!("tvshow count: {}", count.clone());
+                tvshowcount = count.clone().to_string();
             }
         }
-    }
+    };
+
+    let stats = crate::setup::mtv_types::Stats {
+        id: 1,
+        moviecount: moviecount,
+        tvshowcount: tvshowcount,
+        postercount: thumbcount,
+        size: fsizevec.iter().sum::<u64>().to_string(),
+    };
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path).expect("unable to open db file");
+    conn.execute(
+        "INSERT INTO stats (moviecount, tvshowcount, postercount, size) VALUES (?1, ?2, ?3, ?4)",
+        &[&stats.moviecount, &stats.tvshowcount, &stats.postercount, &stats.size],
+
+    )
+    .expect("Unable to insert new tvshow info");
+
     // let setup_time = println!("MTV Setup time is: {:?}", start.elapsed());
 
     let _write_file = crate::setup::mtv_utils::write_current_datetime_to_file(start.elapsed());

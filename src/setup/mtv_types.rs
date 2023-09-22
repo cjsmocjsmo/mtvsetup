@@ -39,3 +39,12 @@ pub struct MovieImage {
     pub idx: u32,
     pub httpthumbpath: String,
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Stats {
+    pub id: u32,
+    pub moviecount: String,
+    pub tvshowcount: String,
+    pub postercount: String,
+    pub size: String,
+}
