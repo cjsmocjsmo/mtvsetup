@@ -83,7 +83,7 @@ pub fn setup() -> bool {
         }
     };
 
-    let stats = crate::setup::mtv_types::Stats {
+    let statz = crate::setup::mtv_types::Stats {
         id: 1,
         moviecount: moviecount,
         tvshowcount: tvshowcount,
@@ -94,7 +94,7 @@ pub fn setup() -> bool {
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
         "INSERT INTO stats (moviecount, tvshowcount, postercount, size) VALUES (?1, ?2, ?3, ?4)",
-        &[&stats.moviecount, &stats.tvshowcount, &stats.postercount, &stats.size],
+        &[&statz.moviecount, &statz.tvshowcount, &statz.postercount, &statz.size],
 
     )
     .expect("Unable to insert new tvshow info");
