@@ -84,7 +84,7 @@ pub fn create_stats_table() -> Result<()> {
             moviecount TEXT NOT NULL,
             tvshowcount TEXT NOT NULL,
             postercount TEXT NOT NULL,
-            size TEXT NOT NULL,
+            size TEXT NOT NULL
          )",
         (),
     )?;
