@@ -7,6 +7,7 @@ pub fn create_tables() {
     let _cmt = create_movies_table();
     let _ctvt = create_tvshows_table();
     let _cit = create_images_table();
+    let _cst = create_stats_table();
 }
 
 pub fn create_movies_table() -> Result<()> {
