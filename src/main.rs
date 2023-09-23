@@ -49,6 +49,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         App::new()
             .wrap(cors)
             .service(servermov::hello)
+            .service(servermov::get_stats)
             .service(serversetup::run_setup)
             .service(serversetup::run_setup_check)
             .service(servermov::action)
