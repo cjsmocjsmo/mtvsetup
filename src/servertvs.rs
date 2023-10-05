@@ -259,7 +259,7 @@ pub async fn cowboybebop(path: web::Path<String>) -> impl Responder {
 
 #[get("/scifi/forallmankind/{season}")]
 pub async fn forallmankind(path: web::Path<String>) -> impl Responder {
-    let catagory = String::from("ForAllMankind");
+    let catagory = String::from("ForAllManKind");
     let season = path.into_inner();
     println!("catagory: {}", catagory);
     println!("season: {}", season);
