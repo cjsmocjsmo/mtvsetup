@@ -427,7 +427,25 @@ pub async fn hford1923(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
+#[get("/thecontinental/{season}")]
+pub async fn thecontinental(path: web::Path<String>) -> impl Responder {
+    let catagory = String::from("TheContinental");
+    let season = path.into_inner();
+    println!("catagory: {}", catagory);
+    println!("season: {}", season);
+    let result = get_shows(catagory, season).await;
+    HttpResponse::Ok().body(result)
+}
 
+#[get("/ourflagmeansdeath/{season}")]
+pub async fn ourflagmeansdeath(path: web::Path<String>) -> impl Responder {
+    let catagory = String::from("OurFlagMeansDeath");
+    let season = path.into_inner();
+    println!("catagory: {}", catagory);
+    println!("season: {}", season);
+    let result = get_shows(catagory, season).await;
+    HttpResponse::Ok().body(result)
+}
 
 async fn get_shows(cat: String, sea: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
