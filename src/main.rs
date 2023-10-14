@@ -6,7 +6,7 @@ use std::env;
 
 pub mod envvars;
 pub mod servermov;
-pub mod serversetup;
+pub mod serverutils;
 pub mod servertvs;
 pub mod setup;
 
@@ -48,10 +48,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         App::new()
             .wrap(cors)
-            .service(servermov::hello)
-            .service(servermov::get_stats)
-            .service(serversetup::run_setup)
-            .service(serversetup::run_setup_check)
+            .service(serverutils::hello)
+            .service(serverutils::get_stats)
+            .service(serverutils::run_setup)
+            .service(serverutils::run_setup_check)
             .service(servermov::action)
             .service(servermov::arnold)
             .service(servermov::brucelee)
