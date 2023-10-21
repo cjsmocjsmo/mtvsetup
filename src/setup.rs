@@ -54,7 +54,6 @@ pub fn setup() -> bool {
                         thumb.clone(),
                         count.clone(),
                     );
-                    println!("thumb count: {}", count.clone());
                 };
                 thumbcount = count.clone().to_string();
             }
@@ -66,7 +65,6 @@ pub fn setup() -> bool {
                     count = count + 1;
                     let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
                 }
-                println!("movie count: {}", count.clone());
                 moviecount = count.clone().to_string();
             }
 
@@ -77,7 +75,6 @@ pub fn setup() -> bool {
                     count = count + 1;
                     let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
                 }
-                println!("tvshow count: {}", count.clone());
                 tvshowcount = count.clone().to_string();
             }
         }
@@ -98,8 +95,6 @@ pub fn setup() -> bool {
 
     )
     .expect("Unable to insert new tvshow info");
-
-    // let setup_time = println!("MTV Setup time is: {:?}", start.elapsed());
 
     let _write_file = crate::setup::mtv_utils::write_current_datetime_to_file(start.elapsed());
 

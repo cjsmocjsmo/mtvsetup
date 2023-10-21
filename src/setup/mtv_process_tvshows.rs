@@ -155,7 +155,6 @@ pub fn process_tvshows(tv: String, count: u32) {
         path: tv,
         idx: count.to_string(),
     };
-    println!("{:#?}", tvshow);
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
