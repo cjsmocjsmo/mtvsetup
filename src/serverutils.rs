@@ -25,11 +25,12 @@ pub async fn get_stats() -> impl Responder {
             postercount: row.get(3).expect("Unable to get postercount"),
             size: row.get(4).expect("Unable to get fsize"),
         };
+        println!("id: {}, moviecount: {}, tvshowcount: {}, postercount: {}, size: {}", stat.id, stat.moviecount, stat.tvshowcount, stat.postercount, stat.size);
         result.push(stat);
     }
-    let result = serde_json::to_string(&result).unwrap();
+    let results = serde_json::to_string(&result).unwrap();
 
-    HttpResponse::Ok().body(result)
+    HttpResponse::Ok().body(results)
 }
 
 #[get("/setupcheck/{status}")]
