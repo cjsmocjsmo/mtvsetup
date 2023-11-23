@@ -134,7 +134,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .service(servertvs::prehistoricplanet)
             .service(servertvs::ahsoka)
             .service(servertvs::thecontinental)
-            .service(servertvs::ourflagmeansdeath)
             .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
     })
     .bind(socket)?
