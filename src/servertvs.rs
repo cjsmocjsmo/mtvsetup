@@ -354,6 +354,14 @@ pub async fn thecontinental(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
+#[get("/monachlegacyofmonsters/{season}")]
+pub async fn monachlegacyofmonsters(path: web::Path<String>) -> impl Responder {
+    let catagory = String::from("MonachLegacyOfMonsters");
+    let season = path.into_inner();
+    let result = get_shows(catagory, season).await;
+    HttpResponse::Ok().body(result)
+}
+
 async fn get_shows(cat: String, sea: String) -> String {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
