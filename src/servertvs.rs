@@ -354,7 +354,7 @@ pub async fn thecontinental(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(result)
 }
 
-#[get("/monatchlegacyofmonsters/{season}")]
+#[get("/monarchlegacyofmonsters/{season}")]
 pub async fn monarchlegacyofmonsters(path: web::Path<String>) -> impl Responder {
     let catagory = String::from("MonarchLegacyOfMonsters");
     let season = path.into_inner();
