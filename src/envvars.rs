@@ -3,24 +3,33 @@ use std::env;
 // Production settings
 pub fn set_env_vars() {
 
-    let usb1 = env::var("MTV_USB1");
-    if usb1.is_err() {
-        env::set_var("MTV_USB1", "/media/pi/PiTB/media");
+    // let usb1 = env::var("MTV_USB1");
+    // if usb1.is_err() {
+    //     env::set_var("MTV_USB1", "/media/pi/PiTB/media");
+    // }
+
+    // let usb2 = env::var("MTV_USB2");
+    // if usb2.is_err() {
+    //     env::set_var("MTV_USB2", "None");
+    // }
+
+    // let usb3 = env::var("MTV_USB3");
+    // if usb3.is_err() {
+    //     env::set_var("MTV_USB3", "None");
+    // }
+
+    // let usb4 = env::var("MTV_USB4");
+    // if usb4.is_err() {
+    //     env::set_var("MTV_USB4", "None");
+    // }
+    let mov_path = env::var("MTV_MOVIES_PATH");
+    if mov_path.is_err() {
+        env::set_var("MTV_MOVES_PATH", "/home/pimedia/PINAS/bazmnt/Movies/");
     }
 
-    let usb2 = env::var("MTV_USB2");
-    if usb2.is_err() {
-        env::set_var("MTV_USB2", "None");
-    }
-
-    let usb3 = env::var("MTV_USB3");
-    if usb3.is_err() {
-        env::set_var("MTV_USB3", "None");
-    }
-
-    let usb4 = env::var("MTV_USB4");
-    if usb4.is_err() {
-        env::set_var("MTV_USB4", "None");
+    let tv_path = env::var("MTV_TV_PATH");
+    if tv_path.is_err() {
+        env::set_var("MTV_TV_PATH", "/home/pimedia/PINAS/bazmnt/TVShows/");
     }
 
     let thumb_path = env::var("MTV_MOVIES_THUMBNAIL_PATH");
@@ -35,12 +44,12 @@ pub fn set_env_vars() {
 
     let raw_addr = env::var("MTV_RAW_ADDR");
     if raw_addr.is_err() {
-        env::set_var("MTV_RAW_ADDR", "192.168.0.94");
+        env::set_var("MTV_RAW_ADDR", "192.168.0.104");
     }
 
     let server_addr = env::var("MTV_SERVER_ADDR");
     if server_addr.is_err() {
-        env::set_var("MTV_SERVER_ADDR", "http://192.168.0.94");
+        env::set_var("MTV_SERVER_ADDR", "http://192.168.0.104");
     }
 
     let server_port = env::var("MTV_SERVER_PORT");

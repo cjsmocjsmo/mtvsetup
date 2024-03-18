@@ -1,6 +1,6 @@
 
 // use std::env;
-use image::{self};
+// use image::{self};
 use rusqlite::Connection;
 use std::env;
 

@@ -9,6 +9,7 @@ pub mod servermov;
 pub mod serverutils;
 pub mod servertvs;
 pub mod setup;
+// pub mod player;
 
 use env_logger::{Builder, Target};
 
@@ -135,6 +136,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             .service(servertvs::ahsoka)
             .service(servertvs::thecontinental)
             .service(servertvs::monarchlegacyofmonsters)
+            // .service(player::play)
+            // .service(player::pause)
+            // .service(player::stop)
+            // .service(player::next)
+            // .service(player::previous)
             .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
     })
     .bind(socket)?
