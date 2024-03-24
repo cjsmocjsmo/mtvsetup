@@ -80,7 +80,6 @@ fn parse_catagory(x: String) -> String {
         "Comedy",
         "Documentary",
         "Drama",
-        "EternalQuon",
         "Fantasy",
         "Godzilla",
         "HarryPotter",
