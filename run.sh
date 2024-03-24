@@ -8,12 +8,6 @@ fi
 MTV="/usr/share/mtvsetup";
 MTVP="/usr/share/mtvsetup/mtvsetup"
 
-if [ ! -d $MTV ]; then
-    sudo mkdir $MTV;
-    sudo chmod +xr $MTV;
-    sudo chown root:root $MTV;
-fi
-
 if [ ! -d $MTVP ]; then
     cd $MTV;
     git clone https://github.com/cjsmocjsmo/mtvsetup.git
