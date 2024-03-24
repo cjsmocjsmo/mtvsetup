@@ -16,7 +16,7 @@ pub fn setup() -> bool {
 
     let _vars = envvars::set_env_vars();
 
-    let _dbfile = mtv_tables::create_db_file();
+    // let _dbfile = mtv_tables::create_db_file();
 
     let _tables = mtv_tables::create_tables();
 
