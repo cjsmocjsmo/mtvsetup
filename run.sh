@@ -22,7 +22,7 @@ if [ -d $MTVP ]; then
     sudo rm -rf $MTVP/thumbnails;
     sudo rm -rf $MTVP/setup.mtv;
     sudo rm -rf $MTVP/db;
-    mkdir $MTVP/db;
+    sudo mkdir $MTVP/db;
     cd $MTVP;
     git pull;
     cargo build --release --bin mtvsetup;
@@ -32,7 +32,7 @@ if [ -d $MTVP ]; then
 fi
 
 if [ ! -f /etc/systemd/system/mtvsetup.service ]; then
-    cp -pvr /usr/share/mtvsetup/mtvsetup/mtvsetup.service /etc/systemd/system/;
+    sudo cp -pvr /usr/share/mtvsetup/mtvsetup/mtvsetup.service /etc/systemd/system/;
     sudo chmod +xr /etc/systemd/system/mtvsetup.service;
     sudo chown root:root /etc/systemd/system/mtvsetup.service;
     sudo systemctl daemon-reload;
