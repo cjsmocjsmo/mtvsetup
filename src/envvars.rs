@@ -26,6 +26,7 @@ pub fn set_env_vars() {
     if mov_path.is_err() {
         env::set_var("MTV_MOVES_PATH", "/home/pimedia/PINAS/bazmnt/Movies/");
     }
+    println!("MTV_MOVIES_PATH: {:?}", env::var("MTV_MOVIES_PATH"));
 
     let tv_path = env::var("MTV_TV_PATH");
     if tv_path.is_err() {

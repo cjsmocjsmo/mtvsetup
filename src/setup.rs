@@ -1,4 +1,4 @@
-use crate::envvars;
+// use crate::envvars;
 use std::env;
 use std::time::Instant;
 use rusqlite::Connection;
@@ -14,7 +14,7 @@ mod mtv_walk_dirs;
 pub fn setup() -> bool {
     let start = Instant::now();
 
-    let _vars = envvars::set_env_vars();
+    // let _vars = envvars::set_env_vars();
 
     // let _dbfile = mtv_tables::create_db_file();
 
