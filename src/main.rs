@@ -16,13 +16,15 @@ use env_logger::{Builder, Target};
 #[actix_web::main]
 
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    log::info!("MTV Start");
+    let _vars = envvars::set_env_vars();
+    log::info!("Env Vars have been set");
+    
     Builder::new()
         .target(Target::Stdout)
         .init();
 
-    log::info!("MTV Start");
-    let _vars = envvars::set_env_vars();
-    log::info!("Env Vars have been set");
+    
 
     // if setup::mtv_tables::db_file_exists() == false {
     //     setup::mtv_tables::create_db_file();
