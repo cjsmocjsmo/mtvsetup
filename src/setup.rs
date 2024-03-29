@@ -2,6 +2,7 @@
 use std::env;
 use std::time::Instant;
 use rusqlite::Connection;
+use crate::envvars;
 
 pub mod mtv_image;
 mod mtv_process_movies;
@@ -14,7 +15,7 @@ mod mtv_walk_dirs;
 pub fn setup() -> bool {
     let start = Instant::now();
 
-    // let _vars = envvars::set_env_vars();
+    let _vars = envvars::set_env_vars();
 
     // let _dbfile = mtv_tables::create_db_file();
 
