@@ -44,13 +44,14 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     
    
 
-    // let statz = mtv_types::Stats {
-    //     id: 1,
-    //     moviecount: moviecount,
-    //     tvshowcount: tvshowcount,
-    //     postercount: thumbcount,
-    //     size: fsizevec.iter().sum::<u64>().to_string(),
-    // };
+    let statz = mtv_types::Stats {
+        id: 1,
+        moviecount: mov_count.to_string(),
+        tvshowcount: tv_count.to_string(),
+        postercount: poster_count.to_string(),
+        size: "0".to_string(),
+    };
+    println!("statz: {:?}", statz);
     // let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     // let conn = Connection::open(db_path).expect("unable to open db file");
     // conn.execute(
