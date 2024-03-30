@@ -19,69 +19,30 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let poster_path = env::var("MTV_POSTER_PATH").expect("$MTV_POSTER_PATH is not set");
     let poster_list = mtv_walk_dirs::walk_posters_dir(poster_path.clone());
-    
+    let poster_count = poster_list.len();
     if !mtv_image::thumbnail_dir_exists() {
         mtv_image::create_thumbnail_dir();
     }
-
     poster_list.into_par_iter().enumerate().for_each(|(count, poster)| {
         mtv_image::process_posters(poster, (count + 1).try_into().unwrap());
     });
 
-    // let mut count = 0;
-    // for poster in poster_list {
-    //     count = count + 1;
-    //     let _process_movie_posters = mtv_image::process_posters(poster.clone(), count.clone());
-    // }
+    let mov_path = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
+    let mov_list = mtv_walk_dirs::walk_movies_dir(mov_path.clone());
+    let mov_count = mov_list.len();
+    mov_list.into_par_iter().enumerate().for_each(|(count, mov)| {
+        mtv_process_movies::process_movies(mov, (count + 1).try_into().unwrap());
+    });
 
-    // let movs = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
-    // let tvs = env::var("MTV_TV_PATH").expect("$MTV_TV_PATH is not set");
-
-    // let medialist = Vec::from([movs, tvs]);
-
-    // let mut mov_vec = Vec::new();
-    // let mut tv_vec = Vec::new();
-
-    // let mut fsize_vec = Vec::new();
-
-    // for media in medialist {
-    //     let media_vec_vec = mtv_walk_dirs::walk_movies_dir(media.clone());
-    //     mov_vec = media_vec_vec[0].clone();
-    //     tv_vec = media_vec_vec[1].clone();
-    //     post_vec = media_vec_vec[2].clone();
-    //     fsize_vec = media_vec_vec[3].clone();
-    // }
-
-    // let thumbcount = post_vec.len().to_string();
-    // let moviecount = mov_vec.len().to_string();
-    // let tvshowcount = tv_vec.len().to_string();
-
-    // println!("fsizes: {:?}", fsize_vec.clone());
-    // println!("Thumbcount {:?}", thumbcount.clone());
-    // println!("Moviecount {:?}", moviecount.clone());
-    // println!("Tvshowcount {:?}", tvshowcount.clone());
-
-    //         let moviez = media_vec_vec[0].clone();
-    //         if moviez.clone().len() > 0 {
-    //             let mut count = 0;
-    //             for mov in moviez {
-    //                 count = count + 1;
-    //                 let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
-    //             }
-    //             moviecount = count.clone().to_string();
-    //         }
-
-    //         let tvshowz = media_vec_vec[1].clone();
-    //         if tvshowz.clone().len() > 0 {
-    //             let mut count = 0;
-    //             for tv in tvshowz {
-    //                 count = count + 1;
-    //                 let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
-    //             }
-    //             tvshowcount = count.clone().to_string();
-    //         }
-
-    // };
+    let tv_path = env::var("MTV_TV_PATH").expect("$MTV_TV_PATH is not set");
+    let tv_list = mtv_walk_dirs::walk_tvshows_dir(tv_path.clone());
+    let tv_count = tv_list.len();
+    tv_list.into_par_iter().enumerate().for_each(|(count, tv)| {
+        mtv_process_tvshows::process_tvshows(tv, (count + 1).try_into().unwrap());
+    });
+    
+    
+   
 
     // let statz = mtv_types::Stats {
     //     id: 1,
