@@ -47,6 +47,7 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
         mtv_process_tvshows::process_tvshows(tv, (count + 1).try_into().unwrap());
     });
 
+    println!("Starting statz");
     let statz = mtv_types::Stats {
         id: 1,
         moviecount: mov_count.to_string(),
