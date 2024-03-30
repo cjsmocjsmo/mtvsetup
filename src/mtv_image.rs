@@ -41,7 +41,7 @@ fn create_movie_thumbnail(x: String) -> (String, String) {
     (out_fname, http_fname)
 }
 
-pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
+pub fn process_posters(x: String, count: u32) -> Vec<String> {
     let mut bad_image_vec = vec![];
     let dims = crate::mtv_image::get_image_dims(&x);
     if dims != (0, 0) {

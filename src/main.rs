@@ -15,52 +15,45 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
     // let start = Instant::now();
 
-    
+    let poster_path = env::var("MTV_POSTER_PATH").expect("$MTV_POSTER_PATH is not set");
 
-    let _tables = mtv_tables::create_tables();
+    let poster_list = mtv_walk_dirs::walk_posters_dir(poster_path.clone());
 
-    let movs = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
-    let tvs = env::var("MTV_TV_PATH").expect("$MTV_TV_PATH is not set");
-
-    let medialist = Vec::from([movs, tvs]);
-
-    
-
-    println!("medialist: {:?}", medialist.clone());
-
-    let mut mov_vec = Vec::new();
-    let mut tv_vec = Vec::new();
-    let mut post_vec = Vec::new();
-    let mut fsize_vec = Vec::new();
-
-    for media in medialist {
-        let media_vec_vec = mtv_walk_dirs::walk_movies_dir(media.clone());
-        mov_vec = media_vec_vec[0].clone();
-        tv_vec = media_vec_vec[1].clone();
-        post_vec = media_vec_vec[2].clone();
-        fsize_vec = media_vec_vec[3].clone();
+    let mut count = 0;
+    for poster in poster_list {
+        count = count + 1;
+        let _process_movie_posters =
+            mtv_image::process_posters(poster.clone(), count.clone());
     }
 
-    let thumbcount = post_vec.len().to_string();
-    let moviecount = mov_vec.len().to_string();
-    let tvshowcount = tv_vec.len().to_string();
+    // let _tables = mtv_tables::create_tables();
 
+    // let movs = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
+    // let tvs = env::var("MTV_TV_PATH").expect("$MTV_TV_PATH is not set");
 
-    let thumbnailz = post_vec.clone();
-    if thumbnailz.clone().len() > 0 {
-        let mut count = 0;
-        for thumb in thumbnailz {
-            count = count + 1;
-            let _process_movie_posters =
-                mtv_image::process_movie_posters(thumb.clone(), count.clone());
-        }
-    }
+    // let medialist = Vec::from([movs, tvs]);
 
-    println!("fsizes: {:?}", fsize_vec.clone());
-    println!("Thumbcount {:?}", thumbcount.clone());
-    println!("Moviecount {:?}", moviecount.clone());
-    println!("Tvshowcount {:?}", tvshowcount.clone());
+    // let mut mov_vec = Vec::new();
+    // let mut tv_vec = Vec::new();
 
+    // let mut fsize_vec = Vec::new();
+
+    // for media in medialist {
+    //     let media_vec_vec = mtv_walk_dirs::walk_movies_dir(media.clone());
+    //     mov_vec = media_vec_vec[0].clone();
+    //     tv_vec = media_vec_vec[1].clone();
+    //     post_vec = media_vec_vec[2].clone();
+    //     fsize_vec = media_vec_vec[3].clone();
+    // }
+
+    // let thumbcount = post_vec.len().to_string();
+    // let moviecount = mov_vec.len().to_string();
+    // let tvshowcount = tv_vec.len().to_string();
+
+    // println!("fsizes: {:?}", fsize_vec.clone());
+    // println!("Thumbcount {:?}", thumbcount.clone());
+    // println!("Moviecount {:?}", moviecount.clone());
+    // println!("Tvshowcount {:?}", tvshowcount.clone());
 
     //         let moviez = media_vec_vec[0].clone();
     //         if moviez.clone().len() > 0 {
