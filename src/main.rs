@@ -16,9 +16,10 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     // let start = Instant::now();
 
     let poster_path = env::var("MTV_POSTER_PATH").expect("$MTV_POSTER_PATH is not set");
-
     let poster_list = mtv_walk_dirs::walk_posters_dir(poster_path.clone());
-
+    if !mtv_image::thumbnail_dir_exists() {
+        mtv_image::create_thumbnail_dir();
+    }
     let mut count = 0;
     for poster in poster_list {
         count = count + 1;
