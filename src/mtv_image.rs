@@ -8,9 +8,9 @@ use crate::mtv_utils::create_md5;
 use crate::mtv_types::MovieImage;
 
 pub fn thumbnail_dir_exists() -> bool {
-    let mtv_movies_thumbnail_path =
-        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
-    let path = std::path::Path::new(&mtv_movies_thumbnail_path);
+    let mtv_thumbnail_path =
+        env::var("MTV_THUMBNAIL_PATH").expect("$MTV_THUMBNAIL_PATH is not set");
+    let path = std::path::Path::new(&mtv_thumbnail_path);
     if path.exists() && path.is_dir() {
         return true
     } else {
@@ -19,18 +19,18 @@ pub fn thumbnail_dir_exists() -> bool {
 }
 
 pub fn create_thumbnail_dir() {
-    let mtv_movies_thumbnail_path =
-        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
-    std::fs::create_dir_all(mtv_movies_thumbnail_path).expect("Unable to create thumbnail dir");
+    let mtv_thumbnail_path =
+        env::var("MTV_THUMBNAIL_PATH").expect("$MTV_THUMBNAIL_PATH is not set");
+    std::fs::create_dir_all(mtv_thumbnail_path).expect("Unable to create thumbnail dir");
 }
 
 fn create_movie_thumbnail(x: String) -> (String, String) {
-    let mtv_movies_thumbnail_path =
-        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("$MTV_MOVIES_THUMBNAIL_PATH is not set");
+    let mtv_thumbnail_path =
+        env::var("MTV_THUMBNAIL_PATH").expect("$MTV_THUMBNAIL_PATH is not set");
     let server_addr = env::var("MTV_SERVER_ADDR").expect("$MTV_SERVER_ADDR is not set");
     let server_port = env::var("MTV_SERVER_PORT").expect("$MTV_SERVER_PORT is not set");
     let old_fname = crate::mtv_utils::split_poster_name(x.clone());
-    let out_fname = mtv_movies_thumbnail_path + &old_fname;
+    let out_fname = mtv_thumbnail_path + &old_fname;
     let http_fname = server_addr + ":" + &server_port + "/" + &old_fname;
     let img = image::open(x).expect("ooooh fuck it didnt open");
     let thumbnail = img.resize(230, 345, image::imageops::FilterType::Lanczos3);
