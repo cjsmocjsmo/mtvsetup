@@ -1,5 +1,6 @@
 // use rusqlite::Connection;
 use std::env;
+use rayon::prelude::*;
 // use std::time::Instant;
 // mod envvars;
 use dotenv::dotenv;
@@ -15,16 +16,23 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
     // let start = Instant::now();
     let _tables = mtv_tables::create_tables();
+
     let poster_path = env::var("MTV_POSTER_PATH").expect("$MTV_POSTER_PATH is not set");
     let poster_list = mtv_walk_dirs::walk_posters_dir(poster_path.clone());
+    
     if !mtv_image::thumbnail_dir_exists() {
         mtv_image::create_thumbnail_dir();
     }
-    let mut count = 0;
-    for poster in poster_list {
-        count = count + 1;
-        let _process_movie_posters = mtv_image::process_posters(poster.clone(), count.clone());
-    }
+
+    poster_list.into_par_iter().enumerate().for_each(|(count, poster)| {
+        mtv_image::process_posters(poster, (count + 1).try_into().unwrap());
+    });
+
+    // let mut count = 0;
+    // for poster in poster_list {
+    //     count = count + 1;
+    //     let _process_movie_posters = mtv_image::process_posters(poster.clone(), count.clone());
+    // }
 
     // let movs = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
     // let tvs = env::var("MTV_TV_PATH").expect("$MTV_TV_PATH is not set");
