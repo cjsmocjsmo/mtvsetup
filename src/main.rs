@@ -1,153 +1,101 @@
-use actix_cors::Cors;
-use actix_files as fs;
-use actix_web::{App, HttpServer};
+// use crate::envvars;
 use std::env;
+use std::time::Instant;
+use rusqlite::Connection;
+mod envvars;
 
+pub mod mtv_image;
+mod mtv_process_movies;
+mod mtv_process_tvshows;
+pub mod mtv_tables;
+pub mod mtv_types;
+pub mod mtv_utils;
+mod mtv_walk_dirs;
 
-pub mod envvars;
-pub mod servermov;
-pub mod serverutils;
-pub mod servertvs;
-pub mod setup;
-// pub mod player;
+pub fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let start = Instant::now();
 
-use env_logger::{Builder, Target};
-
-#[actix_web::main]
-
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    log::info!("MTV Start");
     let _vars = envvars::set_env_vars();
-    log::info!("Env Vars have been set");
-    
-    Builder::new()
-        .target(Target::Stdout)
-        .init();
 
-    
+    // let _dbfile = mtv_tables::create_db_file();
 
-    // if setup::mtv_tables::db_file_exists() == false {
-    //     setup::mtv_tables::create_db_file();
-    //     log::info!("created db file")
-    // }
-    let t_dir_exists = setup::mtv_image::thumbnail_dir_exists();
+    let _tables = mtv_tables::create_tables();
 
-    if !t_dir_exists {
-        setup::mtv_image::create_thumbnail_dir();
-        log::info!("created thumb dir")
-    }
+    let movs = env::var("MTV_MOVIES_PATH").expect("$MTV_MOVIES_PATH is not set");
+    let tvs = env::var("MTV_TV_PATH").expect("$MTV_TV_PATH is not set");
 
-    let thumb_path =
-        env::var("MTV_MOVIES_THUMBNAIL_PATH").expect("MTV_MOVIES_THUMBNAIL_PATH not set");
+    let medialist = Vec::from([movs, tvs]);
 
-    let socket = setup::mtv_utils::gen_server_addr();
-    println!("To setup db go to: http://{}/setup/now", socket.clone());
-    HttpServer::new(move || {
-        let cors = Cors::default()
-            .allow_any_origin()
-            .allow_any_method()
-            .allow_any_header()
-            .max_age(3600);
+    let mut thumbcount = String::new();
+    let mut moviecount = String::new();
+    let mut tvshowcount = String::new();
+    let mut fsizevec: Vec<u64> = Vec::new();
 
-        App::new()
-            .wrap(cors)
-            .service(serverutils::hello)
-            .service(serverutils::get_stats)
-            .service(serverutils::run_setup)
-            .service(serverutils::run_setup_check)
-            .service(servermov::action)
-            .service(servermov::arnold)
-            .service(servermov::brucelee)
-            .service(servermov::brucewillis)
-            .service(servermov::cartoons)
-            .service(servermov::chucknorris)
-            .service(servermov::comedy)
-            .service(servermov::drama)
-            .service(servermov::documentary)
-            .service(servermov::fantasy)
-            .service(servermov::godzilla)
-            .service(servermov::harrypotter)
-            .service(servermov::indianajones)
-            .service(servermov::jamesbond)
-            .service(servermov::johnwayne)
-            .service(servermov::johnwick)
-            .service(servermov::jurassicpark)
-            .service(servermov::kingsmen)
-            .service(servermov::meninblack)
-            .service(servermov::misc)
-            .service(servermov::nicolascage)
-            .service(servermov::pirates)
-            .service(servermov::riddick)
-            .service(servermov::starwars)
-            .service(servermov::startrek)
-            .service(servermov::superheroes)
-            .service(servermov::scifi)
-            .service(servermov::tomcruize)
-            .service(servermov::transformers)
-            .service(servermov::tremors)
-            .service(servermov::therock)
-            .service(servermov::xmen)
-            .service(servermov::buzz)
-            .service(servermov::charliebrown)
-            .service(servermov::minions)
-            .service(servermov::oldies)
-            .service(servermov::tinkerbell)
-            .service(servermov::stalone)
-            .service(servertvs::fuubar)
-            .service(servertvs::houseofthedragon)
-            .service(servertvs::ringsofpower)
-            .service(servertvs::wheeloftime)
-            .service(servertvs::voyager)
-            .service(servertvs::sttv)
-            .service(servertvs::enterprise)
-            .service(servertvs::tng)
-            .service(servertvs::discovery)
-            .service(servertvs::picard)
-            .service(servertvs::lowerdecks)
-            .service(servertvs::prodigy)
-            .service(servertvs::strangenewworlds)
-            .service(servertvs::andor)
-            .service(servertvs::badbatch)
-            .service(servertvs::bobafett)
-            .service(servertvs::obiwankenobi)
-            .service(servertvs::mandalorian)
-            .service(servertvs::talesofthejedi)
-            .service(servertvs::visions)
-            .service(servertvs::silo)
-            .service(servertvs::thelastofus)
-            .service(servertvs::foundation)
-            .service(servertvs::alteredcarbon)
-            .service(servertvs::cowboybebop)
-            .service(servertvs::forallmankind)
-            .service(servertvs::lostinspace)
-            .service(servertvs::raisedbywolves)
-            .service(servertvs::nightsky)
-            .service(servertvs::orville)
-            .service(servertvs::halo)
-            .service(servertvs::secretinvasion)
-            .service(servertvs::falconwintersoldier)
-            .service(servertvs::hawkeye)
-            .service(servertvs::iamgroot)
-            .service(servertvs::loki)
-            .service(servertvs::moonknight)
-            .service(servertvs::msmarvel)
-            .service(servertvs::shehulk)
-            .service(servertvs::wandavision)
-            .service(servertvs::hford1923)
-            .service(servertvs::prehistoricplanet)
-            .service(servertvs::ahsoka)
-            .service(servertvs::thecontinental)
-            .service(servertvs::monarchlegacyofmonsters)
-            // .service(player::play)
-            // .service(player::pause)
-            // .service(player::stop)
-            // .service(player::next)
-            // .service(player::previous)
-            .service(fs::Files::new("/thumbnails", thumb_path.clone()).show_files_listing())
-    })
-    .bind(socket)?
-    .run()
-    .await?;
+
+    println!("medialist: {:?}", medialist.clone());
+
+    for media in medialist {
+        
+            let media_vec_vec = mtv_walk_dirs::walk_movies_dir(media.clone());
+
+            let fsize = media_vec_vec[3].clone();
+
+            fsizevec.push(fsize[0].clone().parse().unwrap());
+
+
+
+            let thumbnailz = media_vec_vec[2].clone();
+            if thumbnailz.clone().len() > 0 {
+                let mut count = 0;
+                for thumb in thumbnailz {
+                    count = count + 1;
+                    let _process_movie_posters = mtv_image::process_movie_posters(
+                        thumb.clone(),
+                        count.clone(),
+                    );
+                };
+                thumbcount = count.clone().to_string();
+            }
+
+            let moviez = media_vec_vec[0].clone();
+            if moviez.clone().len() > 0 {
+                let mut count = 0;
+                for mov in moviez {
+                    count = count + 1;
+                    let _process_movies = mtv_process_movies::process_movies(mov.clone(), count);
+                }
+                moviecount = count.clone().to_string();
+            }
+
+            let tvshowz = media_vec_vec[1].clone();
+            if tvshowz.clone().len() > 0 {
+                let mut count = 0;
+                for tv in tvshowz {
+                    count = count + 1;
+                    let _process_tvshows = mtv_process_tvshows::process_tvshows(tv.clone(), count);
+                }
+                tvshowcount = count.clone().to_string();
+            }
+        
+    };
+
+    let statz = mtv_types::Stats {
+        id: 1,
+        moviecount: moviecount,
+        tvshowcount: tvshowcount,
+        postercount: thumbcount,
+        size: fsizevec.iter().sum::<u64>().to_string(),
+    };
+    let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
+    let conn = Connection::open(db_path).expect("unable to open db file");
+    conn.execute(
+        "INSERT INTO stats (moviecount, tvshowcount, postercount, size) VALUES (?1, ?2, ?3, ?4)",
+        &[&statz.moviecount, &statz.tvshowcount, &statz.postercount, &statz.size],
+
+    )
+    .expect("Unable to insert new tvshow info");
+
+    let _write_file = mtv_utils::write_current_datetime_to_file(start.elapsed());
 
     Ok(())
 }

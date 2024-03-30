@@ -1,5 +1,5 @@
 use std::env;
-use crate::setup::mtv_types;
+use crate::mtv_types;
 use rusqlite::Connection;
 use regex::Regex;
 
@@ -140,13 +140,13 @@ fn get_tv_catagory_name(x: &String) -> (String, String) {
 pub fn process_tvshows(tv: String, count: u32) {
     let season = get_season(&tv);
     let episode = get_episode(&tv);
-    let filesize = crate::setup::mtv_utils::get_file_size(&tv);
+    let filesize = crate::mtv_utils::get_file_size(&tv);
     let namef = get_tv_catagory_name(&tv);
     let fcat = namef.0;
     let fname = namef.1;
     let tvshow = mtv_types::TVShow {
         id: count,
-        tvid: crate::setup::mtv_utils::create_md5(&tv),
+        tvid: crate::mtv_utils::create_md5(&tv),
         size: filesize.to_string(),
         catagory: fcat,
         name: fname,

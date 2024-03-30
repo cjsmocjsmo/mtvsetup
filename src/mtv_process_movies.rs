@@ -1,4 +1,4 @@
-use crate::setup::mtv_utils;
+use crate::mtv_utils;
 use rusqlite::Connection;
 use std::env;
 
@@ -46,7 +46,7 @@ pub fn process_movies(x: String, count: u32) {
     let cat = parse_catagory(x.clone());
     let http_thumb_path = get_http_thumb_path(mov_name.clone(), mov_year.clone());
 
-    let mojo = crate::setup::mtv_types::Movie {
+    let mojo = crate::mtv_types::Movie {
         id: count,
         name: mov_name,
         year: mov_year,

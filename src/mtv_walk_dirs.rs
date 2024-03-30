@@ -69,17 +69,17 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
     }
     let mut fsizevec = Vec::new();
     for m in moviesvec.clone() {
-        let fsize = crate::setup::mtv_utils::get_file_size(&m);
+        let fsize = crate::mtv_utils::get_file_size(&m);
         fsizevec.push(fsize);
     };
 
     for tv in tvshowsvec.clone() {
-        let fsize = crate::setup::mtv_utils::get_file_size(&tv);
+        let fsize = crate::mtv_utils::get_file_size(&tv);
         fsizevec.push(fsize);
     };
 
     for img in mov_tv_thumb_vec.clone() {
-        let fsize = crate::setup::mtv_utils::get_file_size(&img);
+        let fsize = crate::mtv_utils::get_file_size(&img);
         fsizevec.push(fsize);
     };
 
