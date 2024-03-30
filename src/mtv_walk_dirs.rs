@@ -11,14 +11,21 @@ pub fn walk_movies_dir(mtv_movies_path: String) -> Vec<Vec<String>> {
     {
         if e.metadata().unwrap().is_file() {
             let fname = e.path().to_string_lossy().to_string();
-            if fname.contains("Movies") && fname.ends_with(".mp4") {
-                moviesvec.push(fname.clone());
+            println!("fname: {:?}", fname.clone());
+            if fname.contains("Movies") {
+                if fname.ends_with(".mp4") {
+                    moviesvec.push(fname.clone());
+                }
             }
-            if fname.contains("TVShows") && fname.ends_with(".mp4") {
-                tvshowsvec.push(fname.clone());
+            if fname.contains("TVShows") {
+                if fname.ends_with(".mp4") {
+                    tvshowsvec.push(fname.clone());
+                }
             }
-            if fname.contains("Posters") && fname.ends_with(".jpg") {
-                mov_tv_thumb_vec.push(fname);
+            if fname.contains("Posters") {
+                if fname.ends_with(".jpg") {
+                    mov_tv_thumb_vec.push(fname);
+                }
             }
         }
     }
