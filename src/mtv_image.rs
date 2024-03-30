@@ -63,6 +63,8 @@ pub fn process_movie_posters(x: String, count: u32) -> Vec<String> {
             idx: count,
             httpthumbpath: http_thumb_path,
         };
+        println!("movimg: {:?}", movimg);
+
         let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
         let conn = Connection::open(db_path).expect("unable to open db file");
         conn.execute(

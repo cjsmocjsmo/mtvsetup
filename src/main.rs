@@ -41,9 +41,9 @@ pub fn main() -> Result<(), Box<dyn std::error::Error>> {
         fsize_vec = media_vec_vec[3].clone();
     }
 
-    let thumbcount = mov_vec.len().to_string();
-    let moviecount = tv_vec.len().to_string();
-    let tvshowcount = post_vec.len().to_string();
+    let thumbcount = post_vec.len().to_string();
+    let moviecount = mov_vec.len().to_string();
+    let tvshowcount = tv_vec.len().to_string();
 
 
     let thumbnailz = post_vec.clone();
