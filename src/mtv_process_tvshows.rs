@@ -15,8 +15,8 @@ fn get_season(astring: &String) -> String {
     let mut seavec = Vec::new();
     let parts = season.split("S");
     for p in parts {
-        // println!("astring: {:?}", astring);
-        // println!("p: {:?}", p);
+        println!("astring: {:?}", astring);
+        println!("p: {:?}", p);
         seavec.push(p);
     }
 
