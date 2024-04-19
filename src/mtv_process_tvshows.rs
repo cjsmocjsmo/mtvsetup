@@ -171,5 +171,5 @@ pub fn process_tvshows(tv: String, count: u32) {
 
     )
     .expect("Unable to insert new tvshow info");
-    println!("inserted: {:?}", tvshow);
+    // println!("inserted: {:?}", tvshow);
 }
