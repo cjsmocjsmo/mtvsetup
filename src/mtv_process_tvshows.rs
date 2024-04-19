@@ -134,6 +134,12 @@ fn get_tv_catagory_name(x: &String) -> (String, String) {
         return (String::from("TheContinental"), String::from("The Continental"));
     } else if x.contains("MonarchLegacyOfMonsters") {
         return (String::from("MonarchLegacyOfMonsters"), String::from("Monarch Legacy Of Monsters"));
+    } else if x.contains("Shogun") {
+        return (String::from("Shogun"), String::from("Shogun"));
+    } else if x.contains("Fallout") {
+        return (String::from("Fallout"), String::from("Fallout"));
+    } else if x.contains("3BodyProblem") {
+        return (String::from("3BodyProblem"), String::from("3 Body Problem"));
     } else {
         return (String::from("None"), String::from("None"));
     }
