@@ -17,15 +17,15 @@ pub fn create_movies_table() -> Result<()> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS movies (
             id INTEGER PRIMARY KEY,
-            name TEXT NOT NULL,
-            year TEXT NOT NULL,
-            posteraddr TEXT NOT NULL,
-            size TEXT NOT NULL,
-            path TEXT NOT NULL,
-            idx TEXT NOT NULL,
-            movid TEXT NOT NULL UNIQUE,
-            catagory TEXT NOT NULL,
-            httpthumbpath TEXT NOT NULL
+            Name TEXT NOT NULL,
+            Year TEXT NOT NULL,
+            PosterAddr TEXT NOT NULL,
+            Size TEXT NOT NULL,
+            Path TEXT NOT NULL,
+            Idx TEXT NOT NULL,
+            MovId TEXT NOT NULL UNIQUE,
+            Catagory TEXT NOT NULL,
+            HttpThumbPath TEXT NOT NULL
          )",
         (),
     )?;
@@ -39,14 +39,14 @@ pub fn create_tvshows_table() -> Result<()> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS tvshows (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tvid TEXT NOT NULL UNIQUE,
-            size TEXT NOT NULL,
-            catagory TEXT NOT NULL,
-            name TEXT NOT NULL,
-            season TEXT NOT NULL,
-            episode TEXT NOT NULL,
-            path TEXT NOT NULL,
-            idx TEXT NOT NULL
+            TvId TEXT NOT NULL UNIQUE,
+            Size TEXT NOT NULL,
+            Catagory TEXT NOT NULL,
+            Name TEXT NOT NULL,
+            Season TEXT NOT NULL,
+            Episode TEXT NOT NULL,
+            Path TEXT NOT NULL,
+            Idx TEXT NOT NULL
          )",
         (),
     )?;
@@ -60,14 +60,14 @@ pub fn create_images_table() -> Result<()> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS images (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            imgid TEXT NOT NULL UNIQUE,
-            path TEXT NOT NULL,
-            imgpath TEXT NOT NULL,
-            size TEXT NOT NULL,
-            name TEXT NOT NULL,
-            thumbpath TEXT NOT NULL,
-            idx INTEGER NOT NULL,
-            httpthumbpath TEXT NOT NULL
+            ImgId TEXT NOT NULL UNIQUE,
+            Path TEXT NOT NULL,
+            ImgPath TEXT NOT NULL,
+            Size TEXT NOT NULL,
+            Name TEXT NOT NULL,
+            ThumbPath TEXT NOT NULL,
+            Idx INTEGER NOT NULL,
+            HttpThumbPath TEXT NOT NULL
          )",
         (),
     )?;
@@ -81,10 +81,10 @@ pub fn create_stats_table() -> Result<()> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS stats (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            moviecount TEXT NOT NULL,
-            tvshowcount TEXT NOT NULL,
-            postercount TEXT NOT NULL,
-            size TEXT NOT NULL
+            MovieCount TEXT NOT NULL,
+            TvShowCount TEXT NOT NULL,
+            PosterCount TEXT NOT NULL,
+            Size TEXT NOT NULL
          )",
         (),
     )?;

@@ -61,7 +61,7 @@ pub fn process_movies(x: String, count: u32) {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
-        "INSERT INTO movies (name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+        "INSERT INTO movies (Name, Year, PosterAddr, Size, Path, Idx, MovId, Catagory, HttpThumbPath) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
         &[&mojo.name, &mojo.year, &mojo.posteraddr, &mojo.size, &mojo.path, &mojo.idx, &mojo.movid, &mojo.catagory, &mojo.httpthumbpath],
     )
     .expect("Unable to insert new tvshow info");

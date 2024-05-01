@@ -166,7 +166,7 @@ pub fn process_tvshows(tv: String, count: u32) {
     let db_path = env::var("MTV_DB_PATH").expect("MTV_DB_PATH not set");
     let conn = Connection::open(db_path).expect("unable to open db file");
     conn.execute(
-        "INSERT INTO tvshows (tvid, size, catagory, name, season, episode, path, idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+        "INSERT INTO tvshows (TvId, Size, Catagory, Name, Season, Episode, Path, Idx) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
         &[&tvshow.tvid, &tvshow.size, &tvshow.catagory, &tvshow.name, &tvshow.season, &tvshow.episode, &tvshow.path, &tvshow.idx],
 
     )
