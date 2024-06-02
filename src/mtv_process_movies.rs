@@ -32,7 +32,7 @@ fn get_poster_addr(x: String) -> String {
 fn get_http_thumb_path(mname: String, year: String) -> String {
     let http = env::var("MTV_SERVER_ADDR").expect("MTV_SERVER_ADDR not set");
     let port = env::var("MTV_SERVER_PORT").expect("MTV_SERVER_PORT not set");
-    let result = http + ":" + &port + "/assets/thumbnails/" + &mname + " (" + &year + ")" + ".jpg";
+    let result = http + ":" + &port + "/thumbnails/" + &mname + " (" + &year + ")" + ".jpg";
 
     result
 }
