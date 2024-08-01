@@ -13,7 +13,7 @@ mod mtv_walk_dirs;
 mod envvars;
 
 pub fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let _vars = envvars::load_env_vars();
+    let _vars = envvars::set_env_vars();
 
     let start = Instant::now();
     let _tables = mtv_tables::create_tables();
