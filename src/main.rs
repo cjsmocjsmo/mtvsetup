@@ -1,4 +1,3 @@
-use dotenv::dotenv;
 use rayon::prelude::*;
 use rusqlite::Connection;
 use std::env;
@@ -11,9 +10,11 @@ pub mod mtv_tables;
 pub mod mtv_types;
 pub mod mtv_utils;
 mod mtv_walk_dirs;
+mod envvars;
 
 pub fn main() -> Result<(), Box<dyn std::error::Error>> {
-    dotenv().ok();
+    let _vars = envvars::load_env_vars();
+
     let start = Instant::now();
     let _tables = mtv_tables::create_tables();
 
