@@ -18,6 +18,11 @@ pub fn set_env_vars() {
         env::set_var("MTV_THUMBNAIL_PATH", "/usr/share/MTV/thumbnails/");
     }
 
+    let file_path = env::var("MTV_FILE_PATH");
+    if file_path.is_err() {
+        env::set_var("MTV_FILE_PATH", "/usr/share/MTV/");
+    }
+
     // let static_path = env::var("MTV_STATIC_PATH");
     // if static_path.is_err() {
     //     env::set_var("MTV_STATIC_PATH", "/usr/share/MTV/static");
