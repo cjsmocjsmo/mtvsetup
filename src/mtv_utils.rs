@@ -91,10 +91,11 @@ pub fn get_file_size(x: &String) -> u64 {
 
 pub fn write_current_datetime_to_file(x: Duration) {
     let save_addr = env::var("MTV_FILE_PATH").expect("MTV_FILE_PATH not set");
+    let save_addr_path = save_addr + "crap.txt";
     let now = SystemTime::now();
     let formatted_datetime = format!("Setup Time: {:?}\n\t taking: {:?} milis", now, x);
 
-    let mut file = std::fs::File::create(save_addr).unwrap();
+    let mut file = std::fs::File::create(save_addr_path).unwrap();
     file.write_all(formatted_datetime.as_bytes()).unwrap();
 }
 
