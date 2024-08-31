@@ -78,7 +78,7 @@ fn parse_catagory(x: String) -> String {
         "CharlieBrown",
         "ChuckNorris",
         "Comedy",
-        "Costner",
+        "KevinCostner",
         "Documentary",
         "Drama",
         "Fantasy",
