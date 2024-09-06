@@ -9,7 +9,9 @@ MTV="/usr/share/MTV";
 MTVT="/usr/share/MTV/thumbnails"
 MTVH=$HOME"/mtvsetup";
 
-if [ ! -d $MTVP ]; then
+if [ ! -d $MTV ]; then
+    sudo mkdir $MTV;
+    sudo touch $MTV/mtv.db;
     cd $MTVH;
     git clone https://github.com/cjsmocjsmo/mtvsetup.git
     # cd $MTVP;
@@ -20,12 +22,12 @@ if [ ! -d $MTVP ]; then
     # subprocess.run("/usr/bin/mtvsetup");
 fi
 
-if [ -d $MTVP ]; then
+if [ -d $MTV ]; then
     sudo rm -rf $MTV/thumbnails;
     sudo rm -rf $MTV/setup.mtv;
-    sudo rm -rf $MTV/db;
+    sudo rm -rf $MTV/mtv.db;
+    sudo rm -rf $MTV/crap.txt;
     sudo mkdir $MTV/thumbnails;
-    sudo mkdir $MTV/db;
     cd $MTVH;
     git pull;
     cargo run --release --bin mtvsetup;
