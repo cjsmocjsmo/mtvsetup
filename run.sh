@@ -5,14 +5,14 @@ if [ -f /etc/systemd/system/mtvsetup.service ]; then
     sudo systemctl stop mtvsetup.service;
 fi
 
-MTV="/usr/share/mtvsetup";
-MTVP="/usr/share/mtvsetup/mtvsetup"
+MTV="/usr/share/MTV";
+# MTVP="/usr/share/mtvsetup/mtvsetup"
 MTVH=$HOME"/mtvsetup";
 
 if [ ! -d $MTVP ]; then
-    cd $MTV;
+    cd $MTVH;
     git clone https://github.com/cjsmocjsmo/mtvsetup.git
-    cd $MTVP;
+    # cd $MTVP;
     cargo run --release --bin mtvsetup;
     # sudo mv ./target/release/mtvsetup /usr/bin/;
     # sudo chmod +xr /usr/bin/mtvsetup;
@@ -21,11 +21,11 @@ if [ ! -d $MTVP ]; then
 fi
 
 if [ -d $MTVP ]; then
-    sudo rm -rf $MTVP/thumbnails;
-    sudo rm -rf $MTVP/setup.mtv;
-    sudo rm -rf $MTVP/db;
-    sudo mkdir $MTVP/db;
-    cd $MTVP;
+    sudo rm -rf $MTVH/thumbnails;
+    sudo rm -rf $MTVH/setup.mtv;
+    sudo rm -rf $MTVH/db;
+    sudo mkdir $MTVH/db;
+    cd $MTVH;
     git pull;
     cargo run --release --bin mtvsetup;
     # sudo mv ./target/release/mtvsetup /usr/bin/;
