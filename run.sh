@@ -12,7 +12,7 @@ if [ ! -d $MTVP ]; then
     cd $MTV;
     git clone https://github.com/cjsmocjsmo/mtvsetup.git
     cd $MTVP;
-    cargo build --release --bin mtvsetup;
+    cargo run --release --bin mtvsetup;
     sudo mv ./target/release/mtvsetup /usr/bin/;
     sudo chmod +xr /usr/bin/mtvsetup;
     sudo chown root:root /usr/bin/mtvsetup;
@@ -25,7 +25,7 @@ if [ -d $MTVP ]; then
     sudo mkdir $MTVP/db;
     cd $MTVP;
     git pull;
-    cargo build --release --bin mtvsetup;
+    cargo run --release --bin mtvsetup;
     sudo mv ./target/release/mtvsetup /usr/bin/;
     sudo chmod +xr /usr/bin/mtvsetup;
     sudo chown root:root /usr/bin/mtvsetup;
