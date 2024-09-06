@@ -31,18 +31,18 @@ if [ -d $MTVP ]; then
     sudo chown root:root /usr/bin/mtvsetup;
 fi
 
-if [ ! -f /etc/systemd/system/mtvsetup.service ]; then
-    sudo cp -pvr /usr/share/mtvsetup/mtvsetup/mtvsetup.service /etc/systemd/system/;
-    sudo chmod +xr /etc/systemd/system/mtvsetup.service;
-    sudo chown root:root /etc/systemd/system/mtvsetup.service;
-    sudo systemctl daemon-reload;
-    sudo systemctl enable mtvsetup.service;
-    sudo systemctl start mtvsetup.service;
-fi
+# if [ ! -f /etc/systemd/system/mtvsetup.service ]; then
+#     sudo cp -pvr /usr/share/mtvsetup/mtvsetup/mtvsetup.service /etc/systemd/system/;
+#     sudo chmod +xr /etc/systemd/system/mtvsetup.service;
+#     sudo chown root:root /etc/systemd/system/mtvsetup.service;
+#     sudo systemctl daemon-reload;
+#     sudo systemctl enable mtvsetup.service;
+#     sudo systemctl start mtvsetup.service;
+# fi
 
-if [ -f /etc/systemd/system/mtvsetup.service ]; then
-    sudo systemctl start mtvsetup.service;
-fi
+# if [ -f /etc/systemd/system/mtvsetup.service ]; then
+#     sudo systemctl start mtvsetup.service;
+# fi
 
 
 
