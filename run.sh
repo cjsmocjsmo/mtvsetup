@@ -8,6 +8,7 @@ fi
 MTV="/usr/share/MTV";
 MTVT="/usr/share/MTV/thumbnails"
 MTVH=$HOME"/mtvsetup";
+echo $MTVH;
 
 if [ ! -d $MTV ]; then
     sudo mkdir $MTV;
