@@ -17,7 +17,7 @@ if [ ! -d $MTVP ]; then
     sudo mv ./target/release/mtvsetup /usr/bin/;
     sudo chmod +xr /usr/bin/mtvsetup;
     sudo chown root:root /usr/bin/mtvsetup;
-    subprocess.run(["/usr/bin/mtvsetup"]);
+    subprocess.run("/usr/bin/mtvsetup");
 fi
 
 if [ -d $MTVP ]; then
@@ -31,7 +31,7 @@ if [ -d $MTVP ]; then
     sudo mv ./target/release/mtvsetup /usr/bin/;
     sudo chmod +xr /usr/bin/mtvsetup;
     sudo chown root:root /usr/bin/mtvsetup;
-    subprocess.run(["/usr/bin/mtvsetup"]);
+    subprocess.run("/usr/bin/mtvsetup");
 fi
 
 # if [ ! -f /etc/systemd/system/mtvsetup.service ]; then
