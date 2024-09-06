@@ -14,10 +14,10 @@ if [ ! -d $MTVP ]; then
     git clone https://github.com/cjsmocjsmo/mtvsetup.git
     cd $MTVP;
     cargo run --release --bin mtvsetup;
-    sudo mv ./target/release/mtvsetup /usr/bin/;
-    sudo chmod +xr /usr/bin/mtvsetup;
-    sudo chown root:root /usr/bin/mtvsetup;
-    subprocess.run("/usr/bin/mtvsetup");
+    # sudo mv ./target/release/mtvsetup /usr/bin/;
+    # sudo chmod +xr /usr/bin/mtvsetup;
+    # sudo chown root:root /usr/bin/mtvsetup;
+    # subprocess.run("/usr/bin/mtvsetup");
 fi
 
 if [ -d $MTVP ]; then
@@ -27,11 +27,11 @@ if [ -d $MTVP ]; then
     sudo mkdir $MTVP/db;
     cd $MTVP;
     git pull;
-    cargo build --release --bin mtvsetup;
-    sudo mv ./target/release/mtvsetup /usr/bin/;
-    sudo chmod +xr /usr/bin/mtvsetup;
-    sudo chown root:root /usr/bin/mtvsetup;
-    subprocess.run("/usr/bin/mtvsetup");
+    cargo run --release --bin mtvsetup;
+    # sudo mv ./target/release/mtvsetup /usr/bin/;
+    # sudo chmod +xr /usr/bin/mtvsetup;
+    # sudo chown root:root /usr/bin/mtvsetup;
+    # subprocess.run("/usr/bin/mtvsetup");
 fi
 
 # if [ ! -f /etc/systemd/system/mtvsetup.service ]; then
