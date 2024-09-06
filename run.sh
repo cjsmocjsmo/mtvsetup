@@ -6,7 +6,7 @@ if [ -f /etc/systemd/system/mtvsetup.service ]; then
 fi
 
 MTV="/usr/share/MTV";
-# MTVP="/usr/share/mtvsetup/mtvsetup"
+MTVT="/usr/share/MTV/thumbnails"
 MTVH=$HOME"/mtvsetup";
 
 if [ ! -d $MTVP ]; then
@@ -21,10 +21,11 @@ if [ ! -d $MTVP ]; then
 fi
 
 if [ -d $MTVP ]; then
-    sudo rm -rf $MTVH/thumbnails;
-    sudo rm -rf $MTVH/setup.mtv;
-    sudo rm -rf $MTVH/db;
-    sudo mkdir $MTVH/db;
+    sudo rm -rf $MTV/thumbnails;
+    sudo rm -rf $MTV/setup.mtv;
+    sudo rm -rf $MTV/db;
+    sudo mkdir $MTV/thumbnails;
+    sudo mkdir $MTV/db;
     cd $MTVH;
     git pull;
     cargo run --release --bin mtvsetup;

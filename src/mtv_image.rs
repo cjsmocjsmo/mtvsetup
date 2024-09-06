@@ -18,11 +18,11 @@ pub fn thumbnail_dir_exists() -> bool {
     }
 }
 
-pub fn create_thumbnail_dir() {
-    let mtv_thumbnail_path =
-        env::var("MTV_THUMBNAIL_PATH").expect("$MTV_THUMBNAIL_PATH is not set");
-    std::fs::create_dir_all(mtv_thumbnail_path).expect("Unable to create thumbnail dir");
-}
+// pub fn create_thumbnail_dir() {
+//     let mtv_thumbnail_path =
+//         env::var("MTV_THUMBNAIL_PATH").expect("$MTV_THUMBNAIL_PATH is not set");
+//     std::fs::create_dir_all(mtv_thumbnail_path).expect("Unable to create thumbnail dir");
+// }
 
 fn create_movie_thumbnail(x: String) -> (String, String) {
     let mtv_thumbnail_path =
