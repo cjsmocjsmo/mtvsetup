@@ -31,6 +31,7 @@ fn create_movie_thumbnail(x: String) -> (String, String) {
     let server_port = env::var("MTV_SERVER_PORT").expect("$MTV_SERVER_PORT is not set");
     let old_fname = crate::mtv_utils::split_poster_name(x.clone());
     let out_fname = mtv_thumbnail_path + &old_fname;
+    println!("out_fname: {:?}", out_fname);
     let http_fname = server_addr + ":" + &server_port + "/" + &old_fname;
     let img = image::open(x).expect("ooooh fuck it didnt open");
     let thumbnail = img.resize(230, 345, image::imageops::FilterType::Lanczos3);
