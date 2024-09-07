@@ -29,6 +29,7 @@ if [ -d $MTV ]; then
     sudo rm -rf $MTV/mtv.db;
     sudo rm -rf $MTV/crap.txt;
     sudo mkdir $MTVT;
+    sudo chmod -R 755 $MTVT;
     sudo touch $MTV/mtv.db;
 
     cd $MTVH;

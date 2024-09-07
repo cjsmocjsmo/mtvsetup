@@ -63,15 +63,15 @@ pub fn set_env_vars() {
         env::set_var("MTV_POSTER_PATH", "/home/pimedia/PINAS/MTV/Posters/");
     }
 
-    let setup_path = env::var("MTV_SETUP_PATH");
-    if setup_path.is_err() {
-        env::set_var("MTV_SETUP_PATH", "/usr/share/MTV/");
-    }
+    // let setup_path = env::var("MTV_SETUP_PATH");
+    // if setup_path.is_err() {
+    //     env::set_var("MTV_SETUP_PATH", "/usr/share/MTV/");
+    // }
 
-    let mtv_path = env::var("MTV_MTV_PATH");
-    if mtv_path.is_err() {
-        env::set_var("MTV_MTV_PATH", "/usr/share/MTV/");
-    }
+    // let mtv_path = env::var("MTV_MTV_PATH");
+    // if mtv_path.is_err() {
+    //     env::set_var("MTV_MTV_PATH", "/usr/share/MTV/");
+    // }
 
 }
 
