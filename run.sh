@@ -13,7 +13,6 @@ echo $MTVH;
 if [ ! -d $MTV ]; then
     sudo mkdir $MTV;
     sudo mkdir $MTVT;
-    sudo touch $MTV/mtv.db;
     cd $MTVH;
     git clone https://github.com/cjsmocjsmo/mtvsetup.git
     # cd $MTVP;
