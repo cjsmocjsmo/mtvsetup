@@ -30,6 +30,7 @@ if [ -d $MTV ]; then
     sudo rm -rf $MTV/crap.txt;
     sudo mkdir $MTVT;
     sudo chmod -R 755 $MTVT;
+    sudo chown -R pimedia:pimedia $MTVT;
     sudo touch $MTV/mtv.db;
 
     cd $MTVH;
